@@ -2,7 +2,7 @@
 % Please edit documentation in R/class_col_df_term.R
 \name{class_df_from_term}
 \alias{class_df_from_term}
-\title{Title}
+\title{the function ?class_df_from_term}
 \usage{
 class_df_from_term(model, class_post_formula = FALSE)
 }
@@ -13,8 +13,11 @@ class_df_from_term(model, class_post_formula = FALSE)
 if TRUE returns class of df col AFTER any in-formula transformations applied to terms}
 }
 \value{
-a named list containing named character vectors. the list names are model terms. the vector names are data frame column names. the vector values are characters for the data frame column's class
+a named list containing named character vectors. the list names are model terms.
+The vector names are data frame column names. The vector values are characters for the data frame column's class.
+NOTE: If any in-formula transformations were applied, the data.frame referenced would represent an 'intermediate' one
+that is not exactly the originating data.frame passed to the 'data' arg of lm(data=.).
 }
 \description{
-Title
+the function ?class_df_from_term
 }
