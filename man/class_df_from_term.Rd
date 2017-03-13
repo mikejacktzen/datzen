@@ -2,22 +2,24 @@
 % Please edit documentation in R/class_col_df_term.R
 \name{class_df_from_term}
 \alias{class_df_from_term}
-\title{the function ?class_df_from_term}
+\title{the class_df_from_term() function}
 \usage{
 class_df_from_term(model, class_post_formula = FALSE)
 }
 \arguments{
 \item{model}{an 'lm' object}
 
-\item{class_post_formula}{if FALSE (default) returns class of df col BEFORE any in-formula transformations applied to terms
-if TRUE returns class of df col AFTER any in-formula transformations applied to terms}
+\item{class_post_formula}{If FALSE (default), returns class of df col BEFORE any in-formula transformations applied to terms.
+If TRUE, returns class of df col AFTER any in-formula transformations applied to terms.}
 }
 \value{
-a named list containing named character vectors. the list names are model terms.
-The vector names are data frame column names. The vector values are characters for the data frame column's class.
+a named list containing named character vectors.
+The list names are model terms.
+The vector names are data frame column names.
+The vector values are characters for the data frame column's class.
 NOTE: If any in-formula transformations were applied, the data.frame referenced would represent an 'intermediate' one
 that is not exactly the originating data.frame passed to the 'data' arg of lm(data=.).
 }
 \description{
-the function ?class_df_from_term
+the class_df_from_term() function
 }

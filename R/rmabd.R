@@ -1,4 +1,4 @@
-#' rm_allbut
+#' The rmabd() function removes 'all but deeze' objects
 #'
 #' @param list_keep an optional list of names of objects to keep from '?rm()'.
 #' The default 'list_keep=NULL' will remove all objects.
@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-rm_allbut = function(list_keep=NULL,envir=globalenv()){
+rmabd = function(list_keep=NULL,envir=globalenv()){
 
   # default: remove all
   # list_keep = NULL
@@ -28,7 +28,7 @@ rm_allbut = function(list_keep=NULL,envir=globalenv()){
 # x2 = 2
 # x3 = 3
 # ls()
-# # rm_allbut(list_keep=list('x1','x2'))
+# # rmabd(list_keep=list('x1','x2'))
 # # ls()
-# rm_allbut(list_keep='x1')
-# rm_allbut()
+# rmabd(list_keep='x1')
+# rmabd()
