@@ -7,7 +7,7 @@
 rmabd(list_keep = NULL, envir = globalenv())
 }
 \arguments{
-\item{list_keep}{an optional list of names of objects to keep from '?rm()'.
+\item{list_keep}{an optional list of names for objects to keep from '?rm()'.
 The default 'list_keep=NULL' will remove all objects.}
 
 \item{envir}{an optional environment. Defaults to '?globalenv()'.}

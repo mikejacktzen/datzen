@@ -1,6 +1,6 @@
 #' The rmabd() function removes 'all but deeze' objects
 #'
-#' @param list_keep an optional list of names of objects to keep from '?rm()'.
+#' @param list_keep an optional list of names for objects to keep from '?rm()'.
 #' The default 'list_keep=NULL' will remove all objects.
 #' @param envir an optional environment. Defaults to '?globalenv()'.
 #'
