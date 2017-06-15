@@ -5,7 +5,7 @@
 \title{The itersave() function to iteratively run-then-write the output of a user supplied function}
 \usage{
 itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
-  start = 1, end = length(vec_arg_func), parallel = FALSE)
+  beg = 1, end = length(vec_arg_func), parallel = FALSE)
 }
 \arguments{
 \item{func_user}{a user supplied function taking in a simple argument of one-element}
@@ -18,7 +18,7 @@ itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
 
 \item{subSubDir}{sub sub directory to write bad results to}
 
-\item{start}{integer to start iteration. Defaults to 1}
+\item{beg}{integer to begin iteration. Defaults to 1}
 
 \item{end}{integer to end iteration. Defaults to length(func_user)}
 

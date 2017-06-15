@@ -5,7 +5,7 @@
 #' @param mainDir parent directory to write output to
 #' @param subDir sub directory to write good results to
 #' @param subSubDir sub sub directory to write bad results to
-#' @param start integer to start iteration. Defaults to 1
+#' @param beg integer to begin iteration. Defaults to 1
 #' @param end integer to end iteration. Defaults to length(func_user)
 #' @param parallel logical to use doParallel backend. Defaults to FALSE
 #'
@@ -15,7 +15,7 @@
 #' @examples
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
-                    start=1,end=length(vec_arg_func),parallel=FALSE){
+                    beg=1,end=length(vec_arg_func),parallel=FALSE){
 
   # # args
   # mainDir = '~/projects/datzen/tests/proto/temp/'
@@ -111,13 +111,13 @@ itersave = function(func_user,vec_arg_func,
 
   # if(parallel==TRUE){
   # detectCores()
-  # foreach(j=start:end) %dopar% save_result_foo(j)
+  # foreach(j=beg:end) %dopar% save_result_foo(j)
   # } else {
 
   # func_safe = purrr::safely(rl_batch_j)
-  # start=1;end=length(vec_arg_func)
+  # beg=1;end=length(vec_arg_func)
 
-  foreach(j=start:end) %do% save_result_foo(j)
+  foreach(j=beg:end) %do% save_result_foo(j)
 
 }
 
