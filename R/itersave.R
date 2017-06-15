@@ -1,4 +1,10 @@
-#' The itersave() function to iteratively run-then-write the output of a user supplied function
+#' The itersave() function to iteratively run-then-write (to .rds) the output of a user supplied function
+#'
+#' @description
+#' The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.
+#' So, itersave() will write a physical .rds file to the user specified directory.
+#' The name of the physical file will use the values of 'vec_arg_func' as the filename. eg if vec_arg_func[[i]]='foo', then the physical file is 'foo.rds'
+#' Note: itersave() uses purrr::safely() with if-else to handle errors.
 #'
 #' @param func_user a user supplied function taking in a simple argument of one-element
 #' @param vec_arg_func a vector whose elements will be iteratively used as arguments in func_user
@@ -13,6 +19,31 @@
 #' @export
 #'
 #' @examples
+#'
+#'  foo_func_spec = function(x){return(log(x))}
+#'
+#'  mainDir = '~/projects/datzen/tests/proto/temp/'
+#'  subDir = '/dump_1/'
+#'  subSubDir = '/failed/'
+#'
+#'  arg_vec_spec = 1:10
+#'  itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'           mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#'
+#'  list.files('~/projects/datzen/tests/proto/temp/dump_1/')
+#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/10.rds')
+#'  identical(out,log(10))
+#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
+#'  identical(out,log(1))
+#'
+#'  # error control
+#'  arg_vec_spec = 'a'
+#'  itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'           mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#'
+#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
+
+
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
                     beg=1,end=length(vec_arg_func),parallel=FALSE){
