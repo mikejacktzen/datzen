@@ -6,8 +6,8 @@
 #' @param subDir sub directory to write good results to
 #' @param subSubDir sub sub directory to write bad results to
 #' @param beg integer to begin iteration. Defaults to 1
-#' @param end integer to end iteration. Defaults to length(func_user)
-#' @param parallel logical to use doParallel backend. Defaults to FALSE
+#' @param end integer to end iteration. Defaults to length(vec_arg_func)
+#' @param parallel logical to use library(doParallel) backend. Defaults to FALSE
 #'
 #' @return NULL
 #' @export

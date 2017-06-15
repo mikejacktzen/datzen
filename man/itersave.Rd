@@ -20,9 +20,9 @@ itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
 
 \item{beg}{integer to begin iteration. Defaults to 1}
 
-\item{end}{integer to end iteration. Defaults to length(func_user)}
+\item{end}{integer to end iteration. Defaults to length(vec_arg_func)}
 
-\item{parallel}{logical to use doParallel backend. Defaults to FALSE}
+\item{parallel}{logical to use library(doParallel) backend. Defaults to FALSE}
 }
 \description{
 The itersave() function to iteratively run-then-write the output of a user supplied function

@@ -7,7 +7,7 @@
 logit(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
 \arguments{
-\item{...}{see args of ?qlogis}
+\item{...}{see args of \code{\link{qlogis}}}
 }
 \value{
 a numeric
@@ -17,4 +17,7 @@ the logit() function, rebranding of stats::qlogis
 }
 \examples{
 plot(x=seq(from=0,to=1,by=0.01),y=logit(seq(from=0,to=1,by=0.01)))
+}
+\seealso{
+\code{\link[stats]{qlogis}}
 }

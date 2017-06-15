@@ -13,6 +13,7 @@ roxygen2::roxygenise()
 
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
+?datzen
 ?class_df_from_term
 ?rmabd
 ?theme_zen

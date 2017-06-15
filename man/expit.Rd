@@ -2,19 +2,22 @@
 % Please edit documentation in R/rebranding.R
 \name{expit}
 \alias{expit}
-\title{the expit() function, rebranding of stats::qlogis}
+\title{the expit() function, rebranding of stats::plogis}
 \usage{
 expit(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
 \arguments{
-\item{...}{see args of ?plogis}
+\item{...}{see args of see args of \code{\link{plogis}}}
 }
 \value{
 a numeric
 }
 \description{
-the expit() function, rebranding of stats::qlogis
+the expit() function, rebranding of stats::plogis
 }
 \examples{
 plot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+}
+\seealso{
+\code{\link[stats]{plogis}}
 }

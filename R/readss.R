@@ -18,6 +18,8 @@ readss = function(ss=10,replace=TRUE,...){
   # better if do not have to read full then subset
   # if can just read subset initially
 
+  # must know nrow beforehand
+
   if(nrow(dat_raw) < ss){
     ind_samp = sample(x=(1:nrow(dat_raw)),size=ss,replace=TRUE)
     warning('nrow() less than ss, so will force replace=TRUE')
