@@ -2,6 +2,7 @@
 
 export(class_df_from_term)
 export(expit)
+export(itersave)
 export(logit)
 export(moran_op)
 export(readss)

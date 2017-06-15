@@ -21,3 +21,4 @@ library(datzen)
 ?expit
 ?save_coord_nb
 ?moran_op
+?itersave
