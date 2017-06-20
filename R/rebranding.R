@@ -1,5 +1,5 @@
 
-#' the logit() function, rebranding of stats::qlogis
+#' the logit() function, rebranding of \code{\link[stats]{qlogis}}
 #'
 #' @seealso \code{\link[stats]{qlogis}}
 #'
@@ -9,18 +9,19 @@
 #' @export
 #'
 #' @examples plot(x=seq(from=0,to=1,by=0.01),y=logit(seq(from=0,to=1,by=0.01)))
+#' identical(logit(0.5),stats::qlogis(0.5))
 logit = stats::qlogis
 
 
-#' the expit() function, rebranding of stats::plogis
+#' the expit() function, rebranding of \code{\link[stats]{plogis}}
+#'
+#' @seealso \code{\link[stats]{plogis}}
 #'
 #' @param ... see args of see args of \code{\link{plogis}}
 #'
 #' @return a numeric
 #' @export
 #'
-#' @seealso \code{\link[stats]{plogis}}
-#'
 #' @examples plot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+#' identical(expit(10),stats::plogis(10))
 expit = stats::plogis
-

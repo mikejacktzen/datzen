@@ -7,9 +7,9 @@
 moran_op(x_features, coord_nb)
 }
 \arguments{
-\item{x_features}{a data.frame of features that will be coerced as.matrix()}
+\item{x_features}{a data.frame of features that will be coerced \code{\link[base]{as.matrix}}}
 
-\item{coord_nb}{a data.frame of the nb-coordinate triplets (i,j,k) returned from ?save_coord_nb()}
+\item{coord_nb}{a data.frame of the nb-coordinate triplets (i,j,k) returned from \code{\link[datzen]{save_coord_nb}}}
 }
 \value{
 A list of quantities related to the Moran Operator.

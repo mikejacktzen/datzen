@@ -9,6 +9,9 @@
 #' @export
 #'
 #' @examples
+#' qplot(mpg, wt, data = mtcars)
+#' qplot(mpg, wt, data = mtcars) + theme_zen()
+
 theme_zen = function(){
   require('ggplot2')
 
@@ -26,8 +29,3 @@ theme_zen = function(){
           plot.title=element_text(size=20,face="bold")
     )
 }
-
-
-# qplot(mpg, wt, data = mtcars)
-# qplot(mpg, wt, data = mtcars) + theme_zen()
-

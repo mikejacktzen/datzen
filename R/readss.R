@@ -1,14 +1,25 @@
 
 #' The readss() function reads a csv, but returns a sampled subset of rows
 #'
+#' @seealso \code{\link[utils]{read.csv}}
+#'
 #' @param ss an integer for desired row sample size
 #' @param replace a logical picking with/without-replacement sampling
-#' @param ... args passed to ?read.csv()
+#' @param ... args passed to \code{\link{read.csv}}
 #'
 #' @return a 'data.frame' with subsampled rows
 #' @export
 #'
 #' @examples
+#' test1 <- c(1:5, "6,7", "8,9,10")
+#' tf <- tempfile()
+#' writeLines(test1, tf)
+#'
+#' read.csv(tf, fill = TRUE) # 1 column
+#' readss(ss = 5,tf,replace=TRUE)
+#' readss(ss = 100,tf,replace=FALSE)
+#' readss(ss = 5,tf,replace=FALSE)
+
 readss = function(ss=10,replace=TRUE,...){
 
   # ss = 100  # samp size
@@ -33,14 +44,7 @@ readss = function(ss=10,replace=TRUE,...){
   return(dat_samp)
 }
 
-# test1 <- c(1:5, "6,7", "8,9,10")
-# tf <- tempfile()
-# writeLines(test1, tf)
-# read.csv(tf, fill = TRUE) # 1 column
-#
-# readss(ss = 5,tf,replace=TRUE)
-# readss(ss = 100,tf,replace=FALSE)
-# readss(ss = 5,tf,replace=FALSE)
+
 
 
 

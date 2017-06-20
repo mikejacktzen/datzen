@@ -3,11 +3,12 @@
 #' @description
 #' The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.
 #' So, itersave() will write a physical .rds file to the user specified directory.
-#' The name of the physical file will use the values of 'vec_arg_func' as the filename. eg if vec_arg_func[[i]]='foo', then the physical file is 'foo.rds'
+#' The name of the physical file will use the elements' names in the named vector 'vec_arg_func' as the filename. eg if names(vec_arg_func[[i]])='foo', then the physical file is 'foo.rds'
 #' Note: itersave() uses purrr::safely() with if-else to handle errors.
 #'
 #' @param func_user a user supplied function taking in a simple argument of one-element
-#' @param vec_arg_func a vector whose elements will be iteratively used as arguments in func_user
+#' @param vec_arg_func a named vector whose elements' value will be iteratively used as arguments in func_user.
+#' Further, the vector elements' name will be used as the .rds filename.
 #' @param mainDir parent directory to write output to
 #' @param subDir sub directory to write good results to
 #' @param subSubDir sub sub directory to write bad results to
@@ -20,33 +21,40 @@
 #'
 #' @examples
 #'
-#'  foo_func_spec = function(x){return(log(x))}
+#' foo_func_spec = function(x){return(log(x))}
 #'
-#'  mainDir = '~/projects/datzen/tests/proto/temp/'
-#'  subDir = '/dump_1/'
-#'  subSubDir = '/failed/'
+#' mainDir = '~/projects/datzen/tests/proto/temp/'
+#' subDir = '/dump_1/'
+#' subSubDir = '/failed/'
 #'
-#'  arg_vec_spec = 1:10
-#'  itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-#'           mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#' arg_vec_spec = 1:10
+#' # using arg vector index as suffix
+#' names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
+#' # using last 6 digits of arg value as suffix
+#' names(arg_vec_spec) = paste0('arg_foo',stringr::str_sub(arg_vec_spec,start=-6))
 #'
-#'  list.files('~/projects/datzen/tests/proto/temp/dump_1/')
-#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/10.rds')
-#'  identical(out,log(10))
-#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
-#'  identical(out,log(1))
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
 #'
-#'  # error control
-#'  arg_vec_spec = 'a'
-#'  itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-#'           mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#' list.files('~/projects/datzen/tests/proto/temp/dump_1/')
+#' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/10.rds')
+#' identical(out,log(10))
+#' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
+#' identical(out,log(1))
 #'
-#'  out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
-
+#' # error control
+#' arg_vec_spec = 'a'
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#'
+#' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
 
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
                     beg=1,end=length(vec_arg_func),parallel=FALSE){
+
+  require(purrr)
+  require(stringr)
 
   # # args
   # mainDir = '~/projects/datzen/tests/proto/temp/'
@@ -85,6 +93,24 @@ itersave = function(func_user,vec_arg_func,
   ####################################
   # save func based on ifelse error
   ####################################
+
+  # # using vector index as suffix
+  # names(vec_arg_func) = paste0('arg_foo',seq_along(vec_arg_func))
+  # # using last 6 digits of arg value as suffix
+  # names(vec_arg_func) = paste0('arg_foo',str_sub(vec_arg_func,start=-6))
+
+
+  if(is.null(names(vec_arg_func))){
+    stop("\n
+         Please use a named vector for vec_arg_func. Some examples are: \n
+         # using arg vector index as suffix \n
+         names(vec_arg_func) = paste0('arg_foo',seq_along(vec_arg_func)) \n
+         # using last 6 digits of arg value as suffix \n
+         names(vec_arg_func) = paste0('arg_foo',stringr::str_sub(vec_arg_func,start=-6))"
+         )
+  }
+
+
   arg_vec = vec_arg_func
 
   save_result_foo = function(i){
@@ -114,9 +140,11 @@ itersave = function(func_user,vec_arg_func,
       # good
       good_result = result_safe$result
 
+      # names(arg_i) instead of arg_i
+
       saveRDS(good_result,
               file=paste0(paste0(mainDir,subDir),
-                          "/",arg_i,".rds")
+                          "/",names(arg_i),".rds")
       )
 
     } else {
@@ -128,17 +156,18 @@ itersave = function(func_user,vec_arg_func,
                     bad_input=arg_vec[[i]],
                     bad_result=bad_result)
 
+      # names(arg_i) instead of arg_i
+
       saveRDS(failed,
               file=paste0(paste0(mainDir,subDir,subSubDir),
-                          "/",arg_i,".rds")
+                          "/",names(arg_i),".rds")
       )
     }
 
   }
 
 
-
-  library(doParallel)
+  require(doParallel)
 
   # if(parallel==TRUE){
   # detectCores()

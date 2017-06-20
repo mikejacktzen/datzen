@@ -7,16 +7,16 @@
 save_coord_nb(foo_spdf, style = "B", dir_out = NULL)
 }
 \arguments{
-\item{foo_spdf}{an object of class 'SpatialPolygonsDataFrame'}
+\item{foo_spdf}{an object of class \code{\link[sp]{SpatialPolygonsDataFrame}}}
 
 \item{style}{an optional character representing the style of spatial weights
-The same 'style' arg in ?spdep::nb2listw}
+The same 'style' arg in \code{\link[spdep]{nb2listw}}}
 
 \item{dir_out}{an optional character representing the output directory
 if the user wishes to write to a '.csv'}
 }
 \value{
-A data.frame of the nb-coordinate triplets ("from","to","weights") with 'spatial.neighbour' class returned from ?listw2sn()
+A data.frame of the nb-coordinate triplets ("from","to","weights") with 'spatial.neighbour' class returned from \code{\link[spdep]{listw2sn}}
 }
 \description{
 The save_coord_nb() function

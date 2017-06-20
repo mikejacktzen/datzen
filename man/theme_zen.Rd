@@ -9,3 +9,7 @@ theme_zen()
 \description{
 The zen theme for ggplot2
 }
+\examples{
+qplot(mpg, wt, data = mtcars)
+qplot(mpg, wt, data = mtcars) + theme_zen()
+}

@@ -18,3 +18,8 @@ nothing but a message will be printed for the kept objects
 \description{
 The rmabd() function removes 'all but deeze' objects
 }
+\examples{
+ls()
+ls()
+rmabd()
+}

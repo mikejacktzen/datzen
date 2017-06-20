@@ -2,7 +2,7 @@
 % Please edit documentation in R/rebranding.R
 \name{expit}
 \alias{expit}
-\title{the expit() function, rebranding of stats::plogis}
+\title{the expit() function, rebranding of \code{\link[stats]{plogis}}}
 \usage{
 expit(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
@@ -13,10 +13,11 @@ expit(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 a numeric
 }
 \description{
-the expit() function, rebranding of stats::plogis
+the expit() function, rebranding of \code{\link[stats]{plogis}}
 }
 \examples{
 plot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+identical(expit(10),stats::plogis(10))
 }
 \seealso{
 \code{\link[stats]{plogis}}

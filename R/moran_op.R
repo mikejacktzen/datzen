@@ -1,8 +1,8 @@
 
 #' The moran_op() function
 #'
-#' @param x_features a data.frame of features that will be coerced as.matrix()
-#' @param coord_nb a data.frame of the nb-coordinate triplets (i,j,k) returned from ?save_coord_nb()
+#' @param x_features a data.frame of features that will be coerced \code{\link[base]{as.matrix}}
+#' @param coord_nb a data.frame of the nb-coordinate triplets (i,j,k) returned from \code{\link[datzen]{save_coord_nb}}
 #'
 #' @return A list of quantities related to the Moran Operator.
 #' NOTE: the list structure is ready to be passed to the STAN mcmc software

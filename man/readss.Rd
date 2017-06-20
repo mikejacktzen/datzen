@@ -11,11 +11,24 @@ readss(ss = 10, replace = TRUE, ...)
 
 \item{replace}{a logical picking with/without-replacement sampling}
 
-\item{...}{args passed to ?read.csv()}
+\item{...}{args passed to \code{\link{read.csv}}}
 }
 \value{
 a 'data.frame' with subsampled rows
 }
 \description{
 The readss() function reads a csv, but returns a sampled subset of rows
+}
+\examples{
+test1 <- c(1:5, "6,7", "8,9,10")
+tf <- tempfile()
+writeLines(test1, tf)
+
+read.csv(tf, fill = TRUE) # 1 column
+readss(ss = 5,tf,replace=TRUE)
+readss(ss = 100,tf,replace=FALSE)
+readss(ss = 5,tf,replace=FALSE)
+}
+\seealso{
+\code{\link[utils]{read.csv}}
 }

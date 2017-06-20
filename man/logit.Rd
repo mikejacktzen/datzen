@@ -2,7 +2,7 @@
 % Please edit documentation in R/rebranding.R
 \name{logit}
 \alias{logit}
-\title{the logit() function, rebranding of stats::qlogis}
+\title{the logit() function, rebranding of \code{\link[stats]{qlogis}}}
 \usage{
 logit(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
@@ -13,10 +13,11 @@ logit(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 a numeric
 }
 \description{
-the logit() function, rebranding of stats::qlogis
+the logit() function, rebranding of \code{\link[stats]{qlogis}}
 }
 \examples{
 plot(x=seq(from=0,to=1,by=0.01),y=logit(seq(from=0,to=1,by=0.01)))
+identical(logit(0.5),stats::qlogis(0.5))
 }
 \seealso{
 \code{\link[stats]{qlogis}}
