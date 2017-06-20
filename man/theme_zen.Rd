@@ -10,6 +10,6 @@ theme_zen()
 The zen theme for ggplot2
 }
 \examples{
-qplot(mpg, wt, data = mtcars)
-qplot(mpg, wt, data = mtcars) + theme_zen()
+ggplot2::qplot(mpg, wt, data = mtcars)
+ggplot2::qplot(mpg, wt, data = mtcars) + theme_zen()
 }

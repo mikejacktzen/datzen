@@ -9,8 +9,8 @@
 #' @export
 #'
 #' @examples
-#' qplot(mpg, wt, data = mtcars)
-#' qplot(mpg, wt, data = mtcars) + theme_zen()
+#' ggplot2::qplot(mpg, wt, data = mtcars)
+#' ggplot2::qplot(mpg, wt, data = mtcars) + theme_zen()
 
 theme_zen = function(){
   require('ggplot2')

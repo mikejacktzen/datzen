@@ -8,12 +8,11 @@
 #' @export
 #'
 #' @examples
-# x1 = 1
-# x2 = 2
-# x3 = 3
+#' x1 = 1
+#' x2 = 2
+#' x3 = 3
 #' ls()
-# rmabd(list_keep=list('x1','x2'))
-#' ls()
+#' rmabd(list_keep=list('x1','x2'));ls()
 #' rmabd()
 
 rmabd = function(list_keep=NULL,envir=globalenv()){

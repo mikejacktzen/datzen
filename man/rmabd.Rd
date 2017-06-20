@@ -19,7 +19,10 @@ nothing but a message will be printed for the kept objects
 The rmabd() function removes 'all but deeze' objects
 }
 \examples{
+x1 = 1
+x2 = 2
+x3 = 3
 ls()
-ls()
+rmabd(list_keep=list('x1','x2'));ls()
 rmabd()
 }
