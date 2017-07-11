@@ -43,11 +43,33 @@
 #' identical(out,log(1))
 #'
 #' # error control
-#' arg_vec_spec = 'a'
+#'
+#' arg_vec_spec = c('a','b')
+#' names(arg_vec_spec) = stringr::str_sub(arg_vec_spec,start=-6)
+#'
 #' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
 #'          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
 #'
 #' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
+#'
+#' # retrying itersave() on failed runs from 'input_bad'
+#'
+#' dir_failed = '~/projects/datzen/tests/proto/temp/dump_1/failed/'
+#' list_failed = list.files(dir_failed,pattern = '.rds')
+#'
+#' # NOTE: .rds file name is name of vector element,
+#' names_failed = list_failed %>% gsub(.,pattern='.rds',replacement='')
+#'
+#' # NOTE: value of vector element is stored inside readRDS(xx)$input_bad
+#' values_failed = (list.files(dir_failed,pattern = '.rds',full.names = TRUE)) %>%
+#'   purrr::map(function(xx){readRDS(xx)$input_bad})
+#'
+#' # NOTE: re-assemble named vector
+#' arg_retry = unlist(values_failed)
+#' names(arg_retry) = names_failed
+#'
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_retry,
+#'          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
 
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
@@ -138,11 +160,11 @@ itersave = function(func_user,vec_arg_func,
 
     if(ok==TRUE){
       # good
-      good_result = result_safe$result
+      result_good = result_safe$result
 
       # names(arg_i) instead of arg_i
 
-      saveRDS(good_result,
+      saveRDS(result_good,
               file=paste0(paste0(mainDir,subDir),
                           "/",names(arg_i),".rds")
       )
@@ -150,11 +172,11 @@ itersave = function(func_user,vec_arg_func,
     } else {
 
       # bad
-      bad_result = result_safe$error
+      result_bad = result_safe$error
 
       failed = list(ind_fail=i,
-                    bad_input=arg_vec[[i]],
-                    bad_result=bad_result)
+                    input_bad=arg_vec[[i]],
+                    result_bad=result_bad)
 
       # names(arg_i) instead of arg_i
 

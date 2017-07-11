@@ -55,9 +55,31 @@ out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
 identical(out,log(1))
 
 # error control
-arg_vec_spec = 'a'
+
+arg_vec_spec = c('a','b')
+names(arg_vec_spec) = stringr::str_sub(arg_vec_spec,start=-6)
+
 itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
 
 out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
+
+# retrying itersave() on failed runs from 'bad_input'
+
+dir_failed = '~/projects/datzen/tests/proto/temp/dump_1/failed/'
+list_failed = list.files(dir_failed,pattern = '.rds')
+
+# NOTE: .rds file name is name of vector element,
+names_failed = list_failed \%>\% gsub(.,pattern='.rds',replacement='')
+
+# NOTE: value of vector element is stored inside readRDS(xx)$bad_input
+values_failed = (list.files(dir_failed,pattern = '.rds',full.names = TRUE)) \%>\%
+  purrr::map(function(xx){readRDS(xx)$bad_input})
+
+# NOTE: re-assemble named vector
+arg_retry = unlist(values_failed)
+names(arg_retry) = names_failed
+
+itersave(func_user=foo_func_spec,vec_arg_func=arg_retry,
+         mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
 }

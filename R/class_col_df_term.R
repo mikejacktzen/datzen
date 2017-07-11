@@ -15,6 +15,10 @@
 #' @export
 #'
 #' @examples
+#' model  <- lm(data = iris,Sepal.Length ~ Species + Petal.Length)
+#' str(class_df_from_term(model,class_post_formula = FALSE))
+#' str(class_df_from_term(model,class_post_formula = TRUE))
+
 class_df_from_term = function(model,class_post_formula=FALSE){
 
   # reusable info
