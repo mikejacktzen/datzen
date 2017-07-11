@@ -42,7 +42,9 @@
 #' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
 #' identical(out,log(1))
 #'
+#' ########################
 #' # error control
+#' ########################
 #'
 #' arg_vec_spec = c('a','b')
 #' names(arg_vec_spec) = stringr::str_sub(arg_vec_spec,start=-6)
@@ -52,7 +54,9 @@
 #'
 #' out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
 #'
+#' ########################
 #' # retrying itersave() on failed runs from 'input_bad'
+#' ########################
 #'
 #' dir_failed = '~/projects/datzen/tests/proto/temp/dump_1/failed/'
 #' list_failed = list.files(dir_failed,pattern = '.rds')
@@ -95,9 +99,16 @@ itersave = function(func_user,vec_arg_func,
          dir.create(file.path(mainDir, subDir)),
          FALSE)
 
+  print(paste0('saving successful .rds in: ',file.path(mainDir, subDir)))
+
   ifelse(!dir.exists(file.path(mainDir,subDir,subSubDir)),
          dir.create(file.path(mainDir,subDir,subSubDir)),
          FALSE)
+
+  print(paste0('saving failed .rds in: ',file.path(mainDir, subDir,subSubDir)))
+
+  # optional consider adding timeout error
+  # func_timeout = function(func_timeout){R.utils::withTimeout(func_user(vec_arg_func),timeout=60.0)}
 
   ####################################
   # safely func

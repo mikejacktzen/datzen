@@ -54,7 +54,9 @@ identical(out,log(10))
 out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
 identical(out,log(1))
 
+########################
 # error control
+########################
 
 arg_vec_spec = c('a','b')
 names(arg_vec_spec) = stringr::str_sub(arg_vec_spec,start=-6)
@@ -64,7 +66,9 @@ itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
 
 out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
 
+########################
 # retrying itersave() on failed runs from 'input_bad'
+########################
 
 dir_failed = '~/projects/datzen/tests/proto/temp/dump_1/failed/'
 list_failed = list.files(dir_failed,pattern = '.rds')

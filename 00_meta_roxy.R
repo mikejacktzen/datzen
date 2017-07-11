@@ -13,6 +13,8 @@ roxygen2::roxygenise()
 
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
+?iterload
+?itersave
 ?datzen
 ?class_df_from_term
 ?rmabd
@@ -22,4 +24,3 @@ library(datzen)
 ?expit
 ?save_coord_nb
 ?moran_op
-?itersave
