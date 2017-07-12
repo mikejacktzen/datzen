@@ -5,7 +5,7 @@
 \title{The itersave() function to iteratively run-then-write (to .rds) the output of a user supplied function}
 \usage{
 itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
-  beg = 1, end = length(vec_arg_func), parallel = FALSE)
+  beg = 1, end = length(vec_arg_func), parallel = FALSE, timeout = Inf)
 }
 \arguments{
 \item{func_user}{a user supplied function taking in a simple argument of one-element}
@@ -24,6 +24,9 @@ Further, the vector elements' name will be used as the .rds filename.}
 \item{end}{integer to end iteration. Defaults to length(vec_arg_func)}
 
 \item{parallel}{logical to use library(doParallel) backend. Defaults to FALSE}
+
+\item{timeout}{a numeric (default Inf) specifying the maximum number of seconds the expression
+is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}}
 }
 \description{
 The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.
@@ -86,4 +89,18 @@ names(arg_retry) = names_failed
 
 itersave(func_user=foo_func_spec,vec_arg_func=arg_retry,
          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+########################
+# timeout control
+########################
+foo_func_spec = function(x){Sys.sleep(2.0);return(log(x))}
+timeout=Inf
+itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+         mainDir,subDir,subSubDir='/failed/',
+         parallel=FALSE,timeout=timeout)
+
+foo_func_spec = function(x){wait=sample(c(0.0,2.0),1);Sys.sleep(wait);return(log(x))}
+timeout=1.0
+itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+         mainDir,subDir,subSubDir='/failed/',
+         parallel=FALSE,timeout=timeout)
 }

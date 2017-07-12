@@ -15,6 +15,8 @@
 #' @param beg integer to begin iteration. Defaults to 1
 #' @param end integer to end iteration. Defaults to length(vec_arg_func)
 #' @param parallel logical to use library(doParallel) backend. Defaults to FALSE
+#' @param timeout a numeric (default Inf) specifying the maximum number of seconds the expression
+#' is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}
 #'
 #' @return NULL
 #' @export
@@ -74,13 +76,31 @@
 #'
 #' itersave(func_user=foo_func_spec,vec_arg_func=arg_retry,
 #'          mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+#' ########################
+#' # timeout control
+#' ########################
+#' foo_func_spec = function(x){Sys.sleep(2.0);return(log(x))}
+#' timeout=Inf
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'          mainDir,subDir,subSubDir='/failed/',
+#'          parallel=FALSE,timeout=timeout)
+#'
+#' foo_func_spec = function(x){wait=sample(c(0.0,2.0),1);Sys.sleep(wait);return(log(x))}
+#' timeout=1.0
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'          mainDir,subDir,subSubDir='/failed/',
+#'          parallel=FALSE,timeout=timeout)
 
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
-                    beg=1,end=length(vec_arg_func),parallel=FALSE){
+                    beg=1,end=length(vec_arg_func),
+                    parallel=FALSE,
+                    timeout=Inf){
 
   require(purrr)
   require(stringr)
+  require(R.utils)
+
 
   # # args
   # mainDir = '~/projects/datzen/tests/proto/temp/'
@@ -107,15 +127,26 @@ itersave = function(func_user,vec_arg_func,
 
   print(paste0('saving failed .rds in: ',file.path(mainDir, subDir,subSubDir)))
 
+  ####################################
   # optional consider adding timeout error
-  # func_timeout = function(func_timeout){R.utils::withTimeout(func_user(vec_arg_func),timeout=60.0)}
+  ####################################
+
+  # func_user = function(x){Sys.sleep(2.0);return(log(x))}
+  # timeout=Inf
+
+  func_timeout = function(...){R.utils::withTimeout(func_user(...),timeout=timeout)}
+
+  # func_timeout(10)
+
 
   ####################################
   # safely func
   # for continuition when error
   ####################################
 
-  safe_foo_func = purrr::safely(func_user,quiet=FALSE)
+  safe_foo_func = purrr::safely(func_timeout,quiet=FALSE)
+
+  # safe_foo_func = purrr::safely(func_user,quiet=FALSE)
 
   # safe_foo_func(arg_vec[[1]])
   # safe_foo_func(arg_vec[[100]])
@@ -216,32 +247,3 @@ itersave = function(func_user,vec_arg_func,
 
 
 
-# args for user facing func
-
-# arg_vec_spec = 'a'
-# arg_vec_spec = 1:10
-#
-#
-# foo_func_spec = function(x){
-#   return(log(x))
-# }
-#
-#
-# mainDir = '~/projects/datzen/tests/proto/temp/'
-# subDir = '/dump_1/'
-# subSubDir = '/failed/'
-#
-# itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-#          mainDir,subDir,subSubDir='/failed/',
-#          parallel=FALSE)
-#
-#
-# list.files('~/projects/datzen/tests/proto/temp/dump_1/')
-#
-# out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
-#
-# out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/10.rds')
-# identical(out,log(10))
-#
-# out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
-# identical(out,log(1))
