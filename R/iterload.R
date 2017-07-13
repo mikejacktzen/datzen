@@ -7,6 +7,7 @@
 #' @param dir_rds character for path of directory containing .rds files
 #'
 #' @return a list storing read in results
+#' @seealso \code{\link[datzen]{itersave}} to see how the .rds files were written
 #' @export
 #'
 #' @examples

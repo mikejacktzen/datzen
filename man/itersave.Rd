@@ -36,71 +36,82 @@ Note: itersave() uses purrr::safely() with if-else to handle errors.
 }
 \examples{
 
+## using arg vector index as suffix
+# names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
+## using last 6 digits of arg value as suffix
+# names(arg_vec_spec) = paste0('arg_foo',stringr::str_sub(arg_vec_spec,start=-6))
+# success
+arg_vec_spec = 1:10
+names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
 foo_func_spec = function(x){return(log(x))}
 
 mainDir = '~/projects/datzen/tests/proto/temp/'
-subDir = '/dump_1/'
-subSubDir = '/failed/'
+subDir = '/dump_1_perfect/'
+subSubDir = '/failed_perfect/'
 
-arg_vec_spec = 1:10
-# using arg vector index as suffix
+itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+         mainDir,subDir,subSubDir=subSubDir,parallel=FALSE)
+
+# good files
+list.files(paste0(mainDir,subDir),full.names = TRUE)
+out=datzen::iterload(paste0(mainDir,subDir))
+str(out)
+
+# failed files none
+list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
+
+##################
+# failure from argument bad
+##################
+arg_vec_spec = letters
 names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
-# using last 6 digits of arg value as suffix
-names(arg_vec_spec) = paste0('arg_foo',stringr::str_sub(arg_vec_spec,start=-6))
+foo_func_spec = function(x){return(log(x))}
+
+subDir = '/dump_1_argbad/'
+subSubDir = '/failed_argbad/'
 
 itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-         mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+         mainDir,subDir,subSubDir=subSubDir,parallel=FALSE)
 
-list.files('~/projects/datzen/tests/proto/temp/dump_1/')
-out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/10.rds')
-identical(out,log(10))
-out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/1.rds')
-identical(out,log(1))
+# good files none
+list.files(paste0(mainDir,subDir),full.names = TRUE)
 
-########################
-# error control
-########################
+# bad files
+list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
+out=iterload(paste0(mainDir,subDir,subSubDir))
+str(out)
 
-arg_vec_spec = c('a','b')
-names(arg_vec_spec) = stringr::str_sub(arg_vec_spec,start=-6)
+##################
+# failure due to timeout
+##################
 
+# arg is good
+arg_vec_spec = 1:10
+names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
+
+foo_func_spec = function(x){
+  wait=sample(c(0,2.0),1); # 0 or 2 second
+  Sys.sleep(wait);
+  return(log(x))}
+
+subDir = '/dump_1_timeout/'
+subSubDir = '/failed_timeout/'
+
+# timeout at 1 second
 itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-         mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
+         mainDir=mainDir,subDir=subDir,subSubDir=subSubDir,parallel=FALSE,
+         timeout=1.0)
 
-out=readRDS('~/projects/datzen/tests/proto/temp/dump_1/failed/a.rds')
+# good files some
+list.files(paste0(mainDir,subDir),full.names = TRUE)
+out=datzen::iterload(paste0(mainDir,subDir))
+str(out)
 
-########################
-# retrying itersave() on failed runs from 'input_bad'
-########################
-
-dir_failed = '~/projects/datzen/tests/proto/temp/dump_1/failed/'
-list_failed = list.files(dir_failed,pattern = '.rds')
-
-# NOTE: .rds file name is name of vector element,
-names_failed = list_failed \%>\% gsub(.,pattern='.rds',replacement='')
-
-# NOTE: value of vector element is stored inside readRDS(xx)$input_bad
-values_failed = (list.files(dir_failed,pattern = '.rds',full.names = TRUE)) \%>\%
-  purrr::map(function(xx){readRDS(xx)$input_bad})
-
-# NOTE: re-assemble named vector
-arg_retry = unlist(values_failed)
-names(arg_retry) = names_failed
-
-itersave(func_user=foo_func_spec,vec_arg_func=arg_retry,
-         mainDir,subDir,subSubDir='/failed/',parallel=FALSE)
-########################
-# timeout control
-########################
-foo_func_spec = function(x){Sys.sleep(2.0);return(log(x))}
-timeout=Inf
-itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-         mainDir,subDir,subSubDir='/failed/',
-         parallel=FALSE,timeout=timeout)
-
-foo_func_spec = function(x){wait=sample(c(0.0,2.0),1);Sys.sleep(wait);return(log(x))}
-timeout=1.0
-itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
-         mainDir,subDir,subSubDir='/failed/',
-         parallel=FALSE,timeout=timeout)
+# bad files some
+list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
+out=datzen::iterload(paste0(mainDir,subDir,subSubDir))
+str(out)
+}
+\seealso{
+\code{\link[datzen]{iterload}} to easily load files written by itersave
 }

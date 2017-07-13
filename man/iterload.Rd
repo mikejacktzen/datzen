@@ -57,3 +57,6 @@ dir_retry = '~/projects/datzen/tests/proto/temp///dump_1/'
 out_failed = iterload(dir_rds=dir_retry)
 str(out_failed)
 }
+\seealso{
+\code{\link[datzen]{itersave}} to see how the .rds files were written
+}
