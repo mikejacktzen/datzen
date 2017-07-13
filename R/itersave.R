@@ -24,11 +24,15 @@
 #'
 #' @examples
 #'
+#' ## NOTE: Must name arg_vec_spec
 #' ## using arg vector index as suffix
 #' # names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
 #' ## using last 6 digits of arg value as suffix
 #' # names(arg_vec_spec) = paste0('arg_foo',stringr::str_sub(arg_vec_spec,start=-6))
+#'
+#' ##################
 #' # success
+#' ##################
 #' arg_vec_spec = 1:10
 #' names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
 #' foo_func_spec = function(x){return(log(x))}
@@ -45,7 +49,7 @@
 #' out=datzen::iterload(paste0(mainDir,subDir))
 #' str(out)
 #'
-#' # failed files none
+#' # bad files none
 #' list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
 #'
 #' ##################
@@ -99,6 +103,46 @@
 #' list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
 #' out=datzen::iterload(paste0(mainDir,subDir,subSubDir))
 #' str(out)
+#'
+#' ##################
+#' # re run failed args
+#' # see ?iterload()
+#' ##################
+#'
+#' list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
+#' out=datzen::iterload(paste0(mainDir,subDir,subSubDir))
+#' str(out)
+#'
+#' transpose(out)$ind_fail
+#' transpose(out)$input_bad
+#'
+#' # these examples timed out due to
+#' # random sample of wait time exceeding 2.0
+#'
+#' foo_func_spec = function(x){
+#'   # wait=sample(c(0,2.0),1); # 0 or 2 second
+#'   # Sys.sleep(wait);
+#'   return(log(x))}
+#'
+#' arg_redo = unlist(transpose(out)$input_bad)
+#' names(arg_redo)
+#' arg_vec_spec = arg_redo
+#'
+#' subDir = '/dump_1_redo/'
+#' subSubDir = '/failed_redo/'
+#'
+#' itersave(func_user=foo_func_spec,vec_arg_func=arg_vec_spec,
+#'          mainDir=mainDir,subDir=subDir,subSubDir=subSubDir,parallel=FALSE,
+#'          timeout=1.0)
+#'
+#' # good files all
+#' list.files(paste0(mainDir,subDir),full.names = TRUE)
+#' out=datzen::iterload(paste0(mainDir,subDir))
+#' str(out)
+#' names(arg_redo)
+#'
+#' # bad files none
+#' list.files(paste0(mainDir,subDir,subSubDir),full.names = TRUE)
 
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
