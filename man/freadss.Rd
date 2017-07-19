@@ -2,7 +2,7 @@
 % Please edit documentation in R/freadss.R
 \name{freadss}
 \alias{freadss}
-\title{The freadss() function reads a csv, but returns a sampled subset of rows}
+\title{The freadss() function reads a csv, but returns a subset of rows (optionally sampled).}
 \usage{
 freadss(input, ss = 10, replace = TRUE, ind_choose = NULL, ...)
 }
@@ -18,10 +18,10 @@ freadss(input, ss = 10, replace = TRUE, ind_choose = NULL, ...)
 \item{...}{optional args passed to \code{\link[data.table]{fread}}}
 }
 \value{
-a 'data.frame' with subsampled rows
+a 'data.frame' with subsetted rows (perhaps from sampling)
 }
 \description{
-The freadss() function reads a csv, but returns a sampled subset of rows
+The freadss() function reads a csv, but returns a subset of rows (optionally sampled).
 }
 \examples{
 

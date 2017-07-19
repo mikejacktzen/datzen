@@ -1,4 +1,4 @@
-#' The freadss() function reads a csv, but returns a sampled subset of rows
+#' The freadss() function reads a csv, but returns a subset of rows (optionally sampled).
 #'
 #' @seealso \code{\link[data.table]{fread}}
 #'
@@ -8,7 +8,7 @@
 #' @param ind_choose optional integer vector of specific rows to read in (instead of sampling)
 #' @param ... optional args passed to \code{\link[data.table]{fread}}
 #'
-#' @return a 'data.frame' with subsampled rows
+#' @return a 'data.frame' with subsetted rows (perhaps from sampling)
 #' @export
 #'
 #' @examples
