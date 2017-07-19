@@ -2,11 +2,11 @@
 
 export(class_df_from_term)
 export(expit)
+export(freadss)
 export(iterload)
 export(itersave)
 export(logit)
 export(moran_op)
-export(readss)
 export(rmabd)
 export(save_coord_nb)
 export(save_df_schema)

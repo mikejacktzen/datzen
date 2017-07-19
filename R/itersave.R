@@ -29,6 +29,11 @@
 #' # names(arg_vec_spec) = paste0('arg_foo',seq_along(arg_vec_spec))
 #' ## using last 6 digits of arg value as suffix
 #' # names(arg_vec_spec) = paste0('arg_foo',stringr::str_sub(arg_vec_spec,start=-6))
+#' ## left pad with 0 via nchar digits of arg length
+#' # names(arg_vec_spec) = paste0('arg_',
+#' #                              str_pad(seq_along(arg_vec_spec),
+#' #                                      width=nchar(length(arg_vec_spec)),
+#' #                                      side="left", pad="0"))
 #'
 #' ##################
 #' # success
