@@ -1,6 +1,12 @@
-# the 'datzen' R package
+# The **datzen** package of Miscellaneous Helper Functions the Zen Way
 
-Contains miscellaneous helper functions the Zen way
+The **datzen** package provides three categories of commonly used Zen functions:
+
+* data in out, 
+* themes (rebranded functions and visual aesthetics), 
+* special computation functions.
+
+The goal of this package is to help data analysts rapidly prototype common analysis scripts.
 
 ```
 devtools::install_github('mikejacktzen/datzen',force=TRUE)  
