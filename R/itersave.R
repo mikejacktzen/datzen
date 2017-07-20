@@ -301,7 +301,13 @@ itersave = function(func_user,vec_arg_func,
   # func_safe = purrr::safely(rl_batch_j)
   # beg=1;end=length(vec_arg_func)
 
-  foreach(j=beg:end) %do% save_result_foo(j)
+  # shows a list of NULL
+  # (expected, since only sideffect desired)
+  # foreach(j=beg:end) %do% save_result_foo(j)
+
+  # invisible() to hide the returned list of NULL
+  # a behavior of foreach()
+  invisible(foreach(j=beg:end) %do% save_result_foo(j))
 
 }
 
