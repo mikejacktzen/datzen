@@ -1,4 +1,4 @@
-# The **datzen** package of Miscellaneous Helper Functions the Zen Way
+# The 'datzen' R Package of Miscellaneous Helper Functions the Zen Way
 
 The **datzen** package provides three categories of commonly used Zen functions:
 

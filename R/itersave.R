@@ -250,6 +250,8 @@ itersave = function(func_user,vec_arg_func,
 
     arg_i = arg_vec[i]
 
+    print(names(arg_i))
+
 
     result_safe = safe_foo_func(arg_vec[[i]])
 
