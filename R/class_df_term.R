@@ -15,9 +15,6 @@
 #' @export
 #'
 #' @examples
-#' model  <- lm(data = iris,Sepal.Length ~ Species + Petal.Length)
-#' str(class_df_from_term(model,class_post_formula = FALSE))
-#' str(class_df_from_term(model,class_post_formula = TRUE))
 #'
 #' model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
 #'              Species:Sepal.Width + as.factor(Sepal.Width)+
@@ -29,6 +26,7 @@
 #' names(preform)
 #' (preform[5])
 #' (preform[5]) %in% 'nmatrix.2'
+#'
 #' # does not map "poly(Sepal.Width, degree = 2)" name of list entry
 #' # to original "Sepal.Width" name of vector entry
 #'
@@ -36,6 +34,7 @@
 #' names(postform)
 #' (postform[5])
 #' (postform[5]) %in% 'nmatrix.2'
+#'
 #' # does map "poly(Sepal.Width, degree = 2)" name of list entry
 #' # to original "Sepal.Width" name of vector entry
 
