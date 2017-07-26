@@ -250,6 +250,8 @@ itersave = function(func_user,vec_arg_func,
 
     arg_i = arg_vec[i]
 
+    print(paste0(i,' of ',end))
+
     print(names(arg_i))
 
 
