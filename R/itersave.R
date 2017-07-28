@@ -17,6 +17,8 @@
 #' @param parallel logical to use library(doParallel) backend. Defaults to FALSE
 #' @param timeout a numeric (default Inf) specifying the maximum number of seconds the expression
 #' is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}
+#' @param prog_iter a logical (default TRUE) if the 'i of end' progress should be printed for each iteration.
+#' @param ts a logical (default TRUE) if the timestamp should be printed for each iteration.
 #'
 #' @return NULL
 #' @seealso \code{\link[datzen]{iterload}} to easily load files written by itersave
@@ -153,7 +155,8 @@ itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
                     beg=1,end=length(vec_arg_func),
                     parallel=FALSE,
-                    timeout=Inf){
+                    timeout=Inf,
+                    prog_iter=TRUE,ts=TRUE){
 
   require(purrr)
   require(stringr)
@@ -250,7 +253,10 @@ itersave = function(func_user,vec_arg_func,
 
     arg_i = arg_vec[i]
 
-    print(paste0(i,' of ',end))
+    if(prog_iter==TRUE){print(paste0(i,' of ',end))}
+
+    if(ts==TRUE){print(Sys.time())}
+
 
     print(names(arg_i))
 
