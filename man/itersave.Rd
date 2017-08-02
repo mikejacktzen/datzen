@@ -6,7 +6,7 @@
 \usage{
 itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
   beg = 1, end = length(vec_arg_func), parallel = FALSE, timeout = Inf,
-  prog_iter = TRUE, ts = TRUE)
+  prog_iter = TRUE, ts = TRUE, walk = FALSE, ...)
 }
 \arguments{
 \item{func_user}{a user supplied function taking in a simple argument of one-element}
@@ -32,6 +32,10 @@ is allowed to run before being interrupted by the timeout. Passed to \code{\link
 \item{prog_iter}{a logical (default TRUE) if the 'i of end' progress should be printed for each iteration.}
 
 \item{ts}{a logical (default TRUE) if the timestamp should be printed for each iteration.}
+
+\item{walk}{logical (default FALSE). If TRUE, then saveRDS() is not ran for successful iterations.}
+
+\item{...}{extra args passed to func_user()}
 }
 \description{
 The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.

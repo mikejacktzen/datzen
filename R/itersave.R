@@ -19,6 +19,9 @@
 #' is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}
 #' @param prog_iter a logical (default TRUE) if the 'i of end' progress should be printed for each iteration.
 #' @param ts a logical (default TRUE) if the timestamp should be printed for each iteration.
+#' @param walk logical (default FALSE). If TRUE, then saveRDS() is not ran for successful iterations.
+#' @param ... extra args passed to func_user()
+
 #'
 #' @return NULL
 #' @seealso \code{\link[datzen]{iterload}} to easily load files written by itersave
@@ -156,11 +159,14 @@ itersave = function(func_user,vec_arg_func,
                     beg=1,end=length(vec_arg_func),
                     parallel=FALSE,
                     timeout=Inf,
-                    prog_iter=TRUE,ts=TRUE){
+                    prog_iter=TRUE,ts=TRUE,
+                    walk=FALSE,...){
 
   require(purrr)
   require(stringr)
   require(R.utils)
+
+  dots = list(...)
 
 
   # # args
@@ -195,7 +201,13 @@ itersave = function(func_user,vec_arg_func,
   # func_user = function(x){Sys.sleep(2.0);return(log(x))}
   # timeout=Inf
 
-  func_timeout = function(...){R.utils::withTimeout(func_user(...),timeout=timeout)}
+
+
+  func_timeout = function(...){
+
+    args_all = append(...,dots)
+    R.utils::withTimeout(do.call(func_user,args_all),timeout=timeout)
+  }
 
   # func_timeout(10)
 
@@ -232,7 +244,7 @@ itersave = function(func_user,vec_arg_func,
          names(vec_arg_func) = paste0('arg_foo',seq_along(vec_arg_func)) \n
          # using last 6 digits of arg value as suffix \n
          names(vec_arg_func) = paste0('arg_foo',stringr::str_sub(vec_arg_func,start=-6))"
-         )
+    )
   }
 
 
@@ -267,34 +279,61 @@ itersave = function(func_user,vec_arg_func,
     ok = is_null(result_safe$error)  # true if error is null (eg ok)
 
     # good/bad ifelse:
+    if(walk==TRUE){
+      # walk eg do not saveRDS for successful
 
-    if(ok==TRUE){
-      # good
-      result_good = result_safe$result
+      if(ok==TRUE){
 
-      # names(arg_i) instead of arg_i
+        return(NULL)
 
-      saveRDS(result_good,
-              file=paste0(paste0(mainDir,subDir),
-                          "/",names(arg_i),".rds")
-      )
+      } else {
 
+        # bad
+        result_bad = result_safe$error
+
+        failed = list(ind_fail=i,
+                      input_bad=arg_vec[[i]],
+                      result_bad=result_bad)
+
+        # names(arg_i) instead of arg_i
+
+        saveRDS(failed,
+                file=paste0(paste0(mainDir,subDir,subSubDir),
+                            "/",names(arg_i),".rds")
+        )
+      }
     } else {
+      # non-walk eg saveRDS for successful
 
-      # bad
-      result_bad = result_safe$error
+      if(ok==TRUE){
+        # good
+        result_good = result_safe$result
 
-      failed = list(ind_fail=i,
-                    input_bad=arg_vec[[i]],
-                    result_bad=result_bad)
+        # names(arg_i) instead of arg_i
 
-      # names(arg_i) instead of arg_i
+        saveRDS(result_good,
+                file=paste0(paste0(mainDir,subDir),
+                            "/",names(arg_i),".rds")
+        )
 
-      saveRDS(failed,
-              file=paste0(paste0(mainDir,subDir,subSubDir),
-                          "/",names(arg_i),".rds")
-      )
+      } else {
+
+        # bad
+        result_bad = result_safe$error
+
+        failed = list(ind_fail=i,
+                      input_bad=arg_vec[[i]],
+                      result_bad=result_bad)
+
+        # names(arg_i) instead of arg_i
+
+        saveRDS(failed,
+                file=paste0(paste0(mainDir,subDir,subSubDir),
+                            "/",names(arg_i),".rds")
+        )
+      }
     }
+
 
   }
 
@@ -317,7 +356,7 @@ itersave = function(func_user,vec_arg_func,
   # a behavior of foreach()
   invisible(foreach(j=beg:end) %do% save_result_foo(j))
 
-}
+  }
 
 
 
