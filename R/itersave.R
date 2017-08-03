@@ -14,7 +14,7 @@
 #' @param subSubDir sub sub directory to write bad results to
 #' @param first integer to start iteration. Defaults to 1
 #' @param last integer to end iteration. Defaults to length(vec_arg_func)
-#' @param parallel logical to use library(doParallel) backlast. Defaults to FALSE
+#' @param parallel logical to use library(doParallel) back end. Defaults to FALSE
 #' @param timeout a numeric (default Inf) specifying the maximum number of seconds the expression
 #' is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}
 #' @param prog_iter a logical (default TRUE) if the 'i of last' progress should be printed for each iteration.

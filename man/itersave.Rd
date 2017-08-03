@@ -24,7 +24,7 @@ Further, the vector elements' name will be used as the .rds filename.}
 
 \item{last}{integer to end iteration. Defaults to length(vec_arg_func)}
 
-\item{parallel}{logical to use library(doParallel) backlast. Defaults to FALSE}
+\item{parallel}{logical to use library(doParallel) back end. Defaults to FALSE}
 
 \item{timeout}{a numeric (default Inf) specifying the maximum number of seconds the expression
 is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}}
