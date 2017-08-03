@@ -5,8 +5,8 @@
 \title{The itersave() function to iteratively run-then-write (to .rds) the output of a user supplied function}
 \usage{
 itersave(func_user, vec_arg_func, mainDir, subDir, subSubDir = "/failed/",
-  beg = 1, end = length(vec_arg_func), parallel = FALSE, timeout = Inf,
-  prog_iter = TRUE, ts = TRUE, walk = FALSE, ...)
+  first = 1, last = length(vec_arg_func), parallel = FALSE,
+  timeout = Inf, prog_iter = TRUE, ts = TRUE, walk = FALSE, ...)
 }
 \arguments{
 \item{func_user}{a user supplied function taking in a simple argument of one-element}
@@ -20,22 +20,22 @@ Further, the vector elements' name will be used as the .rds filename.}
 
 \item{subSubDir}{sub sub directory to write bad results to}
 
-\item{beg}{integer to begin iteration. Defaults to 1}
+\item{first}{integer to start iteration. Defaults to 1}
 
-\item{end}{integer to end iteration. Defaults to length(vec_arg_func)}
+\item{last}{integer to end iteration. Defaults to length(vec_arg_func)}
 
-\item{parallel}{logical to use library(doParallel) backend. Defaults to FALSE}
+\item{parallel}{logical to use library(doParallel) backlast. Defaults to FALSE}
 
 \item{timeout}{a numeric (default Inf) specifying the maximum number of seconds the expression
 is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}}
 
-\item{prog_iter}{a logical (default TRUE) if the 'i of end' progress should be printed for each iteration.}
+\item{prog_iter}{a logical (default TRUE) if the 'i of last' progress should be printed for each iteration.}
 
 \item{ts}{a logical (default TRUE) if the timestamp should be printed for each iteration.}
 
 \item{walk}{logical (default FALSE). If TRUE, then saveRDS() is not ran for successful iterations.}
 
-\item{...}{extra args passed to func_user()}
+\item{...}{extra NAMED arguments passed to func_user via do.call(func_user),args=...)}
 }
 \description{
 The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.

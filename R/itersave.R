@@ -12,16 +12,15 @@
 #' @param mainDir parent directory to write output to
 #' @param subDir sub directory to write good results to
 #' @param subSubDir sub sub directory to write bad results to
-#' @param beg integer to begin iteration. Defaults to 1
-#' @param end integer to end iteration. Defaults to length(vec_arg_func)
-#' @param parallel logical to use library(doParallel) backend. Defaults to FALSE
+#' @param first integer to start iteration. Defaults to 1
+#' @param last integer to end iteration. Defaults to length(vec_arg_func)
+#' @param parallel logical to use library(doParallel) backlast. Defaults to FALSE
 #' @param timeout a numeric (default Inf) specifying the maximum number of seconds the expression
 #' is allowed to run before being interrupted by the timeout. Passed to \code{\link[R.utils]{withTimeout}}
-#' @param prog_iter a logical (default TRUE) if the 'i of end' progress should be printed for each iteration.
+#' @param prog_iter a logical (default TRUE) if the 'i of last' progress should be printed for each iteration.
 #' @param ts a logical (default TRUE) if the timestamp should be printed for each iteration.
 #' @param walk logical (default FALSE). If TRUE, then saveRDS() is not ran for successful iterations.
-#' @param ... extra args passed to func_user()
-
+#' @param ... extra NAMED arguments passed to func_user via do.call(func_user),args=...)
 #'
 #' @return NULL
 #' @seealso \code{\link[datzen]{iterload}} to easily load files written by itersave
@@ -156,7 +155,7 @@
 
 itersave = function(func_user,vec_arg_func,
                     mainDir,subDir,subSubDir='/failed/',
-                    beg=1,end=length(vec_arg_func),
+                    first=1,last=length(vec_arg_func),
                     parallel=FALSE,
                     timeout=Inf,
                     prog_iter=TRUE,ts=TRUE,
@@ -265,7 +264,7 @@ itersave = function(func_user,vec_arg_func,
 
     arg_i = arg_vec[i]
 
-    if(prog_iter==TRUE){print(paste0(i,' of ',end))}
+    if(prog_iter==TRUE){print(paste0(i,' of ',last))}
 
     if(ts==TRUE){print(Sys.time())}
 
@@ -342,19 +341,19 @@ itersave = function(func_user,vec_arg_func,
 
   # if(parallel==TRUE){
   # detectCores()
-  # foreach(j=beg:end) %dopar% save_result_foo(j)
+  # foreach(j=first:last) %dopar% save_result_foo(j)
   # } else {
 
   # func_safe = purrr::safely(rl_batch_j)
-  # beg=1;end=length(vec_arg_func)
+  # first=1;last=length(vec_arg_func)
 
   # shows a list of NULL
   # (expected, since only sideffect desired)
-  # foreach(j=beg:end) %do% save_result_foo(j)
+  # foreach(j=first:last) %do% save_result_foo(j)
 
   # invisible() to hide the returned list of NULL
   # a behavior of foreach()
-  invisible(foreach(j=beg:end) %do% save_result_foo(j))
+  invisible(foreach(j=first:last) %do% save_result_foo(j))
 
   }
 
