@@ -3,6 +3,7 @@
 export(class_df_from_term)
 export(expit)
 export(freadss)
+export(garble)
 export(iterload)
 export(itersave)
 export(logit)
