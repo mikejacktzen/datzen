@@ -17,7 +17,8 @@
 
 garble = function(size_out,pattern_bank='~!@#$%^&*()-+'){
 
-  if(size_out<3){stop('size_out must be 3 or larger')}
+  stopifnot(size_out >= 3)
+  # if(size_out<3){stop('size_out must be 3 or larger')}
 
   pattern = unlist(stringr::str_split(pattern_bank,pattern=''))
 

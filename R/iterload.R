@@ -54,6 +54,9 @@
 
 iterload = function(dir_rds){
 
+  stopifnot(is.character(dir_rds))
+
+
   # dir_rds = '~/projects/datzen/tests/proto/temp/dump_1/'
   print(paste0('looking in: ',dir_rds))
 

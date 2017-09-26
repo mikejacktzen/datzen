@@ -40,6 +40,8 @@
 
 class_df_from_term = function(model,class_post_formula=FALSE){
 
+  stopifnot('lm' %in% class(model))
+
   # reusable info
   hash_term = attr(terms(formula(model)),'factor')
 
