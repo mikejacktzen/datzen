@@ -2,14 +2,14 @@
 % Please edit documentation in R/freadss.R
 \name{freadss}
 \alias{freadss}
-\title{The freadss() function reads a csv, but returns a subset of rows (optionally sampled).}
+\title{The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).}
 \usage{
-freadss(input, ss = 10, replace = TRUE, ind_choose = NULL, ...)
+freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL, ...)
 }
 \arguments{
-\item{input}{character for file path of csv Passed to \code{\link[data.table]{fread}}}
+\item{input}{character for file path of csv passed to \code{\link[data.table]{fread}}}
 
-\item{ss}{integer for desired row sample size}
+\item{ss}{integer for desired row sample size. Default of ss is NULL, meaning no subsampling.}
 
 \item{replace}{a logical picking with/without-replacement sampling}
 
@@ -18,10 +18,12 @@ freadss(input, ss = 10, replace = TRUE, ind_choose = NULL, ...)
 \item{...}{optional args passed to \code{\link[data.table]{fread}}}
 }
 \value{
-a 'data.frame' with subsetted rows (perhaps from sampling)
+a 'data.frame' with optionally subsetted rows (perhaps from sampling)
 }
 \description{
-The freadss() function reads a csv, but returns a subset of rows (optionally sampled).
+The input file is read in-memory via \code{\link[data.table]{fread}}.
+If rows are subset, there is a speed down. Hence, subsetting rows takes on a one-time slow down
+in order to bean count the read-in memory footprint
 }
 \examples{
 
@@ -50,6 +52,10 @@ identical(sort(as.integer(result$V1)),sort(ind_pick))
 dim(result)
 head(result)
 tail(result)
+
+# no sub sampling
+result = freadss(input=dir_test,ss=NULL)
+dim(result)
 }
 \seealso{
 \code{\link[data.table]{fread}}

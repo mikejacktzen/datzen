@@ -17,7 +17,7 @@ library(datzen)
 ?class_df_from_term
 ?rmabd
 ?theme_zen
-?readss
+?freadss
 ?logit
 ?expit
 ?save_coord_nb

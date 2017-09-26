@@ -1,14 +1,16 @@
-#' The freadss() function reads a csv, but returns a subset of rows (optionally sampled).
+#' The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).
 #'
 #' @seealso \code{\link[data.table]{fread}}
-#'
-#' @param input character for file path of csv Passed to \code{\link[data.table]{fread}}
-#' @param ss integer for desired row sample size
+#' @description The input file is read in-memory via \code{\link[data.table]{fread}}.
+#' If rows are subset, there is a speed down. Hence, subsetting rows takes on a one-time slow down
+#' in order to bean count the read-in memory footprint
+#' @param input character for file path of csv passed to \code{\link[data.table]{fread}}
+#' @param ss integer for desired row sample size. Default of ss is NULL, meaning no subsampling.
 #' @param replace a logical picking with/without-replacement sampling
 #' @param ind_choose optional integer vector of specific rows to read in (instead of sampling)
 #' @param ... optional args passed to \code{\link[data.table]{fread}}
 #'
-#' @return a 'data.frame' with subsetted rows (perhaps from sampling)
+#' @return a 'data.frame' with optionally subsetted rows (perhaps from sampling)
 #' @export
 #'
 #' @examples
@@ -38,17 +40,28 @@
 #' dim(result)
 #' head(result)
 #' tail(result)
+#'
+#' # no sub sampling
+#' result = freadss(input=dir_test,ss=NULL)
+#' dim(result)
 
-freadss = function(input,ss=10,replace=TRUE,ind_choose=NULL,...){
-
-  require(data.table)
+freadss = function(input,ss=NULL,replace=TRUE,ind_choose=NULL,...){
 
   # ss = 100  # samp size
+  stopifnot(is.null(ss)||(ss>0))
+
+  require(data.table)
 
   # other args passed to fread()
   dots = list(...)
 
+  if(is.null(ss)==TRUE){
+    args_all = append(input,dots)
+    # no subsampling of rows
+    return(do.call(fread,args_all))
+  }
 
+  # else, subsample rows
 
   # must know nrow beforehand
   # input = '~/projects/datzen/tests/proto/test.csv'
