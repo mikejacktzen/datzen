@@ -4,28 +4,33 @@
 \alias{simlm}
 \title{The simlm function}
 \usage{
-simlm(n = 10, p = 4, coef_true = seq(1:p), seed = NULL)
+simlm(n = 10, p = 4, coef_true = seq(1:p), seed = NULL,
+  output_meta = FALSE)
 }
 \arguments{
 \item{n}{integer for number of observations}
 
-\item{p}{integer for number of cols in design matrix}
+\item{p}{integer for total number of cols in the design matrix. Note, offset from '3:p'.
+Since col 1 is reserved for intercept-column of 1s and col 2 is reserved for treatment-column of 1s/0s}
 
 \item{coef_true}{vector (length p) for true lm coefficients}
 
 \item{seed}{a seed for RNG (default NULL)}
+
+\item{output_meta}{a logical (default FALSE) determining if meta info is returned as list elements}
 }
 \value{
-a 3 element list with coef_true, yx, noise.
+If 'output_meta=FALSE' (the default), only the data.frame 'yx' is returned.
+The column names of yx are names(yx)=c('y',paste0("x",seq(1:p))).
 
-The column names of yx are names(yx)=c('y',paste0("x",seq(1:p)))
+If 'output_meta=TRUE', a 3 element list with yx, coef_true, noise.
 }
 \description{
 Quickly simulate data from a basic linear model.
 
 Each of the n noise elements are from \code{\link[stats]{rnorm}}(mean=0,sd=1).
 
-Each of the n x p design-matrix elements are from \code{\link[stats]{runif}}(min=0,max=1).
+Except for columns 1 and 2, each of the design-matrix elements are from \code{\link[stats]{runif}}(min=0,max=1).
 
 The outcome y is noise added to the linear combination of the design matrix with 'coef_true'.
 }
@@ -34,8 +39,12 @@ The outcome y is noise added to the linear combination of the design matrix with
 simlm()
 
 out = simlm(n=1000,p=10)
-lm(data=out$yx,y~-1+.)
+lm(data=out,y~-1+.)
 
 out = simlm(n=1000,seed=123)
-lm(data=out$yx,y~-1+.)
+lm(data=out,y~-1+.)
+
+out = simlm(n=1000,seed=123,output_meta=TRUE)
+str(out)
+
 }

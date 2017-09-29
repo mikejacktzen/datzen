@@ -1,5 +1,5 @@
 
-
+datzen::rmabd()
 setwd("~/projects/datzen/")
 devtools::load_all()
 devtools::document()
