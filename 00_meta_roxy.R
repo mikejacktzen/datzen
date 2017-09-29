@@ -23,3 +23,5 @@ library(datzen)
 ?expit
 ?save_coord_nb
 ?moran_op
+
+# devtools::use_readme_rmd()

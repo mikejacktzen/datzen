@@ -190,3 +190,11 @@ freadss = function(input,ss=NULL,replace=TRUE,ind_choose=NULL,...){
 #   return(result)
 # }
 #
+
+
+
+# I don't want to be that random! Can you just specifically give me rows 69,23, and 7 ?
+#
+# ```{r message=FALSE}
+# freadss(input=tf,ind_choose=c(69,23,7)) %>% str
+# ```

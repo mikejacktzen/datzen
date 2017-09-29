@@ -36,6 +36,9 @@
 #' out = simlm(n=1000,seed=123,output_meta=TRUE)
 #' str(out)
 #'
+#' out = simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)
+#' lm(data=out$yx[,-2], y ~ 1+.)
+#'
 simlm = function(n=10,p=4,coef_true=seq(1:p),seed=NULL,output_meta=FALSE){
 
   # n=10;p=4;coef_true=seq(1:(p+2));seed=NULL;output_meta=FALSE

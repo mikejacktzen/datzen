@@ -47,4 +47,7 @@ lm(data=out,y~-1+.)
 out = simlm(n=1000,seed=123,output_meta=TRUE)
 str(out)
 
+out = simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)
+lm(data=out$yx[,-2], y ~ 1+.)
+
 }

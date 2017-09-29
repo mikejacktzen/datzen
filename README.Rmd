@@ -1,0 +1,127 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+
+# The 'datzen' R Package of Miscellaneous Helper Functions the Zen Way
+
+The **datzen** package provides three categories of commonly used Zen functions:
+
+* data in / out  
+* themes (rebranded functions and visual aesthetics)  
+* special computation functions  
+
+The goal of this package is to help data analysts rapidly prototype common analysis scripts.
+
+```{r message=FALSE}
+# devtools::install_github('mikejacktzen/datzen',force=TRUE)  
+library(datzen)
+library(dplyr)
+```
+
+## Data I/O
+
+### Ever wanted a generic simulated dataset to prototype modeling commands?
+
+How did you know? I hate using `data(iris)` because the column names aren't generic enough!
+
+```{r}
+simlm(p=7,n=5,output_meta=TRUE)
+
+simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)$yx %>% lm(data=., y ~ -1+.)
+```
+
+
+### Ever wanted to read in 5 random rows of some physical spreadsheet?
+
+Someone handed me this dumb csv with 100 columns. I don't even know what's in it!
+
+```{r message=FALSE}
+
+set.seed(1); m = matrix(rnorm(100*100),ncol=100,nrow=100)
+csv = data.frame(m)
+dim(csv)
+
+tf <- tempfile()
+write.csv(csv,tf,row.names=FALSE)
+```
+
+So... of course! I want to use lightweight data and quickly piece together code before I run it on the full data!
+
+```{r message=FALSE}
+freadss(input=tf,ss=5,replace=TRUE) %>% dim
+```
+
+
+## Themes
+
+### I forgot about the wierd base R name of that link function used in logistic regression.
+
+Uhhh, it was what's his face! The one with the logis!
+
+Oh, you mean logit?
+
+```{r}
+# ?logit
+identical(logit(0.5),stats::qlogis(0.5))
+txtplot::txtplot(x=seq(from=0.01,to=0.99,by=0.01),y=logit(seq(from=0.01,to=0.99,by=0.01)))
+
+```
+
+I forgot about the wierd name of its inverse function too!
+Oh yeah... his ugly cousin, plogis.
+I know him as expit.
+
+```{r}
+# ?expit
+identical(expit(10),stats::plogis(10))
+txtplot::txtplot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+
+```
+
+### Ever wanted a random string of garbage?
+
+I'm too much of a homo-sapien, my phrases are never random enough?! 
+I wish I could be more like a homo-erectus, or a computer.
+
+```{r}
+thats_what_she_said = 10
+
+garble(size_out=thats_what_she_said)
+
+junk = garble(size_out=thats_what_she_said)
+
+```
+
+### Is your workspace environment too clutered? 
+
+It was like that when I got here.
+
+```{r}
+jimmy = 'johns'
+nuts = 'planters'
+
+ls()
+```
+
+I want to remove **All But Deeze** ...
+
+```{r}
+rmabd('nuts')
+
+ls()
+```
+
+
