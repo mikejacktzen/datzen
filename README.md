@@ -3,9 +3,9 @@ The 'datzen' R Package of Miscellaneous Helper Functions the Zen Way
 
 The **datzen** package provides three categories of commonly used Zen functions:
 
--   data in / out
--   themes (rebranded functions and visual aesthetics)
--   special computation functions
+-   Data In/Out
+-   Themed Branding
+-   Special Computations
 
 The goal of this package is to help data analysts rapidly prototype common analysis scripts.
 
@@ -15,8 +15,8 @@ library(datzen)
 library(dplyr)
 ```
 
-Data I/O
---------
+Data In/Out
+-----------
 
 ### Ever wanted a generic simulated dataset to prototype modeling commands?
 
@@ -25,18 +25,18 @@ How did you know? I hate using `data(iris)` because the column names aren't gene
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2        x3        x4        x5         x6        x7
-#> 1 10.11231  1  0 0.2771357 0.1538832 0.1782407 0.94974434 0.3503234
-#> 2 10.66133  1  0 0.8950751 0.2387364 0.6347591 0.11428512 0.2553693
-#> 3 11.32011  1  0 0.6868025 0.4539976 0.2623193 0.48003953 0.2675704
-#> 4 11.26159  1  0 0.6307101 0.9174421 0.1309155 0.07129148 0.6549941
-#> 5 19.96733  1  0 0.5595002 0.9283897 0.8897339 0.87008055 0.6295226
+#>          y x1 x2        x3          x4        x5        x6        x7
+#> 1 12.84826  1  1 0.5383498 0.709865254 0.2681348 0.5326178 0.3656095
+#> 2 15.54874  1  1 0.4557906 0.582226413 0.7507016 0.1426762 0.7435417
+#> 3 22.62202  1  1 0.7631094 0.615097756 0.6831683 0.8213452 0.7548770
+#> 4 13.41777  1  0 0.6334965 0.006803898 0.4388427 0.4336515 0.8400323
+#> 5 15.71854  1  1 0.4457046 0.826879892 0.7199102 0.4678335 0.1874187
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -1.3765590  0.3740682  0.3788845 -0.9675960 -0.5005362
+#> [1] -1.7019001 -0.9618911  1.2442444 -0.1862855  0.3554275
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)$yx %>% lm(data=., y ~ -1+.)
 #> 
@@ -45,7 +45,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)$yx %>% lm(data=., y ~ -
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 68.837  22.962   7.187
+#> 68.950  22.741   7.252
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
@@ -70,14 +70,12 @@ freadss(input=tf,ss=5,replace=TRUE) %>% dim
 #> [1]   5 100
 ```
 
-Themes
-------
+Themed Branding
+---------------
 
 ### I forgot about the wierd base R name of that link function used in logistic regression.
 
-Uhhh, it was what's his face! The one with the logis!
-
-Oh, you mean logit?
+Uhhh, it was what's his face! The one with the logis! Oh, you mean logit?
 
 ``` r
 # ?logit
@@ -127,7 +125,7 @@ txtplot::txtplot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
 
 ### Ever wanted a random string of garbage?
 
-I'm too much of a homo-sapien, my phrases are never random enough?! I wish I could be more like a homo-erectus, or a computer.
+I'm too much of a homo-sapien, my phrases are never random enough. I wish I could be more like a computer, or a homo-erectus.
 
 ``` r
 thats_what_she_said = 10
@@ -161,3 +159,96 @@ rmabd('nuts')
 ls()
 #> [1] "nuts"
 ```
+
+Special Computations
+--------------------
+
+Here you go, have this lm object.
+
+``` r
+model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
+             Species:Sepal.Width + as.factor(Sepal.Width)+
+             as.factor(Sepal.Width)*as.factor(Petal.Length)+
+             as.numeric(Species)*as.factor(Petal.Length)+
+             poly(Sepal.Width,degree = 2))
+```
+
+What's in it? What'd you do to it? Does it have cooties?
+
+``` r
+class_df_from_term(model,class_post_formula = FALSE)
+#> $Species
+#>  Species 
+#> "factor" 
+#> 
+#> $`as.numeric(Species)`
+#>  Species 
+#> "factor" 
+#> 
+#> $`as.factor(Sepal.Width)`
+#> Sepal.Width 
+#>   "numeric" 
+#> 
+#> $`as.factor(Petal.Length)`
+#> Petal.Length 
+#>    "numeric" 
+#> 
+#> $`poly(Sepal.Width, degree = 2)`
+#> Sepal.Width 
+#>   "numeric" 
+#> 
+#> $`Species:Sepal.Width`
+#>     Species Sepal.Width 
+#>    "factor"   "numeric" 
+#> 
+#> $`as.factor(Sepal.Width):as.factor(Petal.Length)`
+#>  Sepal.Width Petal.Length 
+#>    "numeric"    "numeric" 
+#> 
+#> $`as.numeric(Species):as.factor(Petal.Length)`
+#>      Species Petal.Length 
+#>     "factor"    "numeric"
+```
+
+Did you hear? That `data.frame` standing over there started hanging around with the wrong crowd. Yeah, `lm` totally changed him.
+
+``` r
+class_df_from_term(model,class_post_formula = TRUE)
+#> $Species
+#>  Species 
+#> "factor" 
+#> 
+#> $`as.numeric(Species)`
+#> as.numeric(Species) 
+#>           "numeric" 
+#> 
+#> $`as.factor(Sepal.Width)`
+#> as.factor(Sepal.Width) 
+#>               "factor" 
+#> 
+#> $`as.factor(Petal.Length)`
+#> as.factor(Petal.Length) 
+#>                "factor" 
+#> 
+#> $`poly(Sepal.Width, degree = 2)`
+#> poly(Sepal.Width, degree = 2) 
+#>                   "nmatrix.2" 
+#> 
+#> $`Species:Sepal.Width`
+#>     Species Sepal.Width 
+#>    "factor"   "numeric" 
+#> 
+#> $`as.factor(Sepal.Width):as.factor(Petal.Length)`
+#>  as.factor(Sepal.Width) as.factor(Petal.Length) 
+#>                "factor"                "factor" 
+#> 
+#> $`as.numeric(Species):as.factor(Petal.Length)`
+#>     as.numeric(Species) as.factor(Petal.Length) 
+#>               "numeric"                "factor"
+```
+
+What happened `Petal.Length` ? You used to be cool.
+
+Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for us?
+
+Get out of my face!

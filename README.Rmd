@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 The **datzen** package provides three categories of commonly used Zen functions:
 
-* data in / out  
-* themes (rebranded functions and visual aesthetics)  
-* special computation functions  
+* Data In/Out
+* Themed Branding  
+* Special Computations
 
 The goal of this package is to help data analysts rapidly prototype common analysis scripts.
 
@@ -31,7 +31,7 @@ library(datzen)
 library(dplyr)
 ```
 
-## Data I/O
+## Data In/Out
 
 ### Ever wanted a generic simulated dataset to prototype modeling commands?
 
@@ -65,12 +65,10 @@ freadss(input=tf,ss=5,replace=TRUE) %>% dim
 ```
 
 
-## Themes
+## Themed Branding
 
 ### I forgot about the wierd base R name of that link function used in logistic regression.
-
 Uhhh, it was what's his face! The one with the logis!
-
 Oh, you mean logit?
 
 ```{r}
@@ -93,8 +91,8 @@ txtplot::txtplot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
 
 ### Ever wanted a random string of garbage?
 
-I'm too much of a homo-sapien, my phrases are never random enough?! 
-I wish I could be more like a homo-erectus, or a computer.
+I'm too much of a homo-sapien, my phrases are never random enough.
+I wish I could be more like a computer, or a homo-erectus.
 
 ```{r}
 thats_what_she_said = 10
@@ -124,4 +122,33 @@ rmabd('nuts')
 ls()
 ```
 
+## Special Computations
 
+Here you go, have this lm object. 
+
+```{r}
+model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
+             Species:Sepal.Width + as.factor(Sepal.Width)+
+             as.factor(Sepal.Width)*as.factor(Petal.Length)+
+             as.numeric(Species)*as.factor(Petal.Length)+
+             poly(Sepal.Width,degree = 2))
+```
+
+What's in it? What'd you do to it? Does it have cooties?
+
+```{r}
+class_df_from_term(model,class_post_formula = FALSE)
+```
+
+Did you hear? That `data.frame` standing over there started hanging around with the wrong crowd.
+Yeah, `lm` totally changed him.
+
+```{r}
+class_df_from_term(model,class_post_formula = TRUE)
+```
+
+What happened `Petal.Length` ? You used to be cool.  
+
+Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for us?  
+
+Get out of my face!
