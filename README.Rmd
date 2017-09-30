@@ -15,55 +15,24 @@ knitr::opts_chunk$set(
 ```
 
 
-# The 'datzen' R Package of Miscellaneous Helper Functions the Zen Way
+# The 'datzen' package for R
 
-The **datzen** package provides three categories of commonly used Zen functions:
 
-* Data In/Out
+The **datzen** package provides three categories of commonly used miscellaneous functions to achieve Data Zen  
+`٩(^ᴗ^)۶`
+
+
 * Themed Branding  
 * Special Computations
+* Data In/Out
 
-The goal of this package is to help data analysts rapidly prototype common analysis scripts.
+The goal of this package is to provide data analysts a few tools to rapidly prototype analysis scripts.
 
 ```{r message=FALSE}
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)  
 library(datzen)
 library(dplyr)
 ```
-
-## Data In/Out
-
-### Ever wanted a generic simulated dataset to prototype modeling commands?
-
-How did you know? I hate using `data(iris)` because the column names aren't generic enough!
-
-```{r}
-simlm(p=7,n=5,output_meta=TRUE)
-
-simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)$yx %>% lm(data=., y ~ -1+.)
-```
-
-
-### Ever wanted to read in 5 random rows of some physical spreadsheet?
-
-Someone handed me this dumb csv with 100 columns. I don't even know what's in it!
-
-```{r message=FALSE}
-
-set.seed(1); m = matrix(rnorm(100*100),ncol=100,nrow=100)
-csv = data.frame(m)
-dim(csv)
-
-tf <- tempfile()
-write.csv(csv,tf,row.names=FALSE)
-```
-
-So... of course! I want to use lightweight data and quickly piece together code before I run it on the full data!
-
-```{r message=FALSE}
-freadss(input=tf,ss=5,replace=TRUE) %>% dim
-```
-
 
 ## Themed Branding
 
@@ -74,7 +43,7 @@ Oh, you mean logit?
 ```{r}
 # ?logit
 identical(logit(0.5),stats::qlogis(0.5))
-txtplot::txtplot(x=seq(from=0.01,to=0.99,by=0.01),y=logit(seq(from=0.01,to=0.99,by=0.01)))
+xx=seq(from=0.01,to=0.99,by=0.01);txtplot::txtplot(x=xx,y=logit(xx))
 
 ```
 
@@ -85,22 +54,20 @@ I know him as expit.
 ```{r}
 # ?expit
 identical(expit(10),stats::plogis(10))
-txtplot::txtplot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+xxx=seq(from=-10,to=10,by=1);txtplot::txtplot(x=xxx,y=expit(xxx))
 
 ```
 
 ### Ever wanted a random string of garbage?
 
-I'm too much of a homo-sapien, my phrases are never random enough.
-I wish I could be more like a computer, or a homo-erectus.
+I'm too much of a homo-sapien, my phrases are never random enough (I blame my parents). I wish I could be more like a computer, or a homo-erectus.
 
 ```{r}
-thats_what_she_said = 10
+dats_wat_she_said = 10
 
-garble(size_out=thats_what_she_said)
+junk = garble(size_out=dats_wat_she_said)
 
-junk = garble(size_out=thats_what_she_said)
-
+junk
 ```
 
 ### Is your workspace environment too clutered? 
@@ -124,10 +91,11 @@ ls()
 
 ## Special Computations
 
-Here you go, have this lm object. 
+Here you go, have this `lm` object I made. Bye!
 
 ```{r}
-model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
+model = lm(data = iris,
+           Sepal.Length ~ Species + as.numeric(Species) +
              Species:Sepal.Width + as.factor(Sepal.Width)+
              as.factor(Sepal.Width)*as.factor(Petal.Length)+
              as.numeric(Species)*as.factor(Petal.Length)+
@@ -140,8 +108,8 @@ What's in it? What'd you do to it? Does it have cooties?
 class_df_from_term(model,class_post_formula = FALSE)
 ```
 
-Did you hear? That `data.frame` standing over there started hanging around with the wrong crowd.
-Yeah, `lm` totally changed him.
+Did you hear? That `data.frame` standing over there started hanging around with the wrong crowd. Boy [I tell you hwat](https://www.youtube.com/watch?v=p-JgNTvTA4E&feature=youtu.be), `lm` totally changed him.
+
 
 ```{r}
 class_df_from_term(model,class_post_formula = TRUE)
@@ -149,6 +117,141 @@ class_df_from_term(model,class_post_formula = TRUE)
 
 What happened `Petal.Length` ? You used to be cool.  
 
-Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for us?  
+Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for your old crew, the numeric types, huh? 
+
 
 Get out of my face!
+
+
+## Data In/Out
+
+### Ever wanted a generic simulated dataset to prototype modeling commands?
+
+How did you know? I'm tired of using `data(iris)` because the column names aren't boring enough. Turn up the boring! I just want something fast and generic to swap out later.
+
+```{r}
+simlm(p=7,n=5,output_meta=TRUE)
+
+simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
+```
+
+
+### Ever wanted to read in 5 random rows of some physical spreadsheet?
+
+Someone handed me this dumb csv with 100 columns. I don't even know what's in it!
+
+```{r message=FALSE}
+set.seed(1); m = matrix(rnorm(100*100),ncol=100,nrow=100)
+csv = data.frame(m)
+dim(csv)
+
+tf <- tempfile()
+write.csv(csv,tf,row.names=FALSE)
+```
+
+So... of course. I just want a taste of the data. Give me a taste!
+
+I'll use the subset to prototype something that works. Later, I'll run it on the whole shebang. 
+
+```{r message=FALSE}
+freadss(input=tf,ss=5,replace=TRUE) %>% dim
+```
+
+### The Glorious Franken-function `itersave()`
+
+Ever wanted to just brute force some for loop? Aw poop, it crapped the bed during iteration 69. Now I have to manually restart it. I hope it doesn't do it again. I'm running out of patience, and linen. 
+
+
+```{r error=TRUE}
+shaq = function(meatbag){
+  if(meatbag %in% 'scrub'){return('dunk on em')}
+  if(meatbag %in% 'sabonis'){return('elbow his face')}
+  if(!(meatbag %in% c('scrub','sabonis'))){
+    stop('shaq is confused')}
+  }
+
+meatbags = c('scrub','sabonis','scrub','kobe')
+names(meatbags) = paste0('arg_',seq_along(meatbags))
+
+testthat::expect_failure(lapply(meatbags,FUN=shaq))
+
+```
+
+Uh, some error confused Shaq. 
+
+*enter, stage trap door*  
+"Meet `itersave()` "  
+*front row faints*  
+"It's... hideously beautiful"  
+
+
+In a nutshell, `itersave` works like `lapply` but when it meets an ugly, unskilled, unqualified, and ungraceful error it will keep trucking along like Shaquille The Diesel O'Neal hitchhiking a ride on Chris Dudley's [back](https://www.youtube.com/watch?v=0ICBi-ku-G0) 
+
+
+
+```{r message=FALSE}
+mainDir=paste0(getwd(),'/tests/proto/')
+subDir='/temp/'
+
+itersave(func_user=shaq,
+         vec_arg_func=meatbags,
+         mainDir,subDir)
+```
+
+The meatbags that Shaq succesfully turned into bodybags.
+
+```{r}
+print('the successes')
+list.files(paste0(mainDir,subDir))
+```
+
+It'll also book keep any errors along the way (via `purrr::safely()` and `R.utils::withTimeout()`). 
+
+```{r}
+print('the failures')
+list.files(paste0(mainDir,subDir,'/failed/'))
+```
+Along with the **out**, itersave has an **in** companion  
+
+*enter, zipline from balcony*  
+"meet `iterload()` "  
+*audience faints*  
+
+```{r message=FALSE}
+iterload(paste0(mainDir,subDir,'/failed'))
+```
+
+Ahh, it was the 4th argument, Kobe, that boggled Shaq's mind.   
+
+Hmm, Shaq wisened up in Miami. He also fattened up in Phoenix, Cleveland, Boston, Hawaii, Catalina, etc.
+
+
+```{r message=FALSE}
+shaq_wiser = function(meatbag){
+  if(meatbag %in% 'scrub'){return('dunk on em')}
+  if(meatbag %in% 'sabonis'){return('elbow his face')}
+  if(meatbag %in% 'kobe'){return('breakup & makeup')}
+
+  if(!(meatbag %in% c('scrub','sabonis','kobe'))){
+    stop('shaq is confused')}
+}
+
+
+itersave(func_user=shaq_wiser,
+         vec_arg_func=meatbags,
+         mainDir,subDir)
+```
+
+So, give me the whole shebang. What was the whole story of Shaqs road trip?
+
+```{r message=FALSE}
+out_il = iterload(paste0(mainDir,subDir))
+cbind(meatbags,out_il)
+```
+
+
+By itself `purrr::map` with `purrr::safely` is great, but by design, it'll do everything in one shot (eg batch results). This is not ideal when working with stuff online. 
+
+For web data in the wild, expect the unexpected. You have non-homogeneous edge cases aplenty. These Chris Dudley looking edge cases are just waiting in the bushes for you.  
+Dunk thru them.  
+
