@@ -58,7 +58,7 @@ iterload = function(dir_rds){
 
 
   # dir_rds = '~/projects/datzen/tests/proto/temp/dump_1/'
-  print(paste0('looking in: ',dir_rds))
+  message(paste0('looking in: ',dir_rds))
 
   names_arg = list.files(dir_rds,pattern = '.rds',full.names = FALSE) %>%
     gsub(.,pattern='.rds',replacement='')

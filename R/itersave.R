@@ -185,13 +185,13 @@ itersave = function(func_user,vec_arg_func,
          dir.create(file.path(mainDir, subDir)),
          FALSE)
 
-  print(paste0('saving successful .rds in: ',file.path(mainDir, subDir)))
+  message(paste0('saving successful .rds in: ',file.path(mainDir, subDir)))
 
   ifelse(!dir.exists(file.path(mainDir,subDir,subSubDir)),
          dir.create(file.path(mainDir,subDir,subSubDir)),
          FALSE)
 
-  print(paste0('saving failed .rds in: ',file.path(mainDir, subDir,subSubDir)))
+  message(paste0('saving failed .rds in: ',file.path(mainDir, subDir,subSubDir)))
 
   ####################################
   # optional consider adding timeout error
