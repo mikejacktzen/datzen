@@ -90,9 +90,9 @@ Here you go, have this `lm` object I made. Bye!
 ```{r}
 model = lm(data = iris,
            Sepal.Length ~ Species + as.numeric(Species) +
-             Species:Sepal.Width + as.factor(Sepal.Width)+
-             as.factor(Sepal.Width)*as.factor(Petal.Length)+
-             as.numeric(Species)*as.factor(Petal.Length)+
+             Species:Sepal.Width + as.factor(Sepal.Width) +
+             as.factor(Sepal.Width)*as.factor(Petal.Length) +
+             as.numeric(Species)*as.factor(Petal.Length) +
              poly(Sepal.Width,degree = 2))
 ```
 
@@ -199,7 +199,7 @@ print('the successes')
 list.files(paste0(mainDir,subDir))
 ```
 
-It'll also book keep any errors along the way (via `[purrr](http://purrr.tidyverse.org/)::safely()` and `[R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::withTimeout()`). 
+It'll also book keep any errors along the way (via [purrr](http://purrr.tidyverse.org/)::`safely()` and [R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::`withTimeout()`. 
 
 ```{r}
 print('the failures')
@@ -215,7 +215,7 @@ Along with the **out**, itersave has an **in** companion
 iterload(paste0(mainDir,subDir,'/failed'))
 ```
 
-Ahh, it was the 4th argument, Kobe, that boggled Shaq's mind.   
+Ah, it was the 4th argument, Kobe, that boggled Shaq's mind.   
 
 Hmm, Shaq wisened up in Miami. He also fattened up in Phoenix, Cleveland, Boston, Hawaii, Catalina, etc.
 

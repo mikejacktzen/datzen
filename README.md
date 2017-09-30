@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "-ej1)t3!u0"
+#> [1] "xcdk$8i0n%"
 ```
 
 ### Is your workspace environment too clutered?
@@ -109,9 +109,9 @@ Here you go, have this `lm` object I made. Bye!
 ``` r
 model = lm(data = iris,
            Sepal.Length ~ Species + as.numeric(Species) +
-             Species:Sepal.Width + as.factor(Sepal.Width)+
-             as.factor(Sepal.Width)*as.factor(Petal.Length)+
-             as.numeric(Species)*as.factor(Petal.Length)+
+             Species:Sepal.Width + as.factor(Sepal.Width) +
+             as.factor(Sepal.Width)*as.factor(Petal.Length) +
+             as.numeric(Species)*as.factor(Petal.Length) +
              poly(Sepal.Width,degree = 2))
 ```
 
@@ -205,18 +205,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>           y x1 x2        x3        x4        x5         x6        x7
-#> 1  9.508536  1  0 0.8832951 0.3446491 0.2358463 0.09226009 0.5958548
-#> 2 16.994889  1  0 0.2245181 0.2635462 0.8820491 0.38979981 0.8017583
-#> 3 12.426468  1  0 0.7441669 0.6729273 0.2049568 0.15163334 0.5982029
-#> 4 17.415372  1  1 0.7701527 0.7939600 0.7736667 0.62888808 0.1331608
-#> 5 19.712079  1  1 0.7524235 0.7238616 0.9472824 0.46557514 0.2977337
+#>           y x1 x2         x3        x4        x5        x6         x7
+#> 1 10.221783  1  0 0.66813487 0.4132419 0.1381970 0.5681854 0.09635101
+#> 2 16.975873  1  1 0.08113033 0.3667341 0.8853090 0.9388027 0.06650168
+#> 3 11.571489  1  1 0.41964209 0.1858087 0.9410987 0.2665068 0.21037655
+#> 4 17.117152  1  1 0.42429419 0.3809011 0.3697303 0.2810707 0.98647882
+#> 5  8.761072  1  1 0.01968356 0.9744439 0.3801154 0.1648615 0.08725509
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -1.4237213  1.9057974  0.3802543  0.3552863  1.9453631
+#> [1]  0.7898557  1.7406724 -1.2078428  0.8802375 -1.6962863
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -225,7 +225,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 68.996  22.863   7.007
+#> 69.002  23.212   6.506
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
@@ -287,16 +287,16 @@ itersave(func_user=shaq,
          vec_arg_func=meatbags,
          mainDir,subDir)
 #> [1] "1 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_1"
 #> [1] "2 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_2"
 #> [1] "3 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_3"
 #> [1] "4 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_4"
 ```
 
@@ -309,7 +309,7 @@ list.files(paste0(mainDir,subDir))
 #> [1] "arg_1.rds" "arg_2.rds" "arg_3.rds" "failed"
 ```
 
-It'll also book keep any errors along the way (via `[purrr](http://purrr.tidyverse.org/)::safely()` and `[R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::withTimeout()`).
+It'll also book keep any errors along the way (via [purrr](http://purrr.tidyverse.org/)::`safely()` and [R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::`withTimeout()`.
 
 ``` r
 print('the failures')
@@ -337,7 +337,7 @@ iterload(paste0(mainDir,subDir,'/failed'))
 #> <simpleError in (function (meatbag) {    if (meatbag %in% "scrub") {        return("dunk on em")    }    if (meatbag %in% "sabonis") {        return("elbow his face")    }    if (!(meatbag %in% c("scrub", "sabonis"))) {        stop("shaq is confused")    }})("kobe"): shaq is confused>
 ```
 
-Ahh, it was the 4th argument, Kobe, that boggled Shaq's mind.
+Ah, it was the 4th argument, Kobe, that boggled Shaq's mind.
 
 Hmm, Shaq wisened up in Miami. He also fattened up in Phoenix, Cleveland, Boston, Hawaii, Catalina, etc.
 
@@ -356,16 +356,16 @@ itersave(func_user=shaq_wiser,
          vec_arg_func=meatbags,
          mainDir,subDir)
 #> [1] "1 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_1"
 #> [1] "2 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_2"
 #> [1] "3 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_3"
 #> [1] "4 of 4"
-#> [1] "2017-09-30 16:15:01 PDT"
+#> [1] "2017-09-30 16:25:43 PDT"
 #> [1] "arg_4"
 ```
 
