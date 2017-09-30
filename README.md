@@ -21,7 +21,7 @@ Themed Branding
 
 ### I forgot about the wierd base R name of that link function used in logistic regression.
 
-Uhhh, it was what's his face! The one with the logis! Oh, you mean logit?
+Uhhh, it was what's his face! The one with the logis! Oh, you mean `logit`?
 
 ``` r
 # ?logit
@@ -45,7 +45,7 @@ xx=seq(from=0.01,to=0.99,by=0.01);txtplot::txtplot(x=xx,y=logit(xx))
 #>      0        0.2        0.4       0.6       0.8         1
 ```
 
-I forgot about the wierd name of its inverse function too! Oh yeah... his ugly cousin, plogis. I know him as expit.
+I forgot about the wierd name of its inverse function too! Oh yeah... his ugly cousin, plogis. I know him as `expit`.
 
 ``` r
 # ?expit
@@ -71,15 +71,13 @@ xxx=seq(from=-10,to=10,by=1);txtplot::txtplot(x=xxx,y=expit(xxx))
 
 ### Ever wanted a random string of garbage?
 
-I'm too much of a homo-sapien, my phrases are never random enough (I blame my parents). I wish I could be more like a computer, or a homo-erectus.
+I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my parents). I wish I could be more like a computer, or a homo-erectus.
 
 ``` r
 dats_wat_she_said = 10
-
 junk = garble(size_out=dats_wat_she_said)
-
 junk
-#> [1] "b72j&obm5%"
+#> [1] "-ej1)t3!u0"
 ```
 
 ### Is your workspace environment too clutered?
@@ -89,7 +87,6 @@ It was like that when I got here.
 ``` r
 jimmy = 'johns'
 nuts = 'planters'
-
 ls()
 #> [1] "dats_wat_she_said" "jimmy"             "junk"             
 #> [4] "nuts"              "xx"                "xxx"
@@ -100,7 +97,6 @@ I want to remove **All But Deeze** ...
 ``` r
 rmabd('nuts')
 #> kept: nuts
-
 ls()
 #> [1] "nuts"
 ```
@@ -195,7 +191,7 @@ class_df_from_term(model,class_post_formula = TRUE)
 
 What happened `Petal.Length` ? You used to be cool.
 
-Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for your old crew, the numeric types, huh?
+Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for your old crew, the `numeric` types, huh?
 
 Get out of my face!
 
@@ -209,18 +205,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2         x3         x4        x5        x6         x7
-#> 1 18.04269  1  0 0.38995131 0.30898081 0.7369026 0.8511742 0.59610793
-#> 2 19.96108  1  1 0.07772854 0.19305340 0.9119151 0.2635585 0.87053907
-#> 3 16.14936  1  1 0.35906798 0.90059001 0.8573467 0.5128589 0.07243884
-#> 4 11.51232  1  0 0.07469696 0.09487568 0.9713800 0.1519406 0.62070524
-#> 5 14.27700  1  1 0.68849400 0.12147687 0.4005183 0.6421575 0.58810625
+#>           y x1 x2        x3        x4        x5         x6        x7
+#> 1  9.508536  1  0 0.8832951 0.3446491 0.2358463 0.09226009 0.5958548
+#> 2 16.994889  1  0 0.2245181 0.2635462 0.8820491 0.38979981 0.8017583
+#> 3 12.426468  1  0 0.7441669 0.6729273 0.2049568 0.15163334 0.5982029
+#> 4 17.415372  1  1 0.7701527 0.7939600 0.7736667 0.62888808 0.1331608
+#> 5 19.712079  1  1 0.7524235 0.7238616 0.9472824 0.46557514 0.2977337
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1]  1.6726035  3.7209787  0.5988407 -0.2047494 -1.2466728
+#> [1] -1.4237213  1.9057974  0.3802543  0.3552863  1.9453631
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -229,7 +225,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 69.569  22.380   6.467
+#> 68.996  22.863   7.007
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
@@ -291,20 +287,20 @@ itersave(func_user=shaq,
          vec_arg_func=meatbags,
          mainDir,subDir)
 #> [1] "1 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_1"
 #> [1] "2 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_2"
 #> [1] "3 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_3"
 #> [1] "4 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_4"
 ```
 
-The meatbags that Shaq succesfully turned into bodybags.
+The meatbags that Shaq succesfully put into bodybags.
 
 ``` r
 print('the successes')
@@ -313,7 +309,7 @@ list.files(paste0(mainDir,subDir))
 #> [1] "arg_1.rds" "arg_2.rds" "arg_3.rds" "failed"
 ```
 
-It'll also book keep any errors along the way (via `purrr::safely()` and `R.utils::withTimeout()`).
+It'll also book keep any errors along the way (via `[purrr](http://purrr.tidyverse.org/)::safely()` and `[R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::withTimeout()`).
 
 ``` r
 print('the failures')
@@ -360,16 +356,16 @@ itersave(func_user=shaq_wiser,
          vec_arg_func=meatbags,
          mainDir,subDir)
 #> [1] "1 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_1"
 #> [1] "2 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_2"
 #> [1] "3 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_3"
 #> [1] "4 of 4"
-#> [1] "2017-09-30 15:46:54 PDT"
+#> [1] "2017-09-30 16:15:01 PDT"
 #> [1] "arg_4"
 ```
 

@@ -38,35 +38,31 @@ library(dplyr)
 
 ### I forgot about the wierd base R name of that link function used in logistic regression.
 Uhhh, it was what's his face! The one with the logis!
-Oh, you mean logit?
+Oh, you mean `logit`?
 
 ```{r}
 # ?logit
 identical(logit(0.5),stats::qlogis(0.5))
 xx=seq(from=0.01,to=0.99,by=0.01);txtplot::txtplot(x=xx,y=logit(xx))
-
 ```
 
 I forgot about the wierd name of its inverse function too!
 Oh yeah... his ugly cousin, plogis.
-I know him as expit.
+I know him as `expit`.
 
 ```{r}
 # ?expit
 identical(expit(10),stats::plogis(10))
 xxx=seq(from=-10,to=10,by=1);txtplot::txtplot(x=xxx,y=expit(xxx))
-
 ```
 
 ### Ever wanted a random string of garbage?
 
-I'm too much of a homo-sapien, my phrases are never random enough (I blame my parents). I wish I could be more like a computer, or a homo-erectus.
+I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my parents). I wish I could be more like a computer, or a homo-erectus.
 
 ```{r}
 dats_wat_she_said = 10
-
 junk = garble(size_out=dats_wat_she_said)
-
 junk
 ```
 
@@ -77,7 +73,6 @@ It was like that when I got here.
 ```{r}
 jimmy = 'johns'
 nuts = 'planters'
-
 ls()
 ```
 
@@ -85,7 +80,6 @@ I want to remove **All But Deeze** ...
 
 ```{r}
 rmabd('nuts')
-
 ls()
 ```
 
@@ -117,7 +111,7 @@ class_df_from_term(model,class_post_formula = TRUE)
 
 What happened `Petal.Length` ? You used to be cool.  
 
-Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for your old crew, the numeric types, huh? 
+Since you met up with `lm` and started interacting with `Species` you think you're too much of a `factor` for your old crew, the `numeric` types, huh? 
 
 
 Get out of my face!
@@ -198,14 +192,14 @@ itersave(func_user=shaq,
          mainDir,subDir)
 ```
 
-The meatbags that Shaq succesfully turned into bodybags.
+The meatbags that Shaq succesfully put into bodybags.
 
 ```{r}
 print('the successes')
 list.files(paste0(mainDir,subDir))
 ```
 
-It'll also book keep any errors along the way (via `purrr::safely()` and `R.utils::withTimeout()`). 
+It'll also book keep any errors along the way (via `[purrr](http://purrr.tidyverse.org/)::safely()` and `[R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::withTimeout()`). 
 
 ```{r}
 print('the failures')
