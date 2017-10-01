@@ -199,7 +199,7 @@ print('the successes')
 list.files(paste0(mainDir,subDir))
 ```
 
-It'll also book keep any errors along the way (via [purrr](http://purrr.tidyverse.org/)::`safely()` and [R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::`withTimeout()`. 
+It'll also book keep any errors along the way via [purrr](http://purrr.tidyverse.org/)::`safely()` and [R.utils](https://cran.r-project.org/web/packages/R.utils/index.html)::`withTimeout()`. 
 
 ```{r}
 print('the failures')
@@ -229,7 +229,6 @@ shaq_wiser = function(meatbag){
   if(!(meatbag %in% c('scrub','sabonis','kobe'))){
     stop('shaq is confused')}
 }
-
 
 itersave(func_user=shaq_wiser,
          vec_arg_func=meatbags,

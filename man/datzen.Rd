@@ -4,10 +4,10 @@
 \name{datzen}
 \alias{datzen}
 \alias{datzen-package}
-\title{datzen: A package containing miscellaneous helper functions the Zen way.}
+\title{datzen: A package containing miscellaneous helper functions to achieve Data Zen.}
 \description{
 The datzen package provides three categories of commonly used Zen functions:
-data in out, themes (rebranded functions and visual), and special computation functions.
+Themed Branding, Special Computations, and Data In/Out.
 The goal of this package is to help data analysts rapidly prototype common tasks.
 }
 \section{datzen functions}{
