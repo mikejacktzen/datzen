@@ -264,12 +264,12 @@ itersave = function(func_user,vec_arg_func,
 
     arg_i = arg_vec[i]
 
-    if(prog_iter==TRUE){print(paste0(i,' of ',last))}
+    if(prog_iter==TRUE){message(paste0(i,' of ',last))}
 
-    if(ts==TRUE){print(Sys.time())}
+    if(ts==TRUE){message(Sys.time())}
 
 
-    print(names(arg_i))
+    message(names(arg_i))
 
 
     result_safe = safe_foo_func(arg_vec[[i]])
