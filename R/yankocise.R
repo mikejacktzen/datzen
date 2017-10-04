@@ -1,0 +1,150 @@
+# http://corpustext.com/index.html
+
+# library(dplyr)
+# library(datzen)
+# library(stringr)
+
+
+##################################
+# abbreviate for twitter brevity
+# via brevitweet()
+##################################
+
+brevitweet = function(snip){
+  require(dplyr);require(datzen);require(stringr);
+  
+  out = snip %>% datzen::clean_name(.) %>% stringr::str_split(.,pattern=" ") %>% unlist %>% tolower() %>% 
+    stringr::str_replace(.,pattern="'|`","") %>% 
+    stringr::str_replace(.,pattern="you","u") %>% 
+    stringr::str_replace(.,pattern="the","da") %>% 
+    stringr::str_replace(.,pattern="^to$","2") %>% 
+    stringr::str_replace(.,pattern="too","2")
+  return(out)
+}
+
+# snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
+# 'to too blah d' %>% brevitweet
+
+
+##################################
+# 1-1 swap via dictate_out_in()
+##################################
+
+# ?stringr::str_replace_all
+# for replacement, use a named vector
+# the vector name is outswaped with vector value
+
+dictate_out_in = function(swap_out,swap_in){
+  
+  # swap_out = 'rim'
+  # out_in1 = c('RAM')
+  # names(out_in1) = swap_out
+  
+  out_in = as.character(swap_in)
+  names(out_in) = swap_out
+  return(out_in)
+  
+  #note: generalize to many-many
+  
+}
+
+
+
+##################################
+# actual substitution via swap_out_in()
+# using dictionary output of dictate_out_in()
+##################################
+
+# dict_out_in = c(dictate_out_in('bitch','statisBihhcian'),
+#                 dictate_out_in('dick','DATA'),
+#                 dictate_out_in('rim','RAM'))
+
+swap_out_in = function(snip,dict_out_in){
+  require(stringr)
+  
+  snip %>% 
+    # brevitweet %>% 
+    # stringr::str_replace(.,pattern=swap_out,swap_in) %>%
+    stringr::str_replace_all(string=.,dict_out_in) %>% 
+    paste(.,collapse=" ")
+}
+
+
+
+
+##################################
+# weird al datzen::yankocise()
+##################################
+
+
+#' The yankocise() function to Wierd Al Yankocise a string
+#'
+#' @param snip a character string of lyrics
+#' @param brev a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip) 
+#' which abbreviates 'snip' for twitter brevity
+#' @param dict_out_in a named character vector (default NULL) where an element's name will later be 
+#' swapped out for its associated value. When NULL, an internally hardcoded 'dict_out_in' is used. 
+#' See \code{\link[stringr]{str_replace_all}}
+#' @param suffix a character string used as a suffix, say for a signed name.
+#'
+#' @return a character string that has been Weird Al yankocised() using elements
+#' in 'dict_out_in' swapping value 4 name. 
+#' @export
+#'
+#' @examples
+#' 
+#' snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
+#' 
+#' yankocise(snip,brev=FALSE)
+#' yankocise(snip)
+#' yankocise(snip,brev=TRUE,suffix="- @2chainz")
+#' 
+#' # user supplied dictionary
+#' dict_out_in = c(dictate_out_in('dealership','SERVER ROOM'),
+#'                 dictate_out_in('big','LAP'),
+#'                 dictate_out_in('rim','RAM'))
+#' 
+#' yankocise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+
+yankocise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
+  require(dplyr)
+  
+  if(is.null(dict_out_in)){
+    # default dictionary internal hardcode
+    # optional arg if user wants to supply own
+    dict_out_in = c(dictate_out_in('rim','RAM'),
+                    name_out_in('bands','data'))
+  }
+  
+  
+  if(brev==TRUE){snip = brevitweet(snip)}
+  
+  # suffix="- @2chainz"
+  
+  snip_yankocised = swap_out_in(snip,dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
+  
+  return(snip_yankocised)
+}
+
+
+
+snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
+# 
+# yankocise(snip,brev=FALSE)
+# yankocise(snip)
+# yankocise(snip,brev=TRUE,suffix="- @2chainz")
+# 
+# 
+# list(nchar=nchar(snip_yankocised),snip_yankocised=snip_yankocised,
+#      # title=title,
+#      snip_orig=snip)
+
+## user supplied dictionary
+
+# dict_out_in = c(dictate_out_in('dealership','SERVER ROOM'),
+#                 dictate_out_in('big','LAP'),
+#                 dictate_out_in('rim','RAM'))
+# 
+# yankocise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+
+
