@@ -9,11 +9,11 @@ yankocise(snip, brev = TRUE, dict_out_in = NULL, suffix = NULL)
 \arguments{
 \item{snip}{a character string of lyrics}
 
-\item{brev}{a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip) 
+\item{brev}{a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip)
 which abbreviates 'snip' for twitter brevity}
 
-\item{dict_out_in}{a named character vector (default NULL) where an element's name will later be 
-swapped out for its associated value. When NULL, an internally hardcoded 'dict_out_in' is used. 
+\item{dict_out_in}{a named character vector (default NULL) where an element's name will later be
+swapped out for its associated value. When NULL, an internally hardcoded 'dict_out_in' is used.
 See \code{\link[stringr]{str_replace_all}}}
 
 \item{suffix}{a character string used as a suffix, say for a signed name.}
@@ -34,9 +34,9 @@ yankocise(snip)
 yankocise(snip,brev=TRUE,suffix="- @2chainz")
 
 # user supplied dictionary
-dict_out_in = c(dictate_out_in('dealership','SERVER ROOM'),
-                dictate_out_in('big','LAP'),
-                dictate_out_in('rim','RAM'))
+dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
+                datzen:::dictate_out_in('big','LAP'),
+                datzen:::dictate_out_in('rim','RAM'))
 
 yankocise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
 }
