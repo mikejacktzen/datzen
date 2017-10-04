@@ -7,7 +7,7 @@
 logit(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
 \arguments{
-\item{...}{see args of \code{\link{qlogis}}}
+\item{...}{see args of \code{\link[stats]{qlogis}}}
 }
 \value{
 a numeric

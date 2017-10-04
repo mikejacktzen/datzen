@@ -3,7 +3,7 @@
 #'
 #' @seealso \code{\link[stats]{qlogis}}
 #'
-#' @param ... see args of \code{\link{qlogis}}
+#' @param ... see args of \code{\link[stats]{qlogis}}
 #'
 #' @return a numeric
 #' @export
@@ -17,7 +17,7 @@ logit = stats::qlogis
 #'
 #' @seealso \code{\link[stats]{plogis}}
 #'
-#' @param ... see args of see args of \code{\link{plogis}}
+#' @param ... see args of see args of \code{\link[stats]{plogis}}
 #'
 #' @return a numeric
 #' @export

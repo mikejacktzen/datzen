@@ -7,7 +7,7 @@
 expit(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 }
 \arguments{
-\item{...}{see args of see args of \code{\link{plogis}}}
+\item{...}{see args of see args of \code{\link[stats]{plogis}}}
 }
 \value{
 a numeric

@@ -26,9 +26,9 @@ the class_df_from_term() function
 \examples{
 
 model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
-             Species:Sepal.Width + as.factor(Sepal.Width)+
-             as.factor(Sepal.Width)*as.factor(Petal.Length)+
-             as.numeric(Species)*as.factor(Petal.Length)+
+             Species:Sepal.Width + as.factor(Sepal.Width) +
+             as.factor(Sepal.Width)*as.factor(Petal.Length) +
+             as.numeric(Species)*as.factor(Petal.Length) +
              poly(Sepal.Width,degree = 2))
 
 preform = class_df_from_term(model,class_post_formula = TRUE)
