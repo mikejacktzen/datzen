@@ -8,7 +8,7 @@ roxygen2::roxygenise()
 
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
-?yankocise
+?yankovise
 ?simlm
 ?clean_name
 ?match_2_bank

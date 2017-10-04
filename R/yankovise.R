@@ -73,11 +73,12 @@ swap_out_in = function(snip,dict_out_in){
 
 
 ##################################
-# weird al datzen::yankocise()
+# weird al datzen::yankovise()
 ##################################
 
 
-#' The yankocise() function to Wierd Al Yankocise a string
+#' The yankovise() function to Weird Al Yankovise a string
+#' @description The function helps the user revise a lyric by substituting original words for thematic keywords.
 #'
 #' @param snip a character string of lyrics
 #' @param brev a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip)
@@ -87,7 +88,7 @@ swap_out_in = function(snip,dict_out_in){
 #' See \code{\link[stringr]{str_replace_all}}
 #' @param suffix a character string used as a suffix, say for a signed name.
 #'
-#' @return a character string that has been Weird Al yankocised() using elements
+#' @return a character string that has been Weird Al yankovised() using elements
 #' in 'dict_out_in' swapping value 4 name.
 #' @export
 #'
@@ -95,18 +96,18 @@ swap_out_in = function(snip,dict_out_in){
 #'
 #' snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
 #'
-#' yankocise(snip,brev=FALSE)
-#' yankocise(snip)
-#' yankocise(snip,brev=TRUE,suffix="- @2chainz")
+#' yankovise(snip,brev=FALSE)
+#' yankovise(snip)
+#' yankovise(snip,brev=TRUE,suffix="- @2chainz")
 #'
 #' # user supplied dictionary
 #' dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
 #'                 datzen:::dictate_out_in('big','LAP'),
 #'                 datzen:::dictate_out_in('rim','RAM'))
 #'
-#' yankocise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+#' yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
 
-yankocise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
+yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
   require(dplyr)
 
   if(is.null(dict_out_in)){
@@ -121,30 +122,30 @@ yankocise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
 
   # suffix="- @2chainz"
 
-  snip_yankocised = swap_out_in(snip,dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
+  snip_yankovised = swap_out_in(snip,dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
 
-  return(snip_yankocised)
+  return(snip_yankovised)
 }
 
 
 
-snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
+# snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
 #
-# yankocise(snip,brev=FALSE)
-# yankocise(snip)
-# yankocise(snip,brev=TRUE,suffix="- @2chainz")
+# yankovise(snip,brev=FALSE)
+# yankovise(snip)
+# yankovise(snip,brev=TRUE,suffix="- @2chainz")
 #
 #
-# list(nchar=nchar(snip_yankocised),snip_yankocised=snip_yankocised,
+# list(nchar=nchar(snip_yankovised),snip_yankovised=snip_yankovised,
 #      # title=title,
 #      snip_orig=snip)
-
+#
 ## user supplied dictionary
-
+#
 # dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
 #                 datzen:::dictate_out_in('big','LAP'),
 #                 datzen:::dictate_out_in('rim','RAM'))
 #
-# yankocise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+# yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
 
 
