@@ -47,7 +47,7 @@ identical(logit(0.5),stats::qlogis(0.5))
 xx=seq(from=0.01,to=0.99,by=0.01);txtplot::txtplot(x=xx,y=logit(xx))
 ```
 
-I forgot about the wierd name of its inverse function too!
+I forgot about the weird name of its inverse function too!
 Oh yeah... his ugly cousin, plogis.
 I know him as `expit`.
 

@@ -45,7 +45,7 @@ xx=seq(from=0.01,to=0.99,by=0.01);txtplot::txtplot(x=xx,y=logit(xx))
 #>      0        0.2        0.4       0.6       0.8         1
 ```
 
-I forgot about the wierd name of its inverse function too! Oh yeah... his ugly cousin, plogis. I know him as `expit`.
+I forgot about the weird name of its inverse function too! Oh yeah... his ugly cousin, plogis. I know him as `expit`.
 
 ``` r
 # ?expit
@@ -321,7 +321,7 @@ itersave(func_user=shaq,
          mainDir,subDir)
 ```
 
-The meatbags that Shaq succesfully put into bodybags.
+The meatbags that Shaq successfully put into bodybags.
 
 ``` r
 print('the successes')
