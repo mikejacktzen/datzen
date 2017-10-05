@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "$ce82*vj*7"
+#> [1] "@u*m+ki4q+"
 ```
 
 ### Is your workspace environment too clutered?
@@ -223,8 +223,13 @@ yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 ```
 
 [2Chainz\_PhD](https://twitter.com/2Chainz_PhD?lang=en)
+
+aka ProbaBittyBoi
+
 aka Daniel Son the Data Don
+
 aka CPU Core Killer
+
 aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.
 
 Data In/Out
@@ -237,18 +242,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>           y x1 x2         x3        x4        x5         x6         x7
-#> 1 13.681984  1  1 0.07759735 0.8972790 0.6121938 0.41746779 0.24839795
-#> 2 13.484967  1  1 0.55586442 0.6877770 0.4784594 0.07661816 0.33337587
-#> 3 12.589118  1  0 0.50016442 0.7361297 0.2014982 0.46724690 0.39805992
-#> 4 12.007102  1  1 0.68366434 0.1332317 0.2438864 0.74287572 0.20624225
-#> 5  8.298229  1  0 0.33540612 0.0687703 0.8825128 0.04448428 0.06180172
+#>          y x1 x2        x3        x4        x5        x6          x7
+#> 1 14.87133  1  1 0.9550968 0.6068907 0.7710306 0.5317302 0.009168206
+#> 2 19.81320  1  0 0.3979955 0.2102984 0.9800957 0.9009534 0.971814884
+#> 3 16.73327  1  0 0.2814714 0.9757643 0.5755799 0.4444022 0.843081309
+#> 4 12.33080  1  0 0.8761049 0.2604991 0.9206571 0.4652251 0.017163030
+#> 5 10.74096  1  1 0.9375103 0.1224797 0.0386993 0.7625634 0.250629829
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -0.4444858  0.8806283  0.5467145 -0.6971995  0.9048478
+#> [1] -0.5312373 -0.3308804 -0.4600865  0.1457138 -2.0847739
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -257,7 +262,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 69.039  23.015   7.019
+#> 69.068  23.188   6.537
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
