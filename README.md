@@ -377,7 +377,7 @@ itersave(func_user=shaq_wiser,
          mainDir,subDir)
 ```
 
-So, give me the whole shebang. What was the whole story of Shaqs road trip?
+So, give me the whole shebang. What was the whole story of Shaq's road trip?
 
 ``` r
 out_il = iterload(paste0(mainDir,subDir))
