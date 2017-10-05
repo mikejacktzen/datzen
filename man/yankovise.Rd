@@ -13,7 +13,7 @@ yankovise(snip, brev = TRUE, dict_outin = NULL, suffix = NULL)
 which abbreviates 'snip' for twitter brevity}
 
 \item{dict_outin}{a named character vector (default NULL) where an element's name will later be
-swapped out for its associated value. When NULL, an internally hardcoded 'dict_outin' is used.
+swapped out for its associated value.
 See \code{\link[stringr]{str_replace_all}}}
 
 \item{suffix}{a character string used as a suffix, say for a signed name.}
@@ -30,14 +30,16 @@ NOTE: the input string will immediately be lowercased via tolower(snip)
 
 snip = "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop"
 
-yankovise(snip,brev=FALSE)
-yankovise(snip)
-yankovise(snip,brev=TRUE,suffix="- @2chainz")
+# yankovise(snip)  # expect error
 
 # user supplied dictionary
 dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
                 datzen::dictate_outin('big','LAP'),
                 datzen::dictate_outin('rim','RAM'))
 
+yankovise(snip,brev=FALSE,dict_outin)
 yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_outin = dict_outin)
+}
+\seealso{
+\code{\link[stringr]{str_replace_all}} \code{\link[datzen]{dictate_outin}}
 }

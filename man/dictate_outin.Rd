@@ -18,3 +18,10 @@ a character vector with values from swap_in and names from swap_out
 An extremely simple function that creates a named vector.
 A useful helper to create key-value dictionaries to use in \code{\link[stringr]{str_replace_all}}
 }
+\examples{
+dictate_outin('compton','bompton')
+
+}
+\seealso{
+\code{\link[stringr]{str_replace_all}}
+}
