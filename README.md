@@ -19,7 +19,7 @@ library(dplyr)
 Themed Branding
 ---------------
 
-### I forgot about the wierd base R name of that link function used in logistic regression.
+### I forgot about the weird base R name of that link function used in logistic regression.
 
 Uhhh, it was what's his face! The one with the logis! Oh, you mean `logit`?
 
@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] ")k1p79-oi7"
+#> [1] "v2)4p~92*("
 ```
 
 ### Is your workspace environment too clutered?
@@ -104,7 +104,9 @@ ls()
 Special Computations
 --------------------
 
-Here you go, have this `lm` object I made. Bye!
+### Here you go, have this `lm` object I made. Bye!
+
+Oh yeah, call me when you reach peak MSE!
 
 ``` r
 model = lm(data = iris,
@@ -207,12 +209,7 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
 #> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop - @2chainz aka the Hair Weave Killer"
 ```
 
-``` r
-yankovise(snip,brev=FALSE,suffix="- @2Chainz_PhD aka the CPU Core Killer")
-#> [1] "suede sun roof, hanging out the big top we leave the dealership, head to the RAM shop - @2Chainz_PhD aka the CPU Core Killer"
-```
-
-You can swap out more words using a dictionary of name-value pairs. We'll also leave out the brev argument, which will default to TRUE.
+You can swap out words using a dictionary of name-value pairs.
 
 ``` r
 # user supplied dictionary
@@ -220,9 +217,18 @@ dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
                 datzen::dictate_outin('big','LAP'),
                 datzen::dictate_outin('rim','RAM'))
 
-yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
-#> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD"
+yankovise(snip,suffix="- @2Chainz_PhD aka the CPU Core Killer",dict_outin = dict_outin)
+#> Loading required package: stringr
+#> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD aka the CPU Core Killer"
 ```
+
+Yuuuuuh!
+--------
+
+\[@2Chainz\_PhD\](<https://twitter.com/2Chainz_PhD?lang=en>)
+aka Daniel Son the Data Don
+aka CPU Core Killer
+aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.
 
 Data In/Out
 -----------
@@ -234,18 +240,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2         x3          x4         x5         x6        x7
-#> 1 11.93857  1  0 0.43863483 0.007593192 0.62972668 0.04779797 0.8322268
-#> 2 14.78728  1  0 0.46180978 0.953249577 0.84721781 0.33794270 0.6464948
-#> 3 13.58257  1  0 0.99970236 0.396393474 0.07619302 0.81858302 0.3154474
-#> 4 11.29003  1  1 0.87189398 0.291921949 0.05905771 0.13887960 0.5479387
-#> 5 14.63507  1  0 0.01043566 0.078800832 0.81365053 0.80087116 0.4594124
+#>          y x1 x2        x3         x4        x5        x6        x7
+#> 1 18.81295  1  0 0.1999914 0.80337727 0.8715232 0.6557132 0.6566948
+#> 2 19.93274  1  0 0.5433562 0.92414014 0.3661581 0.7143325 0.9982584
+#> 3 14.53312  1  0 0.6412981 0.56474700 0.2053700 0.7794276 0.7349569
+#> 4 13.14359  1  0 0.4185244 0.68925108 0.6338334 0.3847389 0.2738120
+#> 5 20.29145  1  1 0.8659858 0.05806611 0.8703853 0.2526215 0.9495720
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1]  0.3312838 -2.2003559  0.4972932 -0.4574787  1.1991955
+#> [1]  1.1107074  0.5015176 -1.4978801  0.7367267  1.9465647
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -253,8 +259,8 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> lm(formula = y ~ -1 + ., data = .)
 #> 
 #> Coefficients:
-#>     x1      x2      x3  
-#> 68.821  22.685   7.607
+#>    x1     x2     x3  
+#> 69.15  23.32   6.60
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
