@@ -13,7 +13,7 @@
 brevitweet = function(snip){
   require(dplyr);require(datzen);require(stringr);
 
-  out = snip %>% datzen::clean_name(.) %>% stringr::str_split(.,pattern=" ") %>% unlist %>% tolower() %>%
+  out = snip %>% datzen::clean_name(.) %>% stringr::str_split(.,pattern=" ") %>% unlist %>%
     stringr::str_replace(.,pattern="'|`","") %>%
     stringr::str_replace(.,pattern="you","u") %>%
     stringr::str_replace(.,pattern="the","da") %>%
@@ -27,14 +27,25 @@ brevitweet = function(snip){
 
 
 ##################################
-# 1-1 swap via dictate_out_in()
+# 1-1 swap via dictate_outin()
 ##################################
 
 # ?stringr::str_replace_all
 # for replacement, use a named vector
 # the vector name is outswaped with vector value
 
-dictate_out_in = function(swap_out,swap_in){
+#' @title the dictate_outin() function
+#' @description An extremely simple function that creates a named vector.
+#' A useful helper to create key-value dictionaries to use in \code{\link[stringr]{str_replace_all}}
+#'
+#' @param swap_out vector whose elements will be used as the names of the resulting character vector
+#' @param swap_in vector whose elements will be used as the values of the resulting character vector
+#'
+#' @return a character vector with values from swap_in and names from swap_out
+#' @export
+#'
+#' @examples
+dictate_outin = function(swap_out,swap_in){
 
   # swap_out = 'rim'
   # out_in1 = c('RAM')
@@ -52,12 +63,12 @@ dictate_out_in = function(swap_out,swap_in){
 
 ##################################
 # actual substitution via swap_out_in()
-# using dictionary output of dictate_out_in()
+# using dictionary output of dictate_outin()
 ##################################
 
-# dict_out_in = c(dictate_out_in('bitch','statisBihhcian'),
-#                 dictate_out_in('dick','DATA'),
-#                 dictate_out_in('rim','RAM'))
+# dict_out_in = c(dictate_outin('bitch','statisBihhcian'),
+#                 dictate_outin('dick','DATA'),
+#                 dictate_outin('rim','RAM'))
 
 swap_out_in = function(snip,dict_out_in){
   require(stringr)
@@ -79,6 +90,7 @@ swap_out_in = function(snip,dict_out_in){
 
 #' The yankovise() function to Weird Al Yankovise a string
 #' @description The function helps the user revise a lyric by substituting original words for thematic keywords.
+#' NOTE: the input string will immediately be lowercased via tolower(snip)
 #'
 #' @param snip a character string of lyrics
 #' @param brev a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip)
@@ -101,9 +113,9 @@ swap_out_in = function(snip,dict_out_in){
 #' yankovise(snip,brev=TRUE,suffix="- @2chainz")
 #'
 #' # user supplied dictionary
-#' dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
-#'                 datzen:::dictate_out_in('big','LAP'),
-#'                 datzen:::dictate_out_in('rim','RAM'))
+#' dict_out_in = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+#'                 datzen::dictate_outin('big','LAP'),
+#'                 datzen::dictate_outin('rim','RAM'))
 #'
 #' yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
 
@@ -113,16 +125,16 @@ yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
   if(is.null(dict_out_in)){
     # default dictionary internal hardcode
     # optional arg if user wants to supply own
-    dict_out_in = c(datzen:::dictate_out_in('rim','RAM'),
-                    datzen:::dictate_out_in('bands','data'))
+    dict_out_in = c(datzen::dictate_outin('rim','RAM'),
+                    datzen::dictate_outin('bands','data'))
   }
 
 
-  if(brev==TRUE){snip = brevitweet(snip)}
+  if(brev==TRUE){snip = brevitweet(tolower(snip))}
 
   # suffix="- @2chainz"
 
-  snip_yankovised = swap_out_in(snip,dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
+  snip_yankovised = swap_out_in(tolower(snip),dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
 
   return(snip_yankovised)
 }
@@ -142,9 +154,9 @@ yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
 #
 ## user supplied dictionary
 #
-# dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
-#                 datzen:::dictate_out_in('big','LAP'),
-#                 datzen:::dictate_out_in('rim','RAM'))
+# dict_out_in = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+#                 datzen::dictate_outin('big','LAP'),
+#                 datzen::dictate_outin('rim','RAM'))
 #
 # yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
 
