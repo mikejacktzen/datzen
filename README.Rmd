@@ -137,11 +137,11 @@ You can swap out more words using a dictionary of name-value pairs. We'll also l
 
 ```{r}
 # user supplied dictionary
-dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
-                datzen:::dictate_out_in('big','LAP'),
-                datzen:::dictate_out_in('rim','RAM'))
+dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+                datzen::dictate_outin('big','LAP'),
+                datzen::dictate_outin('rim','RAM'))
 
-yankovise(snip,suffix="- @2Chainz_PhD",dict_out_in = dict_out_in)
+yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 ```
 
 

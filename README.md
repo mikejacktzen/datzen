@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "s7%g1zq59~"
+#> [1] ")k1p79-oi7"
 ```
 
 ### Is your workspace environment too clutered?
@@ -209,18 +209,18 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
 
 ``` r
 yankovise(snip,brev=FALSE,suffix="- @2Chainz_PhD aka the CPU Core Killer")
-#> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the RAM shop - @2Chainz_PhD aka the CPU Core Killer"
+#> [1] "suede sun roof, hanging out the big top we leave the dealership, head to the RAM shop - @2Chainz_PhD aka the CPU Core Killer"
 ```
 
 You can swap out more words using a dictionary of name-value pairs. We'll also leave out the brev argument, which will default to TRUE.
 
 ``` r
 # user supplied dictionary
-dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
-                datzen:::dictate_out_in('big','LAP'),
-                datzen:::dictate_out_in('rim','RAM'))
+dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+                datzen::dictate_outin('big','LAP'),
+                datzen::dictate_outin('rim','RAM'))
 
-yankovise(snip,suffix="- @2Chainz_PhD",dict_out_in = dict_out_in)
+yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 #> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD"
 ```
 
@@ -234,18 +234,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2        x3        x4        x5         x6        x7
-#> 1 16.88353  1  0 0.5846036 0.7929592 0.9967209 0.20141800 0.8464777
-#> 2 16.36820  1  1 0.5329448 0.7305771 0.4565847 0.61150142 0.3733473
-#> 3 16.35049  1  1 0.8739966 0.1541387 0.4675547 0.32910116 0.8424331
-#> 4 12.12786  1  0 0.8911776 0.9501266 0.1587239 0.06305348 0.6148991
-#> 5 13.03593  1  0 0.3701009 0.4103897 0.5978284 0.82651981 0.1382911
+#>          y x1 x2         x3          x4         x5         x6        x7
+#> 1 11.93857  1  0 0.43863483 0.007593192 0.62972668 0.04779797 0.8322268
+#> 2 14.78728  1  0 0.46180978 0.953249577 0.84721781 0.33794270 0.6464948
+#> 3 13.58257  1  0 0.99970236 0.396393474 0.07619302 0.81858302 0.3154474
+#> 4 11.29003  1  1 0.87189398 0.291921949 0.05905771 0.13887960 0.5479387
+#> 5 14.63507  1  0 0.01043566 0.078800832 0.81365053 0.80087116 0.4594124
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -1.15957869  0.28169873 -0.09746386 -0.82241490  0.36777241
+#> [1]  0.3312838 -2.2003559  0.4972932 -0.4574787  1.1991955
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -254,7 +254,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 68.960  22.762   6.798
+#> 68.821  22.685   7.607
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
