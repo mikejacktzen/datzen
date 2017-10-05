@@ -141,14 +141,14 @@ dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
                 datzen::dictate_outin('big','LAP'),
                 datzen::dictate_outin('rim','RAM'))
 
-yankovise(snip,suffix="- @2Chainz_PhD aka the CPU Core Killer",dict_outin = dict_outin)
+yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 ```
-Yuuuuuh!
--
-[@2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en)  
+
+[2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en)  
 aka Daniel Son the Data Don  
 aka CPU Core Killer  
 aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.  
+
 
 
 ## Data In/Out
