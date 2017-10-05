@@ -5,9 +5,10 @@ devtools::load_all()
 devtools::document()
 roxygen2::roxygenise()
 
-
+# yankovise
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
+?dictate_outin
 ?yankovise
 ?simlm
 ?clean_name

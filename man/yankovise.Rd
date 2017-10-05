@@ -4,7 +4,7 @@
 \alias{yankovise}
 \title{The yankovise() function to Weird Al Yankovise a string}
 \usage{
-yankovise(snip, brev = TRUE, dict_out_in = NULL, suffix = NULL)
+yankovise(snip, brev = TRUE, dict_outin = NULL, suffix = NULL)
 }
 \arguments{
 \item{snip}{a character string of lyrics}
@@ -12,18 +12,19 @@ yankovise(snip, brev = TRUE, dict_out_in = NULL, suffix = NULL)
 \item{brev}{a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip)
 which abbreviates 'snip' for twitter brevity}
 
-\item{dict_out_in}{a named character vector (default NULL) where an element's name will later be
-swapped out for its associated value. When NULL, an internally hardcoded 'dict_out_in' is used.
+\item{dict_outin}{a named character vector (default NULL) where an element's name will later be
+swapped out for its associated value. When NULL, an internally hardcoded 'dict_outin' is used.
 See \code{\link[stringr]{str_replace_all}}}
 
 \item{suffix}{a character string used as a suffix, say for a signed name.}
 }
 \value{
 a character string that has been Weird Al yankovised() using elements
-in 'dict_out_in' swapping value 4 name.
+in 'dict_outin' swapping value 4 name.
 }
 \description{
 The function helps the user revise a lyric by substituting original words for thematic keywords.
+NOTE: the input string will immediately be lowercased via tolower(snip)
 }
 \examples{
 
@@ -34,9 +35,9 @@ yankovise(snip)
 yankovise(snip,brev=TRUE,suffix="- @2chainz")
 
 # user supplied dictionary
-dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
-                datzen:::dictate_out_in('big','LAP'),
-                datzen:::dictate_out_in('rim','RAM'))
+dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+                datzen::dictate_outin('big','LAP'),
+                datzen::dictate_outin('rim','RAM'))
 
-yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_outin = dict_outin)
 }

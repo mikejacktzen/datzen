@@ -34,7 +34,7 @@ brevitweet = function(snip){
 # for replacement, use a named vector
 # the vector name is outswaped with vector value
 
-#' @title the dictate_outin() function
+#' @title The dictate_outin() function
 #' @description An extremely simple function that creates a named vector.
 #' A useful helper to create key-value dictionaries to use in \code{\link[stringr]{str_replace_all}}
 #'
@@ -66,17 +66,17 @@ dictate_outin = function(swap_out,swap_in){
 # using dictionary output of dictate_outin()
 ##################################
 
-# dict_out_in = c(dictate_outin('bitch','statisBihhcian'),
+# dict_outin = c(dictate_outin('bitch','statisBihhcian'),
 #                 dictate_outin('dick','DATA'),
 #                 dictate_outin('rim','RAM'))
 
-swap_out_in = function(snip,dict_out_in){
+swap_out_in = function(snip,dict_outin){
   require(stringr)
 
   snip %>%
     # brevitweet %>%
     # stringr::str_replace(.,pattern=swap_out,swap_in) %>%
-    stringr::str_replace_all(string=.,dict_out_in) %>%
+    stringr::str_replace_all(string=.,dict_outin) %>%
     paste(.,collapse=" ")
 }
 
@@ -95,13 +95,13 @@ swap_out_in = function(snip,dict_out_in){
 #' @param snip a character string of lyrics
 #' @param brev a logical (default TRUE) determining whether to pass 'snip' into brevitweet(snip)
 #' which abbreviates 'snip' for twitter brevity
-#' @param dict_out_in a named character vector (default NULL) where an element's name will later be
-#' swapped out for its associated value. When NULL, an internally hardcoded 'dict_out_in' is used.
+#' @param dict_outin a named character vector (default NULL) where an element's name will later be
+#' swapped out for its associated value. When NULL, an internally hardcoded 'dict_outin' is used.
 #' See \code{\link[stringr]{str_replace_all}}
 #' @param suffix a character string used as a suffix, say for a signed name.
 #'
 #' @return a character string that has been Weird Al yankovised() using elements
-#' in 'dict_out_in' swapping value 4 name.
+#' in 'dict_outin' swapping value 4 name.
 #' @export
 #'
 #' @examples
@@ -113,19 +113,19 @@ swap_out_in = function(snip,dict_out_in){
 #' yankovise(snip,brev=TRUE,suffix="- @2chainz")
 #'
 #' # user supplied dictionary
-#' dict_out_in = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+#' dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
 #'                 datzen::dictate_outin('big','LAP'),
 #'                 datzen::dictate_outin('rim','RAM'))
 #'
-#' yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+#' yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_outin = dict_outin)
 
-yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
+yankovise = function(snip,brev=TRUE,dict_outin=NULL,suffix=NULL){
   require(dplyr)
 
-  if(is.null(dict_out_in)){
+  if(is.null(dict_outin)){
     # default dictionary internal hardcode
     # optional arg if user wants to supply own
-    dict_out_in = c(datzen::dictate_outin('rim','RAM'),
+    dict_outin = c(datzen::dictate_outin('rim','RAM'),
                     datzen::dictate_outin('bands','data'))
   }
 
@@ -134,7 +134,7 @@ yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
 
   # suffix="- @2chainz"
 
-  snip_yankovised = swap_out_in(tolower(snip),dict_out_in) %>% append(.,suffix) %>% paste0(.,collapse=" ")
+  snip_yankovised = swap_out_in(tolower(snip),dict_outin) %>% append(.,suffix) %>% paste0(.,collapse=" ")
 
   return(snip_yankovised)
 }
@@ -154,10 +154,10 @@ yankovise = function(snip,brev=TRUE,dict_out_in=NULL,suffix=NULL){
 #
 ## user supplied dictionary
 #
-# dict_out_in = c(datzen::dictate_outin('dealership','SERVER ROOM'),
+# dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
 #                 datzen::dictate_outin('big','LAP'),
 #                 datzen::dictate_outin('rim','RAM'))
 #
-# yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_out_in = dict_out_in)
+# yankovise(snip,brev=TRUE,suffix="- @2chainz",dict_outin = dict_outin)
 
 
