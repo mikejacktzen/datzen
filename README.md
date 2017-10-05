@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "6m@v5)9-c3"
+#> [1] "s7%g1zq59~"
 ```
 
 ### Is your workspace environment too clutered?
@@ -195,6 +195,35 @@ Since you met up with `lm` and started interacting with `Species` you think you'
 
 Get out of my face!
 
+### Weird Al `yankovise()` a Lyric
+
+I have a character string of my favorite song by Daniel Son the Necklace Don.
+Let's get all Weird Al Yankovic with it.
+I'll revise some words with the `yankovise()` function.
+
+``` r
+paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop",
+       " - @2chainz aka the Hair Weave Killer")
+#> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop - @2chainz aka the Hair Weave Killer"
+```
+
+``` r
+yankovise(snip,brev=FALSE,suffix="- @2Chainz_PhD aka the CPU Core Killer")
+#> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the RAM shop - @2Chainz_PhD aka the CPU Core Killer"
+```
+
+You can swap out more words using a dictionary of name-value pairs. We'll also leave out the brev argument, which will default to TRUE.
+
+``` r
+# user supplied dictionary
+dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
+                datzen:::dictate_out_in('big','LAP'),
+                datzen:::dictate_out_in('rim','RAM'))
+
+yankovise(snip,suffix="- @2Chainz_PhD",dict_out_in = dict_out_in)
+#> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD"
+```
+
 Data In/Out
 -----------
 
@@ -205,18 +234,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>           y x1 x2        x3         x4        x5         x6         x7
-#> 1 10.405686  1  0 0.7964925 0.05089627 0.3955794 0.82067431 0.01369243
-#> 2 16.019676  1  0 0.4555925 0.70434861 0.8182581 0.78895525 0.36268294
-#> 3 19.897837  1  1 0.7300153 0.91829562 0.9042625 0.59591237 0.45149161
-#> 4  5.284173  1  0 0.4647291 0.09607641 0.2744205 0.17511649 0.19483442
-#> 5 10.892217  1  0 0.5767601 0.01300602 0.3102801 0.07056185 0.95705977
+#>          y x1 x2        x3        x4        x5         x6        x7
+#> 1 16.88353  1  0 0.5846036 0.7929592 0.9967209 0.20141800 0.8464777
+#> 2 16.36820  1  1 0.5329448 0.7305771 0.4565847 0.61150142 0.3733473
+#> 3 16.35049  1  1 0.8739966 0.1541387 0.4675547 0.32910116 0.8424331
+#> 4 12.12786  1  0 0.8911776 0.9501266 0.1587239 0.06305348 0.6148991
+#> 5 13.03593  1  0 0.3701009 0.4103897 0.5978284 0.82651981 0.1382911
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -0.1851666 -0.5282988 -0.2226193 -1.2809623 -0.5642774
+#> [1] -1.15957869  0.28169873 -0.09746386 -0.82241490  0.36777241
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -225,7 +254,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 68.884  22.965   6.987
+#> 68.960  22.762   6.798
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
@@ -280,24 +309,16 @@ Uh, some error confused Shaq.
 In a nutshell, `itersave` works like `lapply` but when it meets an ugly, unskilled, unqualified, and ungraceful error it will keep trucking along like Shaquille The Diesel O'Neal hitchhiking a ride on Chris Dudley's [back](https://www.youtube.com/watch?v=0ICBi-ku-G0)
 
 ``` r
+
 mainDir=paste0(getwd(),'/tests/proto/')
 subDir='/temp/'
+
+# list.files(paste0(mainDir,subDir))
+unlink(list.files(paste0(mainDir,subDir),full.names = TRUE),recursive=TRUE)
 
 itersave(func_user=shaq,
          vec_arg_func=meatbags,
          mainDir,subDir)
-#> [1] "1 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_1"
-#> [1] "2 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_2"
-#> [1] "3 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_3"
-#> [1] "4 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_4"
 ```
 
 The meatbags that Shaq succesfully put into bodybags.
@@ -354,18 +375,6 @@ shaq_wiser = function(meatbag){
 itersave(func_user=shaq_wiser,
          vec_arg_func=meatbags,
          mainDir,subDir)
-#> [1] "1 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_1"
-#> [1] "2 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_2"
-#> [1] "3 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_3"
-#> [1] "4 of 4"
-#> [1] "2017-10-01 17:54:19 PDT"
-#> [1] "arg_4"
 ```
 
 So, give me the whole shebang. What was the whole story of Shaqs road trip?

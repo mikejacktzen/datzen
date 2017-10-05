@@ -118,6 +118,33 @@ Since you met up with `lm` and started interacting with `Species` you think you'
 Get out of my face!
 
 
+### Weird Al `yankovise()` a Lyric
+
+I have a character string of my favorite song by Daniel Son the Necklace Don.  
+Let's get all Weird Al Yankovic with it.  
+I'll revise some words with the `yankovise()` function.  
+
+```{r}
+paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop",
+       " - @2chainz aka the Hair Weave Killer")
+```
+
+```{r message=FALSE}
+yankovise(snip,brev=FALSE,suffix="- @2Chainz_PhD aka the CPU Core Killer")
+```
+
+You can swap out more words using a dictionary of name-value pairs. We'll also leave out the brev argument, which will default to TRUE.
+
+```{r}
+# user supplied dictionary
+dict_out_in = c(datzen:::dictate_out_in('dealership','SERVER ROOM'),
+                datzen:::dictate_out_in('big','LAP'),
+                datzen:::dictate_out_in('rim','RAM'))
+
+yankovise(snip,suffix="- @2Chainz_PhD",dict_out_in = dict_out_in)
+```
+
+
 ## Data In/Out
 
 ### Ever wanted a generic simulated dataset to prototype modeling commands?
@@ -185,8 +212,12 @@ In a nutshell, `itersave` works like `lapply` but when it meets an ugly, unskill
 
 
 ```{r message=FALSE}
+
 mainDir=paste0(getwd(),'/tests/proto/')
 subDir='/temp/'
+
+# list.files(paste0(mainDir,subDir))
+unlink(list.files(paste0(mainDir,subDir),full.names = TRUE),recursive=TRUE)
 
 itersave(func_user=shaq,
          vec_arg_func=meatbags,
