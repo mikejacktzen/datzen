@@ -4,7 +4,7 @@
 \alias{freadss}
 \title{The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).}
 \usage{
-freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL, ...)
+freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL)
 }
 \arguments{
 \item{input}{character for file path of csv passed to \code{\link[data.table]{fread}}}
@@ -14,48 +14,46 @@ freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL, ...)
 \item{replace}{a logical picking with/without-replacement sampling}
 
 \item{ind_choose}{optional integer vector of specific rows to read in (instead of sampling)}
-
-\item{...}{optional args passed to \code{\link[data.table]{fread}}}
 }
 \value{
 a 'data.frame' with optionally subsetted rows (perhaps from sampling)
 }
 \description{
 The input file is read in-memory via \code{\link[data.table]{fread}}.
-If rows are subset, there is a speed down. Hence, subsetting rows takes on a one-time slow down
-in order to bean count the read-in memory footprint
+If rows are subset, there is a slow down. Hence, subsetting rows costs a one-time slow down
+but affords ability to bean count the read-in memory footprint
+}
+\details{
+NOTE: if both ss and ind_choose are NULL, no subsetting is done. Entire csv is read in.
 }
 \examples{
 
-set.seed(1)
-m = matrix(rnorm(1e5),ncol=10)
-csv = data.frame(x=1:1e4,m)
+set.seed(1); m = matrix(rnorm(10*100),ncol=100,nrow=100)
 
-setwd("~/projects/datzen/tests/proto/")
-write.csv(csv,"test.csv")
+csv = data.frame(m)
+names(csv) = paste0('x',seq_along(csv))
+names(csv)
 
-dir_test = '~/projects/datzen/tests/proto/test.csv'
+tf = tempfile()
+write.csv(csv,tf,row.names=FALSE)
+dir_test=tf
 
-result = freadss(input=dir_test,ss=1000,replace=TRUE,ind_choose=NULL)
-# sometimes sample drops some row
+# if ss=NULL and ind_choose=NULL
+# no sub sampling, basically fread() but no flexible optional args.
+# just demo, might as well use fread() directly
 
-dim(result)
-head(result)
+identical(freadss(input=dir_test),fread(dir_test))
 
-ind_pick = as.integer(50:100)
-result = freadss(input=dir_test,replace=TRUE,
-                 ind_choose=ind_pick,
-                 drop='V12')
+# user wants to sample 5 random rows
+freadss(input=dir_test,ss=5)
 
-identical(sort(as.integer(result$V1)),sort(ind_pick))
+# user picks 5 specific rows
+ind_pick = c(1,7,23,69,100)
 
-dim(result)
-head(result)
-tail(result)
+df_subset_before = freadss(input=dir_test,ind_choose = ind_pick)
+df_subset_after = freadss(input=dir_test)[ind_pick,]
+identical(df_subset_before,df_subset_after)
 
-# no sub sampling
-result = freadss(input=dir_test,ss=NULL)
-dim(result)
 }
 \seealso{
 \code{\link[data.table]{fread}}
