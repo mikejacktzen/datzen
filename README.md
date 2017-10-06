@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "q*19xo$@rd"
+#> [1] "f7@(3jp9k*"
 ```
 
 ### Is your workspace environment too clutered?
@@ -113,7 +113,7 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
 #> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop - @2chainz aka the Hair Weave Killer"
 ```
 
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from \[@2Chainz\_PhD\](<https://twitter.com/2Chainz_PhD?lang=en>).
+You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz\_PhD](https://twitter.com/2Chainz_PhD?lang=en) .
 
 aka CPU Core Killer
 aka ProbaBittyBoi
@@ -239,18 +239,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2        x3         x4        x5        x6         x7
-#> 1 18.98098  1  1 0.8663830 0.46480265 0.9483923 0.9183236 0.01579857
-#> 2 19.04144  1  1 0.4833880 0.94183665 0.5831352 0.3245085 0.92601212
-#> 3 13.11357  1  1 0.8296948 0.08246333 0.1491715 0.8196555 0.09937781
-#> 4 16.31561  1  0 0.7586169 0.43129564 0.3002075 0.9725371 0.63500377
-#> 5 16.02722  1  1 0.6940746 0.43165829 0.3682681 0.4640613 0.75885503
+#>          y x1 x2        x3         x4        x5        x6          x7
+#> 1 10.82507  1  1 0.3512999 0.81422979 0.3096029 0.3797542 0.001899719
+#> 2 13.28588  1  0 0.5079014 0.62804009 0.9906427 0.2470339 0.381902065
+#> 3 12.37117  1  1 0.7837763 0.04401644 0.3630922 0.6305179 0.022850063
+#> 4 16.23018  1  0 0.7448856 0.91418874 0.4850524 0.2752817 0.972030162
+#> 5 12.69675  1  1 0.4948259 0.55705557 0.3077805 0.1596889 0.676212423
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1]  1.1601290 -0.5208821  0.9351969 -0.4667076 -0.7193341
+#> [1] -0.3255885 -0.8587198  1.0852603 -1.5423944 -1.2464742
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -259,7 +259,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>     x1      x2      x3  
-#> 68.837  22.720   7.629
+#> 68.930  22.890   7.178
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?

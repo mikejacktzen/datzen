@@ -96,7 +96,7 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
        " - @2chainz aka the Hair Weave Killer")
 ```
 
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [@2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en).
+You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en) .
 
 aka CPU Core Killer  
 aka ProbaBittyBoi  
