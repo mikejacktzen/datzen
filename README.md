@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "f7@(3jp9k*"
+#> [1] "a(bgkumd&3"
 ```
 
 ### Is your workspace environment too clutered?
@@ -113,12 +113,7 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
 #> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop - @2chainz aka the Hair Weave Killer"
 ```
 
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz\_PhD](https://twitter.com/2Chainz_PhD?lang=en) .
-
-aka CPU Core Killer
-aka ProbaBittyBoi
-aka Daniel Son the Data Don
-aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.
+You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz\_PhD](https://twitter.com/2Chainz_PhD?lang=en) aka CPU Core Killer aka ProbaBittyBoi aka Daniel Son the Data Don aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.
 
 ``` r
 # user supplied dictionary
@@ -131,7 +126,7 @@ yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 #> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD"
 ```
 
-You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes it is... with a narrower scope and outputs tweet-ready text.
+You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes, yes it is… only with a narrower scope and whose output is streamlined as tweet-ready text.
 
 Special Computations
 --------------------
@@ -239,18 +234,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>          y x1 x2        x3         x4        x5        x6          x7
-#> 1 10.82507  1  1 0.3512999 0.81422979 0.3096029 0.3797542 0.001899719
-#> 2 13.28588  1  0 0.5079014 0.62804009 0.9906427 0.2470339 0.381902065
-#> 3 12.37117  1  1 0.7837763 0.04401644 0.3630922 0.6305179 0.022850063
-#> 4 16.23018  1  0 0.7448856 0.91418874 0.4850524 0.2752817 0.972030162
-#> 5 12.69675  1  1 0.4948259 0.55705557 0.3077805 0.1596889 0.676212423
+#>       y x1 x2    x3    x4     x5    x6    x7
+#> 1 14.83  1  0 0.671 0.547 0.3027 0.594 0.857
+#> 2  9.54  1  0 0.289 0.229 0.5071 0.141 0.456
+#> 3 15.44  1  0 0.527 0.160 0.0801 0.947 0.921
+#> 4 15.54  1  0 0.583 0.591 0.5513 0.192 0.942
+#> 5 13.03  1  0 0.214 0.394 0.7621 0.046 0.782
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -0.3255885 -0.8587198  1.0852603 -1.5423944 -1.2464742
+#> [1] -1.4532  0.1832 -0.3165 -0.0738  0.2541
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -258,8 +253,8 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> lm(formula = y ~ -1 + ., data = .)
 #> 
 #> Coefficients:
-#>     x1      x2      x3  
-#> 68.930  22.890   7.178
+#>    x1     x2     x3  
+#> 68.83  23.00   7.07
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?

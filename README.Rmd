@@ -96,12 +96,11 @@ paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership
        " - @2chainz aka the Hair Weave Killer")
 ```
 
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en) .
-
-aka CPU Core Killer  
-aka ProbaBittyBoi  
-aka Daniel Son the Data Don  
-aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.  
+You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en)
+aka CPU Core Killer 
+aka ProbaBittyBoi 
+aka Daniel Son the Data Don 
+aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr. 
 
 
 ```{r}
@@ -113,7 +112,7 @@ dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
 yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
 ```
 
-You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes it is... with a narrower scope and outputs tweet-ready text.
+You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes, yes it is… only with a narrower scope and whose output is streamlined as tweet-ready text.
 
 
 
