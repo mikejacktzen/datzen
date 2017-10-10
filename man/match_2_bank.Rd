@@ -4,24 +4,24 @@
 \alias{match_2_bank}
 \title{The match_2_bank() function}
 \usage{
-match_2_bank(name_bank, name_col, df_raw, method = "jw", max_dist = 0.2)
+match_2_bank(bank_entity, col_name, df_raw, method = "jw", max_dist = 0.2)
 }
 \arguments{
-\item{name_bank}{a single column data.frame that contains the unique population of names inside name_bank$name_bank}
+\item{bank_entity}{a single column data.frame that contains the unique population of entities inside bank_entity$bank_entity}
 
-\item{name_col}{a single string for the name of the colum in 'df_raw' to be processed}
+\item{col_name}{a single string for the name of the column in 'df_raw' to be processed and matched to bank_entity}
 
-\item{df_raw}{a data.frame that contains the column specified by the 'name_col' argument}
+\item{df_raw}{a data.frame that contains the column specified by the 'col_name' argument}
 
 \item{method}{the method argument passed to \code{\link[fuzzyjoin]{stringdist_left_join}}}
 
 \item{max_dist}{the max_dist argument passed to \code{\link[fuzzyjoin]{stringdist_left_join}}}
 }
 \value{
-a 2 column data.frame with elements in 'name_col' fuzzyjoined to 'name_bank' via \code{\link[fuzzyjoin]{stringdist_left_join}}
+A 2 column data.frame with elements in df_raw[,col_name] fuzzyjoined to 'bank_entity' via \code{\link[fuzzyjoin]{stringdist_left_join}}
 }
 \description{
-The match_2_bank() function
+Elements in df_raw[,col_name] will be fuzzyjoined to elements in bank_entity
 }
 \examples{
 
@@ -42,13 +42,13 @@ names_col_to_pool = c('name_a','name_b','name_c')
 name_all_unique = as.character(unlist(df_raw[,names_col_to_pool])) \%>\% unique \%>\% sort
 
 # creating name bank: drop mispelled, appeal to appx string match latter
-name_bank = name_all_unique \%>\% clean_name() \%>\% unique \%>\% sort \%>\%
+bank_entity = name_all_unique \%>\% clean_name() \%>\% unique \%>\% sort \%>\%
   gsub(.,pattern='^(Jo3)$|(J0)|(j0)|(jo3)',replace='') \%>\% # Joseph
   # spotcheck additional manual gsubs()
   unique \%>\% sort
 
-name_bank = data.frame(name_bank=name_bank)
-str(name_bank)
+bank_entity = data.frame(bank_entity=bank_entity)
+str(bank_entity)
 
 
 library(stringdist)
@@ -57,15 +57,12 @@ library(stringdist)
 stringdist::stringdist("Jo","Joseph",method='jw')
 # c("osa", "lv","dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex")
 
-match_2_bank(name_bank=name_bank,name_col="name_a",df_raw=df_raw)
+match_2_bank(bank_entity=bank_entity,col_name="name_a",df_raw=df_raw)
 
-match_2_bank(name_bank=name_bank,
-             name_col="name_b",df_raw=df_raw,
+match_2_bank(bank_entity=bank_entity,
+             col_name="name_b",df_raw=df_raw,
              max_dist=0.6,method='jw')
 
-match_2_bank(name_bank=name_bank,
-             name_col="name_c",df_raw=df_raw,
-             max_dist=0.2,method='qgram')
 
 # make sure output of match_2_bank() == nrow(df_raw)
 nrow(df_raw)
@@ -76,9 +73,9 @@ nrow(df_raw)
 # head(df_raw)
 #
 # dat_edit = df_raw
-# dat_edit[,'name_a'] = match_2_bank(name_bank=name_bank,name_col="name_a",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
-# dat_edit[,'name_b'] = match_2_bank(name_bank=name_bank,name_col="name_b",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
-# dat_edit[,'name_c'] = match_2_bank(name_bank=name_bank,name_col="name_c",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+# dat_edit[,'name_a'] = match_2_bank(bank_entity=bank_entity,col_name="name_a",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+# dat_edit[,'name_b'] = match_2_bank(bank_entity=bank_entity,col_name="name_b",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+# dat_edit[,'name_c'] = match_2_bank(bank_entity=bank_entity,col_name="name_c",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
 #
 # head(dat_edit)
 #
