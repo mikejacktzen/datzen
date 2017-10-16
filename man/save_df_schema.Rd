@@ -21,6 +21,4 @@ The save_df_schema() function
 }
 \examples{
 iris2=cbind(iris,Species_chr=as.character(iris$Species))
-save_df_schema(x=iris2)
-jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simplifyVector = TRUE)
 }

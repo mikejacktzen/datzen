@@ -9,8 +9,8 @@
 #'
 #' @examples
 #' iris2=cbind(iris,Species_chr=as.character(iris$Species))
-#' save_df_schema(x=iris2)
-#' jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simplifyVector = TRUE)
+# save_df_schema(x=iris2,outdir='~/projects/datzen/tests/')
+# jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simplifyVector = TRUE)
 
 save_df_schema = function(x,
                           outdir=getwd(),...){

@@ -6,8 +6,9 @@ devtools::document()
 roxygen2::roxygenise()
 
 # yankovise
-devtools::install_github('mikejacktzen/datzen',force=TRUE)
+# devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
+?mandate
 ?dictate_outin
 ?yankovise
 ?simlm
