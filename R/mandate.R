@@ -10,7 +10,7 @@
 #' The schema_df argument should contain 4 columns: ind_col, names_col, class_col, pattern.
 #' The schema_df argument should have nrow(schema_df) == ncol(df).
 #'
-#' @return an output data.frame similar to 'df' but the column types of 'df' may have been converted according to 'schema_df'
+#' @return an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
 #' @export
 #'
 #' @examples
@@ -46,7 +46,7 @@ mandate = function(df,schema_df){
 
   # mandate col name
   names(mandate_col_type) = schema_df$names_col
-  out = data.frame(convert_ea_col)
+  out = data.frame(mandate_col_type)
 
   return(out)
 

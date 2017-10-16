@@ -12,7 +12,7 @@ mandate(df, schema_df)
 \item{schema_df}{a data.frame used as a schema to mandate each column in the df argument}
 }
 \value{
-an output data.frame similar to 'df' but the column types of 'df' may have been converted according to 'schema_df'
+an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
 }
 \description{
 The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
