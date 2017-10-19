@@ -32,11 +32,11 @@
 
 scheme = function(x,
                   outdir=NULL,
-                  pattern_null = NULL,
-                  pattern_sep_row = NULL,
-                  pattern_sep_col = NULL,
-                  pattern_quote_string = NULL,
-                  pattern_escape_quote = NULL,
+                  pattern_null = "NULL",
+                  pattern_sep_row = "\n",
+                  pattern_sep_col = ",",
+                  pattern_quote_string = "'",
+                  pattern_escape_quote = "\\",
                   description_col = NA,
                   ...){
 
@@ -54,17 +54,17 @@ scheme = function(x,
 
   # enforce default options if user does not supply
 
-
-  # optional assign these default values in function scope
-  if(is.null(pattern_null)){pattern_null = "NULL"}
-
-  if(is.null(pattern_sep_row)){pattern_sep_row = "\n"}
-
-  if(is.null(pattern_sep_col)){pattern_sep_col = ","}
-
-  if(is.null(pattern_quote_string)){pattern_quote_string = "'"}
-
-  if(is.null(pattern_escape_quote)){pattern_escape_quote = "\\"}
+#
+#   # optional assign these default values in function scope
+#   if(is.null(pattern_null)){pattern_null = "NULL"}
+#
+#   if(is.null(pattern_sep_row)){pattern_sep_row = "\n"}
+#
+#   if(is.null(pattern_sep_col)){pattern_sep_col = ","}
+#
+#   if(is.null(pattern_quote_string)){pattern_quote_string = "'"}
+#
+#   if(is.null(pattern_escape_quote)){pattern_escape_quote = "\\"}
 
 
   schema_global = list(num_row=num_row,
@@ -118,10 +118,9 @@ scheme = function(x,
 
 
   schema_local = as.data.frame(cbind(indx_col=seq_along(names_col),names_col,class_col,
-                                    pattern,description_col))
-
-  row.names(schema_local) = NULL
-
+                                     pattern,
+                                     description_col),
+                               row.names=NULL)
 
 
   schema = list(schma_global=schema_global,
@@ -142,10 +141,13 @@ scheme = function(x,
 }
 
 
+#' The schema_df argument should contain 4 columns: ind_col, names_col, class_col, pattern.
+#' The schema_df argument should have nrow(schema_df) == ncol(df).
+
 # scheme(x=iris,outdir='~/projects/datzen/tests/')
-#
+# #
 # setwd('~/projects/datzen/tests/')
-#
+# #
 # scheme(x=iris)
 # read_json('~/projects/datzen/tests/iris_schema.json',simplifyVector = TRUE)
 #

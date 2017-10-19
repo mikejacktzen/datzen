@@ -2,7 +2,7 @@
 % Please edit documentation in R/mandate.R
 \name{mandate}
 \alias{mandate}
-\title{The mandate() function}
+\title{The mandate() function enforces a data.frame to follow a schema}
 \usage{
 mandate(df, schema_df)
 }
@@ -16,12 +16,10 @@ an output data.frame similar to the input 'df' but the column types of 'df' may 
 }
 \description{
 The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
-If 'schema_df[j,class_col] == "numeric" ', then 'as.numeric(df[,j])' will be the result.
+If the schema specs that data.frame column j should be numeric, then  then 'as.numeric(df[,j])' will be the result.
 }
 \details{
-the schema_df argument should be the output of \code{\link[datzen]{save_df_schema}}.
-The schema_df argument should contain 4 columns: ind_col, names_col, class_col, pattern.
-The schema_df argument should have nrow(schema_df) == ncol(df).
+the schema_df argument should be the output of \code{\link[datzen]{scheme}}.
 }
 \examples{
 iris2=cbind(iris,Species_chr=as.character(iris$Species))
@@ -37,4 +35,7 @@ iris3 \%>\% str
 
 mandate(iris3,schema_df = schema_in) \%>\% str
 
+}
+\seealso{
+\code{\link[datzen]{scheme}}
 }
