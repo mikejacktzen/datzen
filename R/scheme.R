@@ -8,11 +8,11 @@
 #' @param outdir a character string designating the output filepath (default NULL).
 #' @param description_col a named character vector whose name elements are the column names of data.frame x and
 #' each value element is a brief human-readable description of the column of x (default NA).
-#' @param pattern_null a character string that contains the pattern for NULL values (default NULL).
-#' @param pattern_sep_row a character string that contains the pattern for seperating rows (default NULL).
-#' @param pattern_sep_col a character string that contains the pattern for seperating columns (default NULL).
-#' @param pattern_quote_string a character string that contains the pattern for quoting character values (default NULL).
-#' @param pattern_escape_quote a character string that contains the pattern for escaping quotes (default NULL).
+#' @param pattern_null a character string that contains the pattern for NULL values (default "NULL").
+#' @param pattern_sep_row a character string that contains the pattern for seperating rows (default "\\n").
+#' @param pattern_sep_col a character string that contains the pattern for seperating columns (default ",").
+#' @param pattern_quote_string a character string that contains the pattern for quoting character values (default '"').
+#' @param pattern_escape_quote a character string that contains the pattern for escaping quotes (default "\\").
 #' @param ... optional arguments
 #'
 #' @return A nested list with 'schema_global' and 'schema_local' .
@@ -33,9 +33,9 @@
 scheme = function(x,
                   outdir=NULL,
                   pattern_null = "NULL",
-                  pattern_sep_row = "\n",
+                  pattern_sep_row = "\\n",
                   pattern_sep_col = ",",
-                  pattern_quote_string = "'",
+                  pattern_quote_string = '"',
                   pattern_escape_quote = "\\",
                   description_col = NA,
                   ...){

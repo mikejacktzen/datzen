@@ -1,7 +1,7 @@
 #' The mandate() function enforces a data.frame to follow a schema
 #'
 #' @description The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
-#' If the schema specs that data.frame column j should be numeric, then  then 'as.numeric(df[,j])' will be the result.
+#' If the schema specs that data.frame column j should be numeric, then 'as.numeric(df[,j])' will be the result.
 #'
 #' @param df a data.frame of data whose column types and names will be mandated against a schema
 #' @param schema_df a data.frame used as a schema to mandate each column in the df argument

@@ -16,7 +16,7 @@ an output data.frame similar to the input 'df' but the column types of 'df' may 
 }
 \description{
 The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
-If the schema specs that data.frame column j should be numeric, then  then 'as.numeric(df[,j])' will be the result.
+If the schema specs that data.frame column j should be numeric, then 'as.numeric(df[,j])' will be the result.
 }
 \details{
 the schema_df argument should be the output of \code{\link[datzen]{scheme}}.
