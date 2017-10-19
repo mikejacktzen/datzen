@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: The dictate_outin() function</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for dictate_outin"><tr><td>dictate_outin</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>The dictate_outin() function</h2>
+
+<h3>Description</h3>
+
+<p>An extremely simple function that creates a named vector.
+A useful helper to create key-value dictionaries to use in <code>str_replace_all</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+dictate_outin(swap_out, swap_in)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>swap_out</code></td>
+<td>
+<p>vector whose elements will be used as the names of the resulting character vector</p>
+</td></tr>
+<tr valign="top"><td><code>swap_in</code></td>
+<td>
+<p>vector whose elements will be used as the values of the resulting character vector</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a character vector with values from swap_in and names from swap_out
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>str_replace_all</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+dictate_outin('compton','bompton')
+
+</pre>
+
+
+</body></html>

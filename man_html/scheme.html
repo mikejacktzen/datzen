@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: The scheme() function creates a simple schema for a...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for scheme"><tr><td>scheme</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>The scheme() function creates a simple schema for a data.frame</h2>
+
+<h3>Description</h3>
+
+<p>The schema should describe global characteristics of the data.frame (eg the number of rows and columns)
+and local characteristics of the data.frame (eg each column name and type).
+The resulting schema is saved as an external json file that complements the csv version of data.frame x.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+scheme(x, outdir = NULL, pattern_null = "NULL", pattern_sep_row = "\\n",
+  pattern_sep_col = ",", pattern_quote_string = "\"",
+  pattern_escape_quote = "\\", description_col = NA, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>a data.frame whose properties will be schemed() to a schema.</p>
+</td></tr>
+<tr valign="top"><td><code>outdir</code></td>
+<td>
+<p>a character string designating the output filepath (default NULL).</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_null</code></td>
+<td>
+<p>a character string that contains the pattern for NULL values (default &quot;NULL&quot;).</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_sep_row</code></td>
+<td>
+<p>a character string that contains the pattern for seperating rows (default &quot;\n&quot;).</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_sep_col</code></td>
+<td>
+<p>a character string that contains the pattern for seperating columns (default &quot;,&quot;).</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_quote_string</code></td>
+<td>
+<p>a character string that contains the pattern for quoting character values (default '&quot;').</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_escape_quote</code></td>
+<td>
+<p>a character string that contains the pattern for escaping quotes (default &quot;\&quot;).</p>
+</td></tr>
+<tr valign="top"><td><code>description_col</code></td>
+<td>
+<p>a named character vector whose name elements are the column names of data.frame x and
+each value element is a brief human-readable description of the column of x (default NA).</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>optional arguments</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This assumes the values in data.frame x contain the exhaustive scoped-population values
+NOTE: Does not have to be population, just ensure coverage / support.
+</p>
+
+
+<h3>Value</h3>
+
+<p>A nested list with 'schema_global' and 'schema_local' .
+Note if the input argument 'outdir' is not NULL, a physical .json file is written to disk at the specified directory.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>mandate</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+iris2=cbind(iris,Species_chr=as.character(iris$Species))
+scheme(x=iris2,outdir='~/projects/datzen/tests/')
+jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simplifyVector = TRUE)
+</pre>
+
+
+</body></html>

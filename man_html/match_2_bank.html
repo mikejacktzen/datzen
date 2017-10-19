@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: The match_2_bank() function</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for match_2_bank"><tr><td>match_2_bank</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>The match_2_bank() function</h2>
+
+<h3>Description</h3>
+
+<p>Elements in df_raw[,col_name] will be fuzzyjoined to elements in bank_entity
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+match_2_bank(bank_entity, col_name, df_raw, method = "jw", max_dist = 0.2)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>bank_entity</code></td>
+<td>
+<p>a single column data.frame that contains the unique population of entities inside bank_entity$bank_entity</p>
+</td></tr>
+<tr valign="top"><td><code>col_name</code></td>
+<td>
+<p>a single string for the name of the column in 'df_raw' to be processed and matched to bank_entity</p>
+</td></tr>
+<tr valign="top"><td><code>df_raw</code></td>
+<td>
+<p>a data.frame that contains the column specified by the 'col_name' argument</p>
+</td></tr>
+<tr valign="top"><td><code>method</code></td>
+<td>
+<p>the method argument passed to <code>stringdist_left_join</code></p>
+</td></tr>
+<tr valign="top"><td><code>max_dist</code></td>
+<td>
+<p>the max_dist argument passed to <code>stringdist_left_join</code></p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>A 2 column data.frame with elements in df_raw[,col_name] fuzzyjoined to 'bank_entity' via <code>stringdist_left_join</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+#######################################
+# Create name bank of unique names
+# all population of names
+# need to disambiguate, get rid of redundant
+# most likely manually
+#######################################
+library(dplyr)
+
+
+df_raw = data.frame(name_a=c('joseph','joe','jo ',' joesephine','joseph','jo'),
+                    name_b=c('joseph','jo3','jo ',' joesephine','joseph','jo'),
+                    name_c=c('joseph','j0 '))
+
+names_col_to_pool = c('name_a','name_b','name_c')
+name_all_unique = as.character(unlist(df_raw[,names_col_to_pool])) %&gt;% unique %&gt;% sort
+
+# creating name bank: drop mispelled, appeal to appx string match latter
+bank_entity = name_all_unique %&gt;% clean_name() %&gt;% unique %&gt;% sort %&gt;%
+  gsub(.,pattern='^(Jo3)$|(J0)|(j0)|(jo3)',replace='') %&gt;% # Joseph
+  # spotcheck additional manual gsubs()
+  unique %&gt;% sort
+
+bank_entity = data.frame(bank_entity=bank_entity)
+str(bank_entity)
+
+
+library(stringdist)
+
+# run one example to figure out distance boundary
+stringdist::stringdist("Jo","Joseph",method='jw')
+# c("osa", "lv","dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex")
+
+match_2_bank(bank_entity=bank_entity,col_name="name_a",df_raw=df_raw)
+
+match_2_bank(bank_entity=bank_entity,
+             col_name="name_b",df_raw=df_raw,
+             max_dist=0.6,method='jw')
+
+
+# make sure output of match_2_bank() == nrow(df_raw)
+nrow(df_raw)
+
+##############################
+# Replace
+##############################
+# head(df_raw)
+#
+# dat_edit = df_raw
+# dat_edit[,'name_a'] = match_2_bank(bank_entity=bank_entity,col_name="name_a",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+# dat_edit[,'name_b'] = match_2_bank(bank_entity=bank_entity,col_name="name_b",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+# dat_edit[,'name_c'] = match_2_bank(bank_entity=bank_entity,col_name="name_c",df_raw=df_raw,max_dist=0.2,method='jw')[,2]
+#
+# head(dat_edit)
+#
+#' # dat_edit[,c('name_a','name_b','name_c')]
+# df_raw[,c('name_a','name_b','name_c')]
+</pre>
+
+
+</body></html>

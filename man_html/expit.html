@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: the expit() function, rebranding of 'plogis'</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for expit"><tr><td>expit</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>the expit() function, rebranding of <code>plogis</code></h2>
+
+<h3>Description</h3>
+
+<p>the expit() function, rebranding of <code>plogis</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+expit(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>see args of see args of <code>plogis</code></p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a numeric
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>plogis</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+plot(x=seq(from=-10,to=10,by=1),y=expit(seq(from=-10,to=10,by=1)))
+identical(expit(10),stats::plogis(10))
+</pre>
+
+
+</body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: The simlm function</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for simlm"><tr><td>simlm</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>The simlm function</h2>
+
+<h3>Description</h3>
+
+<p>Quickly simulate data from a basic linear model.
+</p>
+<p>Each of the n noise elements are from <code>rnorm</code>(mean=0,sd=1).
+</p>
+<p>Except for columns 1 and 2, each of the design-matrix elements are from <code>runif</code>(min=0,max=1).
+</p>
+<p>The outcome y is noise added to the linear combination of the design matrix with 'coef_true'.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+simlm(n = 10, p = 4, coef_true = seq(1:p), seed = NULL,
+  output_meta = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>n</code></td>
+<td>
+<p>integer for number of observations</p>
+</td></tr>
+<tr valign="top"><td><code>p</code></td>
+<td>
+<p>integer for total number of cols in the design matrix. Note, offset from '3:p'.
+Since col 1 is reserved for intercept-column of 1s and col 2 is reserved for treatment-column of 1s/0s</p>
+</td></tr>
+<tr valign="top"><td><code>coef_true</code></td>
+<td>
+<p>vector (length p) for true lm coefficients</p>
+</td></tr>
+<tr valign="top"><td><code>seed</code></td>
+<td>
+<p>a seed for RNG (default NULL)</p>
+</td></tr>
+<tr valign="top"><td><code>output_meta</code></td>
+<td>
+<p>a logical (default FALSE) determining if meta info is returned as list elements</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>If 'output_meta=FALSE' (the default), only the data.frame 'yx' is returned.
+The column names of yx are names(yx)=c('y',paste0(&quot;x&quot;,seq(1:p))).
+</p>
+<p>If 'output_meta=TRUE', a 3 element list with yx, coef_true, noise.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+simlm()
+
+out = simlm(n=1000,p=10)
+lm(data=out,y~-1+.)
+
+out = simlm(n=1000,seed=123)
+lm(data=out,y~-1+.)
+
+out = simlm(n=1000,seed=123,output_meta=TRUE)
+str(out)
+
+out = simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=TRUE)
+lm(data=out$yx[,-2], y ~ 1+.)
+
+</pre>
+
+
+</body></html>

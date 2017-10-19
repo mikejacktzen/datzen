@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: the garble function to spit out random gibberish</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for garble"><tr><td>garble</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>the garble function to spit out random gibberish</h2>
+
+<h3>Description</h3>
+
+<p>the garble function to spit out random gibberish
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+garble(size_out, pattern_bank = "~!@#$%^&amp;*()-+")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>size_out</code></td>
+<td>
+<p>an integer for length of output, must be 3 or larger</p>
+</td></tr>
+<tr valign="top"><td><code>pattern_bank</code></td>
+<td>
+<p>a single string of patterns (no space)</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a character vector of random characters
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+garble(1)
+garble(10)
+garble(10,'!&amp;@')
+garble(3)
+</pre>
+
+
+</body></html>

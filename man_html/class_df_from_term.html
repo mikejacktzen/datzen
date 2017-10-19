@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: the class_df_from_term() function</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for class_df_from_term"><tr><td>class_df_from_term</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>the class_df_from_term() function</h2>
+
+<h3>Description</h3>
+
+<p>the class_df_from_term() function
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+class_df_from_term(model, class_post_formula = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>model</code></td>
+<td>
+<p>an 'lm' object</p>
+</td></tr>
+<tr valign="top"><td><code>class_post_formula</code></td>
+<td>
+<p>If FALSE (default), returns class of df col BEFORE any in-formula transformations applied to terms.
+If TRUE, returns class of df col AFTER any in-formula transformations applied to terms.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a named list containing named character vectors.
+The list names are model terms.
+The vector names are data frame column names.
+The vector values are characters for the data frame column's class.
+NOTE: If any in-formula transformations were applied, the data.frame referenced would represent an 'intermediate' one
+that is not exactly the originating data.frame passed to the 'data' arg of lm(data=.).
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+model = lm(data = iris,Sepal.Length ~ Species + as.numeric(Species) +
+             Species:Sepal.Width + as.factor(Sepal.Width) +
+             as.factor(Sepal.Width)*as.factor(Petal.Length) +
+             as.numeric(Species)*as.factor(Petal.Length) +
+             poly(Sepal.Width,degree = 2))
+
+preform = class_df_from_term(model,class_post_formula = TRUE)
+names(preform)
+(preform[5])
+(preform[5]) %in% 'nmatrix.2'
+
+# does not map "poly(Sepal.Width, degree = 2)" name of list entry
+# to original "Sepal.Width" name of vector entry
+
+postform = class_df_from_term(model,class_post_formula = FALSE)
+names(postform)
+(postform[5])
+(postform[5]) %in% 'nmatrix.2'
+
+# does map "poly(Sepal.Width, degree = 2)" name of list entry
+# to original "Sepal.Width" name of vector entry
+</pre>
+
+
+</body></html>

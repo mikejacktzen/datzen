@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: The mandate() function enforces a data.frame to follow a...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for mandate"><tr><td>mandate</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>The mandate() function enforces a data.frame to follow a schema</h2>
+
+<h3>Description</h3>
+
+<p>The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
+If the schema specs that data.frame column j should be numeric, then 'as.numeric(df[,j])' will be the result.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+mandate(df, schema_df)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>df</code></td>
+<td>
+<p>a data.frame of data whose column types and names will be mandated against a schema</p>
+</td></tr>
+<tr valign="top"><td><code>schema_df</code></td>
+<td>
+<p>a data.frame used as a schema to mandate each column in the df argument</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>the schema_df argument should be the output of <code>scheme</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>scheme</code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+iris2=cbind(iris,Species_chr=as.character(iris$Species))
+save_df_schema(x=iris2,outdir='~/projects/datzen/tests/')
+schema_in = jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simplifyVector = TRUE)
+
+library(dplyr)
+
+mandate(iris2,schema_df = schema_in) %&gt;% str
+
+iris3 = iris2 %&gt;% mutate_all(.funs=funs(as.character))
+iris3 %&gt;% str
+
+mandate(iris3,schema_df = schema_in) %&gt;% str
+
+</pre>
+
+
+</body></html>
