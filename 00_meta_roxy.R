@@ -7,10 +7,8 @@ roxygen2::roxygenise()
 
 
 
-rd2html_all(dir_man_rd = "~/projects/datzen/man/",
-            dir_man_html = "~/projects/datzen/man_html/")
-
-
+rd2md_all(dir_man_rd = "~/projects/datzen/man/",
+            dir_man_md = "~/projects/datzen/man_md/")
 
 
 
