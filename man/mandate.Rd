@@ -4,22 +4,22 @@
 \alias{mandate}
 \title{The mandate() function enforces a data.frame to follow a schema}
 \usage{
-mandate(df, schema_df)
+mandate(df, schema)
 }
 \arguments{
-\item{df}{a data.frame of data whose column types and names will be mandated against a schema}
+\item{df}{a data.frame whose column types and names will be mandated against a schema}
 
-\item{schema_df}{a data.frame used as a schema to mandate each column in the df argument}
+\item{schema}{a nested list containing schematics used to mandate the data.frame df argument}
 }
 \value{
-an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
+an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema'
 }
 \description{
 The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
 If the schema specs that data.frame column j should be numeric, then 'as.numeric(df[,j])' will be the result.
 }
 \details{
-the schema_df argument should be the output of \code{\link[datzen]{scheme}}.
+the schema argument should be the output of \code{\link[datzen]{scheme}}.
 }
 \examples{
 iris2=cbind(iris,Species_chr=as.character(iris$Species))
@@ -28,12 +28,12 @@ schema_in = jsonlite::read_json('~/projects/datzen/tests/iris2_schema.json',simp
 
 library(dplyr)
 
-mandate(iris2,schema_df = schema_in) \%>\% str
+mandate(iris2,schema = schema_in) \%>\% str
 
 iris3 = iris2 \%>\% mutate_all(.funs=funs(as.character))
 iris3 \%>\% str
 
-mandate(iris3,schema_df = schema_in) \%>\% str
+mandate(iris3,schema = schema_in) \%>\% str
 
 }
 \seealso{

@@ -3,14 +3,14 @@
 #' @description The mandate() function converts each column of the supplied data.frame to the type listed in the supplied schema.
 #' If the schema specs that data.frame column j should be numeric, then 'as.numeric(df[,j])' will be the result.
 #'
-#' @param df a data.frame of data whose column types and names will be mandated against a schema
-#' @param schema_df a data.frame used as a schema to mandate each column in the df argument
+#' @param df a data.frame whose column types and names will be mandated against a schema
+#' @param schema a nested list containing schematics used to mandate the data.frame df argument
 #'
-#' @details the schema_df argument should be the output of \code{\link[datzen]{scheme}}.
+#' @details the schema argument should be the output of \code{\link[datzen]{scheme}}.
 #'
 #' @seealso \code{\link[datzen]{scheme}}
 #'
-#' @return an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
+#' @return an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema'
 #' @export
 #'
 #' @examples
@@ -20,28 +20,28 @@
 #'
 #' library(dplyr)
 #'
-#' mandate(iris2,schema_df = schema_in) %>% str
+#' mandate(iris2,schema = schema_in) %>% str
 #'
 #' iris3 = iris2 %>% mutate_all(.funs=funs(as.character))
 #' iris3 %>% str
 #'
-#' mandate(iris3,schema_df = schema_in) %>% str
+#' mandate(iris3,schema = schema_in) %>% str
 #'
-mandate = function(df,schema_df){
+mandate = function(df,schema){
 
-  # schema_df = schema_in
-  # schema_df$schema_global
-  # schema_df$schema_local
+  # schema = schema_in
+  # schema$schema_global
+  # schema$schema_local
 
   # enforce data type
   # as.numeric() as.factor()
 
-  mandate_col_type = lapply(1:(nrow(schema_df$schema_local)),FUN=function(xx){
+  mandate_col_type = lapply(1:(nrow(schema$schema_local)),FUN=function(xx){
 
     # xx = 1
 
-    col_ind = schema_df$schema_local$indx_col[[xx]]
-    col_type = schema_df$schema_local$class_col[[xx]]
+    col_ind = schema$schema_local$indx_col[[xx]]
+    col_type = schema$schema_local$class_col[[xx]]
 
     # meta programming
     prefix_as = paste0('as.',col_type)
@@ -52,7 +52,7 @@ mandate = function(df,schema_df){
   })
 
   # enforce col name
-  names(mandate_col_type) = schema_df$schema_local$names_col
+  names(mandate_col_type) = schema$schema_local$names_col
   out = data.frame(mandate_col_type)
 
 
@@ -66,4 +66,4 @@ mandate = function(df,schema_df){
 
 # library(dplyr)
 # schema_in = read_json('~/projects/datzen/tests/iris_schema.json',simplifyVector = TRUE)
-# mandate(iris,schema_df = schema_in) %>% str
+# mandate(iris,schema = schema_in) %>% str

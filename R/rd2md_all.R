@@ -1,4 +1,4 @@
-#' The rd2md_all() function to batch convert rd files to html files
+#' a function to batch convert .rd files to .md files
 #'
 #' @description uses the Rd2md::Rd2markdown function inside base::lapply
 #'
@@ -31,8 +31,9 @@ rd2md_all = function(dir_man_rd,dir_man_md){
 
     Rd2md::Rd2markdown(rdfile=in_rd, outfile=out_md, append = FALSE)
 
-
+    # if html output desired, use
     # tools::Rd2HTML(Rd=in_rd, out=out_html)
+
   }))
   message(paste('writing .md files into',dir_man_md))
 }
