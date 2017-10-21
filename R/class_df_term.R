@@ -1,6 +1,6 @@
 
 
-#' the class_df_from_term() function
+#' @title the class_df_from_term() function returns the class of the data frame column(s) involved in a term
 #'
 #' @param model an 'lm' object
 #' @param class_post_formula If FALSE (default), returns class of df col BEFORE any in-formula transformations applied to terms.

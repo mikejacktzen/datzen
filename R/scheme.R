@@ -1,4 +1,4 @@
-#' The scheme() function creates a simple schema for a data.frame
+#' @title The scheme() function creates a simple schema for a data.frame
 #'
 #' @description The schema should describe global characteristics of the data.frame (eg the number of rows and columns)
 #' and local characteristics of the data.frame (eg each column name and type).

@@ -1,4 +1,4 @@
-# `freadss`: The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).
+# `freadss`: The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled)
 
 ## Description
 

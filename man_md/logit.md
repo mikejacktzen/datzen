@@ -1,10 +1,4 @@
-# `logit`: the logit() function, rebranding of [`qlogis`](qlogis.html)
-
-## Description
-
-
- the logit() function, rebranding of [`qlogis`](qlogis.html) 
-
+# `logit`: The logit() function is a rebranding of [`qlogis`](qlogis.html)
 
 ## Usage
 

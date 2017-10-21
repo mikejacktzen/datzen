@@ -2,7 +2,7 @@
 % Please edit documentation in R/save_coord_nb.R
 \name{save_coord_nb}
 \alias{save_coord_nb}
-\title{The save_coord_nb() function}
+\title{The save_coord_nb() function writes a .txt file of nb-coordinate triplets}
 \usage{
 save_coord_nb(foo_spdf, style = "B", dir_out = NULL)
 }
@@ -17,9 +17,6 @@ if the user wishes to write to a '.csv'}
 }
 \value{
 A data.frame of the nb-coordinate triplets ("from","to","weights") with 'spatial.neighbour' class returned from \code{\link[spdep]{listw2sn}}
-}
-\description{
-The save_coord_nb() function
 }
 \examples{
 example(columbus); save_coord_nb(foo_spdf=columbus)

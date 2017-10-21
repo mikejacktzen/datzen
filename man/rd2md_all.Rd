@@ -2,7 +2,7 @@
 % Please edit documentation in R/rd2md_all.R
 \name{rd2md_all}
 \alias{rd2md_all}
-\title{a function to batch convert .rd files to .md files}
+\title{The rd2md_all() function batch converts .rd files to .md files}
 \usage{
 rd2md_all(dir_man_rd, dir_man_md)
 }

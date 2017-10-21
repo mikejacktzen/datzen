@@ -2,7 +2,7 @@
 % Please edit documentation in R/garble.R
 \name{garble}
 \alias{garble}
-\title{the garble function to spit out random gibberish}
+\title{The garble() function spits out random gibberish}
 \usage{
 garble(size_out, pattern_bank = "~!@#$\%^&*()-+")
 }
@@ -13,9 +13,6 @@ garble(size_out, pattern_bank = "~!@#$\%^&*()-+")
 }
 \value{
 a character vector of random characters
-}
-\description{
-the garble function to spit out random gibberish
 }
 \examples{
 

@@ -40,7 +40,8 @@ is allowed to run before being interrupted by the timeout. Passed to \code{\link
 \description{
 The user supplied function, in the argument 'func_user', is expected to return an object that itersave() can further save physically.
 So, itersave() will write a physical .rds file to the user specified directory.
-The name of the physical file will use the elements' names in the named vector 'vec_arg_func' as the filename. eg if names(vec_arg_func[[i]])='foo', then the physical file is 'foo.rds'
+The name of the physical file will use the elements' names in the named vector 'vec_arg_func' as the filename.
+eg if names(vec_arg_func[[i]])='foo', then the physical file is 'foo.rds'
 Note: itersave() uses purrr::safely() with if-else to handle errors.
 }
 \examples{

@@ -1,6 +1,6 @@
-#' The simlm function
+#' @title The simlm() function quickly simulates data from a basic linear model
 #'
-#' @description Quickly simulate data from a basic linear model.
+#' @description
 #'
 #' Each of the n noise elements are from \code{\link[stats]{rnorm}}(mean=0,sd=1).
 #'

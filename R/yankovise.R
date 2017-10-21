@@ -1,13 +1,12 @@
-# http://corpustext.com/index.html
-
-# library(dplyr)
-# library(datzen)
-# library(stringr)
-
 
 ##################################
 # abbreviate for twitter brevity
-# via brevitweet()
+# via brevitweet() internal helper
+#
+# http://corpustext.com/index.html
+# library(dplyr)
+# library(datzen)
+# library(stringr)
 ##################################
 
 brevitweet = function(snip){
@@ -34,7 +33,8 @@ brevitweet = function(snip){
 # for replacement, use a named vector
 # the vector name is outswaped with vector value
 
-#' @title The dictate_outin() function
+#' @title The dictate_outin() function names a character vector
+#'
 #' @description An extremely simple function that creates a named vector.
 #' A useful helper to create key-value dictionaries to use in \code{\link[stringr]{str_replace_all}}
 #'
@@ -70,7 +70,8 @@ dictate_outin = function(swap_out,swap_in){
 ##################################
 
 
-#' The yankovise() function to Weird Al Yankovise a string
+#' @title The yankovise() function to Weird Al Yankovise a string
+#'
 #' @description The function helps the user revise a lyric by substituting original words for thematic keywords.
 #' NOTE: the input string will immediately be lowercased via tolower(snip)
 #'

@@ -1,5 +1,5 @@
 
-#' the garble function to spit out random gibberish
+#' @title The garble() function spits out random gibberish
 #'
 #' @param size_out an integer for length of output, must be 3 or larger
 #' @param pattern_bank a single string of patterns (no space)

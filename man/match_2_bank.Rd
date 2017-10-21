@@ -2,7 +2,7 @@
 % Please edit documentation in R/match_2_bank.R
 \name{match_2_bank}
 \alias{match_2_bank}
-\title{The match_2_bank() function}
+\title{The match_2_bank() function matches elements to a bank of entities}
 \usage{
 match_2_bank(bank_entity, col_name, df_raw, method = "jw", max_dist = 0.2)
 }

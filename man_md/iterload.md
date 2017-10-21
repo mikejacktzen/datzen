@@ -1,4 +1,4 @@
-# `iterload`: The iterload() helper function to easily read in .rds files
+# `iterload`: The iterload() function to easily read in .rds files
 
 ## Description
 

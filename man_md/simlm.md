@@ -1,10 +1,8 @@
-# `simlm`: The simlm function
+# `simlm`: The simlm() function quickly simulates data from a basic linear model
 
 ## Description
 
 
- Quickly simulate data from a basic linear model.
- 
  Each of the n noise elements are from [`rnorm`](rnorm.html) (mean=0,sd=1).
  
  Except for columns 1 and 2, each of the design-matrix elements are from [`runif`](runif.html) (min=0,max=1).

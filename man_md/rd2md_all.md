@@ -1,4 +1,4 @@
-# `rd2md_all`: The rd2md_all() function to batch convert rd files to html files
+# `rd2md_all`: The rd2md_all() function batch converts .rd files to .md files
 
 ## Description
 

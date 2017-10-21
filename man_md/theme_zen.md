@@ -1,10 +1,4 @@
-# `theme_zen`: The zen theme for ggplot2
-
-## Description
-
-
- The zen theme for ggplot2
-
+# `theme_zen`: The theme_zen() function is a theme for ggplot2
 
 ## Usage
 

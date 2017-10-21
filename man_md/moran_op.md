@@ -1,10 +1,4 @@
-# `moran_op`: The moran_op() function
-
-## Description
-
-
- The moran_op() function
-
+# `moran_op`: The moran_op() function computes the moran operator
 
 ## Usage
 

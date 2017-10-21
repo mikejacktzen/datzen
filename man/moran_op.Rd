@@ -2,7 +2,7 @@
 % Please edit documentation in R/moran_op.R
 \name{moran_op}
 \alias{moran_op}
-\title{The moran_op() function}
+\title{The moran_op() function computes the moran operator}
 \usage{
 moran_op(x_features, coord_nb)
 }
@@ -14,9 +14,6 @@ moran_op(x_features, coord_nb)
 \value{
 A list of quantities related to the Moran Operator.
 NOTE: the list structure is ready to be passed to the STAN mcmc software
-}
-\description{
-The moran_op() function
 }
 \examples{
 library(spdep); example(columbus)

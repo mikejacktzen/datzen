@@ -2,7 +2,7 @@
 % Please edit documentation in R/clean_name.R
 \name{clean_name}
 \alias{clean_name}
-\title{The clean_name() function}
+\title{The clean_name() function scrubs out common artifacts in a character string of names}
 \usage{
 clean_name(name_unique)
 }
@@ -11,9 +11,6 @@ clean_name(name_unique)
 }
 \value{
 a character vector that has symbols removed from the supplied input 'name_unique'
-}
-\description{
-The clean_name() function
 }
 \examples{
 # not run

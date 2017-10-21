@@ -2,7 +2,7 @@
 % Please edit documentation in R/class_df_term.R
 \name{class_df_from_term}
 \alias{class_df_from_term}
-\title{the class_df_from_term() function}
+\title{the class_df_from_term() function returns the class of the data frame column(s) involved in a term}
 \usage{
 class_df_from_term(model, class_post_formula = FALSE)
 }
@@ -19,9 +19,6 @@ The vector names are data frame column names.
 The vector values are characters for the data frame column's class.
 NOTE: If any in-formula transformations were applied, the data.frame referenced would represent an 'intermediate' one
 that is not exactly the originating data.frame passed to the 'data' arg of lm(data=.).
-}
-\description{
-the class_df_from_term() function
 }
 \examples{
 

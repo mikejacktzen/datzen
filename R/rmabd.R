@@ -1,4 +1,4 @@
-#' The rmabd() function removes 'all but deeze' objects
+#' @title The rmabd() function removes 'all but deeze' objects
 #'
 #' @param list_keep an optional list of names for objects to keep from '?rm()'.
 #' The default 'list_keep=NULL' will remove all objects.

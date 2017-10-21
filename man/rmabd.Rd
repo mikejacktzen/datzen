@@ -15,9 +15,6 @@ The default 'list_keep=NULL' will remove all objects.}
 \value{
 nothing but a message will be printed for the kept objects
 }
-\description{
-The rmabd() function removes 'all but deeze' objects
-}
 \examples{
 x1 = 1
 x2 = 2

@@ -1,4 +1,4 @@
-#' datzen: A package containing miscellaneous helper functions to achieve Data Zen.
+#' @title The "datzen" package containing miscellaneous helper functions to achieve Data Zen
 #'
 #' The datzen package provides three categories of commonly used Zen functions:
 #' Themed Branding, Special Computations, and Data In/Out.

@@ -1,10 +1,4 @@
-# `expit`: the expit() function, rebranding of [`plogis`](plogis.html)
-
-## Description
-
-
- the expit() function, rebranding of [`plogis`](plogis.html) 
-
+# `expit`: The expit() function is a rebranding of [`plogis`](plogis.html)
 
 ## Usage
 

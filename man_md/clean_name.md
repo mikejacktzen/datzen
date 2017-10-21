@@ -1,10 +1,4 @@
-# `clean_name`: The clean_name() function
-
-## Description
-
-
- The clean_name() function
-
+# `clean_name`: The clean_name() function scrubs out common artifacts in a character string of names
 
 ## Usage
 

@@ -1,10 +1,4 @@
-# `class_df_from_term`: the class_df_from_term() function
-
-## Description
-
-
- the class_df_from_term() function
-
+# `class_df_from_term`: the class_df_from_term() function returns the class of the data frame column(s) involved in a term
 
 ## Usage
 

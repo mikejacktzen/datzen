@@ -3,7 +3,7 @@
 # http://stackoverflow.com/questions/27400931/how-to-make-a-default-custom-theme-with-ggplot2-in-r
 #####################
 
-#' The zen theme for ggplot2
+#' @title The theme_zen() function is a theme for ggplot2
 #'
 #' @return NULL
 #' @export

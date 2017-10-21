@@ -1,4 +1,4 @@
-#' a function to batch convert .rd files to .md files
+#' @title The rd2md_all() function batch converts .rd files to .md files
 #'
 #' @description uses the Rd2md::Rd2markdown function inside base::lapply
 #'

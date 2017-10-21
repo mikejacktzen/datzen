@@ -1,5 +1,5 @@
 
-#' the logit() function, rebranding of \code{\link[stats]{qlogis}}
+#' @title The logit() function is a rebranding of \code{\link[stats]{qlogis}}
 #'
 #' @seealso \code{\link[stats]{qlogis}}
 #'
@@ -13,7 +13,7 @@
 logit = stats::qlogis
 
 
-#' the expit() function, rebranding of \code{\link[stats]{plogis}}
+#' @title The expit() function is a rebranding of \code{\link[stats]{plogis}}
 #'
 #' @seealso \code{\link[stats]{plogis}}
 #'

@@ -1,6 +1,5 @@
 
-
-#' The match_2_bank() function
+#' @title The match_2_bank() function matches elements to a bank of entities
 #'
 #' @param bank_entity a single column data.frame that contains the unique population of entities inside bank_entity$bank_entity
 #' @param col_name a single string for the name of the column in 'df_raw' to be processed and matched to bank_entity

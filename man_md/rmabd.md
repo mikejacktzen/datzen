@@ -1,11 +1,5 @@
 # `rmabd`: The rmabd() function removes 'all but deeze' objects
 
-## Description
-
-
- The rmabd() function removes 'all but deeze' objects
-
-
 ## Usage
 
 ```r

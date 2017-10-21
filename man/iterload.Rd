@@ -2,7 +2,7 @@
 % Please edit documentation in R/iterload.R
 \name{iterload}
 \alias{iterload}
-\title{The iterload() helper function to easily read in .rds files}
+\title{The iterload() function to easily read in .rds files}
 \usage{
 iterload(dir_rds)
 }

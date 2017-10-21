@@ -1,10 +1,4 @@
-# `garble`: the garble function to spit out random gibberish
-
-## Description
-
-
- the garble function to spit out random gibberish
-
+# `garble`: The garble() function spits out random gibberish
 
 ## Usage
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/yankovise.R
 \name{dictate_outin}
 \alias{dictate_outin}
-\title{The dictate_outin() function}
+\title{The dictate_outin() function names a character vector}
 \usage{
 dictate_outin(swap_out, swap_in)
 }

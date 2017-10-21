@@ -1,5 +1,5 @@
 
-#' The moran_op() function
+#' @title The moran_op() function computes the moran operator
 #'
 #' @param x_features a data.frame of features that will be coerced \code{\link[base]{as.matrix}}
 #' @param coord_nb a data.frame of the nb-coordinate triplets (i,j,k) returned from \code{\link[datzen]{save_coord_nb}}

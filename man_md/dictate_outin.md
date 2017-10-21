@@ -1,4 +1,4 @@
-# `dictate_outin`: The dictate_outin() function
+# `dictate_outin`: The dictate_outin() function names a character vector
 
 ## Description
 

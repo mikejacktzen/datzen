@@ -1,5 +1,5 @@
 
-#' The clean_name() function
+#' @title The clean_name() function scrubs out common artifacts in a character string of names
 #'
 #' @param name_unique a character vector containing a set of names to be parsed
 #'

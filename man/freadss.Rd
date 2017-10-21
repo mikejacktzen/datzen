@@ -2,7 +2,7 @@
 % Please edit documentation in R/freadss.R
 \name{freadss}
 \alias{freadss}
-\title{The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).}
+\title{The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled)}
 \usage{
 freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/simlm.R
 \name{simlm}
 \alias{simlm}
-\title{The simlm function}
+\title{The simlm() function quickly simulates data from a basic linear model}
 \usage{
 simlm(n = 10, p = 4, coef_true = seq(1:p), seed = NULL,
   output_meta = FALSE)
@@ -26,8 +26,6 @@ The column names of yx are names(yx)=c('y',paste0("x",seq(1:p))).
 If 'output_meta=TRUE', a 3 element list with yx, coef_true, noise.
 }
 \description{
-Quickly simulate data from a basic linear model.
-
 Each of the n noise elements are from \code{\link[stats]{rnorm}}(mean=0,sd=1).
 
 Except for columns 1 and 2, each of the design-matrix elements are from \code{\link[stats]{runif}}(min=0,max=1).

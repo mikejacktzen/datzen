@@ -1,4 +1,4 @@
-#' The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled).
+#' @title The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled)
 #'
 #' @seealso \code{\link[data.table]{fread}}
 #' @description The input file is read in-memory via \code{\link[data.table]{fread}}.

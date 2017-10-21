@@ -1,5 +1,5 @@
 
-#' The save_coord_nb() function
+#' @title The save_coord_nb() function writes a .txt file of nb-coordinate triplets
 #'
 #' @param foo_spdf an object of class \code{\link[sp]{SpatialPolygonsDataFrame}}
 #' @param style an optional character representing the style of spatial weights

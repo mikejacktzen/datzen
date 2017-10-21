@@ -1,4 +1,4 @@
-#' The iterload() helper function to easily read in .rds files
+#' @title The iterload() function to easily read in .rds files
 #'
 #' @description
 #' The .rds files are expected to be output from from \code{\link[datzen]{itersave}}

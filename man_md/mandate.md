@@ -10,7 +10,7 @@
 ## Usage
 
 ```r
-mandate(df, schema_df)
+mandate(df, schema)
 ```
 
 
@@ -18,19 +18,19 @@ mandate(df, schema_df)
 
 Argument      |Description
 ------------- |----------------
-```df```     |     a data.frame of data whose column types and names will be mandated against a schema
-```schema_df```     |     a data.frame used as a schema to mandate each column in the df argument
+```df```     |     a data.frame whose column types and names will be mandated against a schema
+```schema```     |     a nested list containing schematics used to mandate the data.frame df argument
 
 ## Details
 
 
- the schema_df argument should be the output of [`scheme`](scheme.html) .
+ the schema argument should be the output of [`scheme`](scheme.html) .
 
 
 ## Value
 
 
- an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema_df'
+ an output data.frame similar to the input 'df' but the column types of 'df' may have been converted according to 'schema'
 
 
 ## Seealso
@@ -48,12 +48,12 @@ Argument      |Description
  
  library(dplyr)
  
- mandate(iris2,schema_df = schema_in) %>% str
+ mandate(iris2,schema = schema_in) %>% str
  
  iris3 = iris2 %>% mutate_all(.funs=funs(as.character))
  iris3 %>% str
  
- mandate(iris3,schema_df = schema_in) %>% str
+ mandate(iris3,schema = schema_in) %>% str
  
  ``` 
 

@@ -1,10 +1,4 @@
-# `save_coord_nb`: The save_coord_nb() function
-
-## Description
-
-
- The save_coord_nb() function
-
+# `save_coord_nb`: The save_coord_nb() function writes a .txt file of nb-coordinate triplets
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# `match_2_bank`: The match_2_bank() function
+# `match_2_bank`: The match_2_bank() function matches elements to a bank of entities
 
 ## Description
 
