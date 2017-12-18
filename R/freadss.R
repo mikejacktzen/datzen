@@ -9,7 +9,6 @@
 #'
 #' @param input character for file path of csv passed to \code{\link[data.table]{fread}}
 #' @param ss integer for desired row sample size. Default of ss is NULL, meaning no subsampling.
-#' @param replace a logical picking with/without-replacement sampling
 #' @param ind_choose optional integer vector of specific rows to read in (instead of sampling)
 #'
 #' @return a 'data.frame' with optionally subsetted rows (perhaps from sampling)
@@ -48,7 +47,8 @@
 # disabled optional ... args passed to fread()
 # eg drop/keep bugs out since issue of original header name lost during do.call(fread,list_ss)
 
-freadss = function(input,ss=NULL,replace=TRUE,ind_choose=NULL){
+freadss = function(input,ss=NULL,
+                   ind_choose=NULL){
 
   # ss = 100  # samp size
   # ind_choose=ind_pick
@@ -57,6 +57,7 @@ freadss = function(input,ss=NULL,replace=TRUE,ind_choose=NULL){
 
   # ss and ind_choose non null
   if((!is.null(ss))&&(!is.null(ind_choose))){stop('you can not have BOTH non-null ss and ind_choose')}
+
 
 
   require(data.table)
@@ -77,20 +78,22 @@ freadss = function(input,ss=NULL,replace=TRUE,ind_choose=NULL){
   num_rows = data.table::fread(paste0('wc -l ',input))[[1]] - 1
   name_header_orig = names(fread(input,nrows=0))
 
+  if(ss > num_rows){stop('You have chosen to sub sample MORE rows than the original dataset, this goes against the philosophy of this function')}
+
+
   # row index random sampled
   if(is.null(ind_choose)&&(!is.null(ss))){
 
     if(ss <= 0){stop('ss must be NULL or greater than 0')}
 
-    # use ind_samp
-    if(num_rows < ss){
-      ind_samp = sample(x=(1:nrow(dat_raw)),size=ss,replace=TRUE)
-      warning('nrow() less than ss, so will force replace=TRUE')
+    # note: hardcode replace=FALSE
 
-    } else {
-      ind_samp = sample(x=(1:num_rows),size=ss,replace=replace)
-    }
+    # edge case where ss > nrow(dat_raw) and replace = TRUE
+    # goes against motivating use case to sub sample before read in
+
+    ind_samp = sample(x=(1:num_rows),size=ss,replace=FALSE)
     ind_spec = as.integer(ind_samp)
+
   }
 
   # row index user specified

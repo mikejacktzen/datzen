@@ -4,14 +4,12 @@
 \alias{freadss}
 \title{The freadss() function reads in a csv and perhaps subsets the rows (optionally sampled)}
 \usage{
-freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL)
+freadss(input, ss = NULL, ind_choose = NULL)
 }
 \arguments{
 \item{input}{character for file path of csv passed to \code{\link[data.table]{fread}}}
 
 \item{ss}{integer for desired row sample size. Default of ss is NULL, meaning no subsampling.}
-
-\item{replace}{a logical picking with/without-replacement sampling}
 
 \item{ind_choose}{optional integer vector of specific rows to read in (instead of sampling)}
 }

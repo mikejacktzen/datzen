@@ -11,7 +11,7 @@
 ## Usage
 
 ```r
-freadss(input, ss = NULL, replace = TRUE, ind_choose = NULL)
+freadss(input, ss = NULL, ind_choose = NULL)
 ```
 
 
@@ -21,7 +21,6 @@ Argument      |Description
 ------------- |----------------
 ```input```     |     character for file path of csv passed to [`fread`](fread.html)
 ```ss```     |     integer for desired row sample size. Default of ss is NULL, meaning no subsampling.
-```replace```     |     a logical picking with/without-replacement sampling
 ```ind_choose```     |     optional integer vector of specific rows to read in (instead of sampling)
 
 ## Details
