@@ -20,12 +20,22 @@ theme_zen = function(){
   #     ggtitle("Foo Title") +
   #     labs(colour="Foo Legend") +
 
+
   theme_bw() +
     theme(legend.direction = "horizontal",
           legend.position = "top",
           legend.box = "horizontal",
-          # axis.text=element_text(size=12),
           axis.title=element_text(size=14,face="bold"),
-          plot.title=element_text(size=20,face="bold")
+          plot.title=element_text(size=20,face="bold",hjust = 0.5)
+    ) +
+    theme(
+      panel.background = element_rect(fill = "transparent") # bg of the panel
+      , plot.background = element_rect(fill = "transparent") # bg of the plot
+      , panel.grid.major = element_blank() # get rid of major grid
+      , panel.grid.minor = element_blank() # get rid of minor grid
+      , legend.background = element_rect(fill = "transparent") # get rid of legend bg
+      , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
+      , strip.background = element_rect(fill = "transparent")
+      , strip.text = element_text(size = 14)
     )
 }
