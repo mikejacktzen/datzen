@@ -16,6 +16,8 @@ rd2md_all(dir_man_rd = "~/projects/datzen/man/",
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
 
+?colname_zen
+?rd2md_all
 ?mandate
 ?scheme
 ?dictate_outin

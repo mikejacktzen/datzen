@@ -18,6 +18,7 @@ colname_zen = function(df,suffix=NULL){
 
   require(dplyr)
   require(rlang)
+  require(stringr)
 
   # names(df)
 
