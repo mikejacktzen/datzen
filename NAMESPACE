@@ -2,6 +2,7 @@
 
 export(class_df_from_term)
 export(clean_name)
+export(colname_zen)
 export(dictate_outin)
 export(expit)
 export(freadss)
