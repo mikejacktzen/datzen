@@ -1,5 +1,5 @@
 
-#' the colname_zen() function zenifies a data frame's column names by lower and caterpillar casing
+#' The colname_zen() function zenifies a data frame's column names by lower and caterpillar casing
 #'
 #' @param df a data.frame
 #' @param suffix a single character string (optional) to attach as a suffix to column names (default NULL)
