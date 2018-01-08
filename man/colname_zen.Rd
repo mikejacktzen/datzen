@@ -14,7 +14,8 @@ colname_zen(df, suffix = NULL, ind_suffix = NULL)
 \item{ind_suffix}{an integer vector (optional) that picks the specific columns to attach the suffix (default NULL)}
 }
 \value{
-a modified character vector of names that have been lower and caterpillar cased with an optional suffix
+a modified character vector of names that have been lower and caterpillar cased,
+perhaps with an optional suffix attached
 }
 \description{
 The colname_zen() function zenifies a data frame's column names by lower and caterpillar casing
@@ -30,4 +31,12 @@ df_foo \%>\% colname_zen(.,suffix="src_1",c(1,5))
 names_new = df_foo \%>\% colname_zen(.,suffix="src_1",c(1,5))
 names(df_foo) = names_new
 names(df_foo)
+
+# use ?grepl() to pick col indices
+names(df_foo)
+ind_grep = which(grepl(names(df_foo),pattern=".Width"))
+names_new_grep = df_foo \%>\% colname_zen(.,suffix="src_1",ind_grep)
+names(df_foo) = names_new_grep
+names(df_foo)
+
 }
