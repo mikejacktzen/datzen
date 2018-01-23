@@ -6,6 +6,7 @@
 #' The same 'style' arg in \code{\link[spdep]{nb2listw}}
 #' @param dir_out an optional character representing the output directory
 #' if the user wishes to write to a '.csv'
+#' @param zero.policy default TRUE. The same argument in \code{\link[spdep]{nb2listw}}
 #'
 #' @return A data.frame of the nb-coordinate triplets ("from","to","weights") with 'spatial.neighbour' class returned from \code{\link[spdep]{listw2sn}}
 #' @export
@@ -14,7 +15,7 @@
 #' example(columbus); save_coord_nb(foo_spdf=columbus)
 
 
-save_coord_nb = function(foo_spdf,style="B",dir_out=NULL){
+save_coord_nb = function(foo_spdf,style="B",dir_out=NULL,zero.policy=TRUE){
 
   ###################################################
   # output cartesian triplet: (row,col,value)
@@ -31,7 +32,7 @@ save_coord_nb = function(foo_spdf,style="B",dir_out=NULL){
   # sparse_coord = foo_spdf %>% poly2nb() %>%
   #   nb2listw(style="B") %>% listw2sn()
 
-  sparse_coord = listw2sn(nb2listw(style=style,poly2nb(foo_spdf)))
+  sparse_coord = listw2sn(nb2listw(style=style,poly2nb(foo_spdf),zero.policy=zero.policy))
 
 
   if(is.null(dir_out)==TRUE){

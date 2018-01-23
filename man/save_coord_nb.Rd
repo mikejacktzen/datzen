@@ -4,7 +4,7 @@
 \alias{save_coord_nb}
 \title{The save_coord_nb() function writes a .txt file of nb-coordinate triplets}
 \usage{
-save_coord_nb(foo_spdf, style = "B", dir_out = NULL)
+save_coord_nb(foo_spdf, style = "B", dir_out = NULL, zero.policy = TRUE)
 }
 \arguments{
 \item{foo_spdf}{an object of class \code{\link[sp]{SpatialPolygonsDataFrame}}}
@@ -14,6 +14,8 @@ The same 'style' arg in \code{\link[spdep]{nb2listw}}}
 
 \item{dir_out}{an optional character representing the output directory
 if the user wishes to write to a '.csv'}
+
+\item{zero.policy}{default TRUE. The same argument in \code{\link[spdep]{nb2listw}}}
 }
 \value{
 A data.frame of the nb-coordinate triplets ("from","to","weights") with 'spatial.neighbour' class returned from \code{\link[spdep]{listw2sn}}

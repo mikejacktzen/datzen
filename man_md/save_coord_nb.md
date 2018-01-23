@@ -3,7 +3,7 @@
 ## Usage
 
 ```r
-save_coord_nb(foo_spdf, style = "B", dir_out = NULL)
+save_coord_nb(foo_spdf, style = "B", dir_out = NULL, zero.policy = TRUE)
 ```
 
 
@@ -14,6 +14,7 @@ Argument      |Description
 ```foo_spdf```     |     an object of class [`SpatialPolygonsDataFrame`](SpatialPolygonsDataFrame.html)
 ```style```     |     an optional character representing the style of spatial weights The same 'style' arg in [`nb2listw`](nb2listw.html)
 ```dir_out```     |     an optional character representing the output directory if the user wishes to write to a '.csv'
+```zero.policy```     |     default TRUE. The same argument in [`nb2listw`](nb2listw.html)
 
 ## Value
 
