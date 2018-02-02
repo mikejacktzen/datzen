@@ -12,7 +12,7 @@ moran_op(x_features, coord_nb)
 Argument      |Description
 ------------- |----------------
 ```x_features```     |     a data.frame of features that will be coerced [`as.matrix`](as.matrix.html)
-```coord_nb```     |     a data.frame of the nb-coordinate triplets (i,j,k) returned from [`save_coord_nb`](save_coord_nb.html)
+```coord_nb```     |     a data.frame of the nb-coordinate triplets (i,j,k) returned from [`coordinate_nb`](coordinate_nb.html) or [`listw2sn`](listw2sn.html)
 
 ## Value
 
