@@ -25,9 +25,10 @@ theme_zen = function(){
     theme(legend.direction = "horizontal",
           legend.position = "top",
           legend.box = "horizontal",
-          axis.title=element_text(size=14,face="bold"),
-          plot.title=element_text(size=20,face="bold",hjust = 0.5),
-          plot.subtitle=element_text(hjust = 0.5)  # center sub title
+          axis.title=element_text(size=7,face="bold"),
+          plot.title=element_text(size=10,face="bold",
+                                  hjust = 0.5),
+          plot.subtitle=element_text(size=7,hjust = 0.5)  # center sub title
           # eventualy figure out relative scaling: theme_zen(rel=FALSEs)
 
     ) +
@@ -39,6 +40,6 @@ theme_zen = function(){
       , legend.background = element_rect(fill = "transparent") # get rid of legend bg
       , legend.box.background = element_rect(fill = "transparent") # get rid of legend panel bg
       , strip.background = element_rect(fill = "transparent")
-      , strip.text = element_text(size = 14)
+      , strip.text = element_text(size = 7)
     )
 }
