@@ -1,3 +1,17 @@
+#' @title The "Not In" Operator \%nin\%, negation of \code{\link[base]{match}}
+#'
+#' @seealso \code{\link[base]{match}}
+#'
+#' @param ... see \%in\% details in \code{\link[base]{match}}
+#'
+#' @return a logical vector
+#' @export
+#'
+#' @examples
+#' c(1,2,3) %nin% c(1,2)
+#' c("a","b") %nin% c("a","b")
+`%nin%` = Negate(`%in%`)
+
 
 #' @title The logit() function is a rebranding of \code{\link[stats]{qlogis}}
 #'

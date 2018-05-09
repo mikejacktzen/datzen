@@ -15,7 +15,7 @@ rd2md_all(dir_man_rd = "~/projects/datzen/man/",
 
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
-
+?"%nin%"
 ?colname_zen
 ?rd2md_all
 ?mandate
@@ -35,7 +35,7 @@ library(datzen)
 ?freadss
 ?logit
 ?expit
-?save_coord_nb
+?coordinate_nb
 ?moran_op
 
 # devtools::use_readme_rmd()
