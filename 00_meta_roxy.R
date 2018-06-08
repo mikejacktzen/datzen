@@ -15,6 +15,7 @@ rd2md_all(dir_man_rd = "~/projects/datzen/man/",
 
 # devtools::install_github('mikejacktzen/datzen',force=TRUE)
 library(datzen)
+?load_cache
 ?"%nin%"
 ?colname_zen
 ?rd2md_all
