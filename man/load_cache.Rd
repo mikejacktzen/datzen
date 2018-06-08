@@ -4,10 +4,14 @@
 \alias{load_cache}
 \title{The load_cache() function to load .rdata files from a knitr cache}
 \usage{
-load_cache(dir_cache)
+load_cache(dir_cache, envir = globalenv(), ...)
 }
 \arguments{
 \item{dir_cache}{a single character string for the directory containing the .rdata files}
+
+\item{envir}{The environment into which objects are loaded. same as \code{\link[base]{lazyLoad}}}
+
+\item{...}{optional args passed to \code{\link[base]{lazyLoad}}}
 }
 \value{
 NULL, but the .rdata files are loaded into the global environment
@@ -18,4 +22,7 @@ The load_cache() function to load .rdata files from a knitr cache
 \examples{
 dir_cache = here::here("/writeup/article_tech_doc_cache/html/")
 load_cache(dir_cache)
+}
+\seealso{
+\code{\link[base]{lazyLoad}}
 }

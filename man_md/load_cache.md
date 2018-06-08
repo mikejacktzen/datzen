@@ -9,7 +9,7 @@
 ## Usage
 
 ```r
-load_cache(dir_cache)
+load_cache(dir_cache, envir = globalenv(), ...)
 ```
 
 
@@ -18,11 +18,19 @@ load_cache(dir_cache)
 Argument      |Description
 ------------- |----------------
 ```dir_cache```     |     a single character string for the directory containing the .rdata files
+```envir```     |     The environment into which objects are loaded. same as [`lazyLoad`](lazyLoad.html)
+```...```     |     optional args passed to [`lazyLoad`](lazyLoad.html)
 
 ## Value
 
 
  NULL, but the .rdata files are loaded into the global environment
+
+
+## Seealso
+
+
+ [`lazyLoad`](lazyLoad.html) 
 
 
 ## Examples
