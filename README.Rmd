@@ -85,37 +85,6 @@ ls()
 ```
 
 
-### Weird Al `yankovise()` a String
-
-I have a character string snipped from a song by [Daniel Son the Necklace Don](https://en.wikipedia.org/wiki/2_Chainz).  
-Let's get all Weird Al Yankovic with it.  
-I'll revise some words with the `yankovise()` function.  
-
-```{r}
-paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop",
-       " - @2chainz aka the Hair Weave Killer")
-```
-
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz_PhD](https://twitter.com/2Chainz_PhD?lang=en)
-aka CPU Core Killer 
-aka ProbaBittyBoi 
-aka Daniel Son the Data Don 
-aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr. 
-
-
-```{r}
-# user supplied dictionary
-dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
-                datzen::dictate_outin('big','LAP'),
-                datzen::dictate_outin('rim','RAM'))
-
-yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
-```
-
-You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes, yes it is… only with a narrower scope and whose output is streamlined as tweet-ready text.
-
-
-
 ## Special Computations
 
 
@@ -185,7 +154,7 @@ So... of course. I just want a taste of the data. Give me a taste!
 I'll use the subset to prototype something that works. Later, I'll run it on the whole shebang. 
 
 ```{r message=FALSE}
-freadss(input=tf,ss=5,replace=TRUE) %>% dim
+freadss(input=tf,ss=5) %>% dim
 ```
 
 ### The Glorious Franken-function `itersave()`

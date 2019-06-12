@@ -77,7 +77,7 @@ I'm too much of a homo-sapien, my phrases are never garbled enough (I blame my p
 dats_wat_she_said = 10
 junk = garble(size_out=dats_wat_she_said)
 junk
-#> [1] "a(bgkumd&3"
+#> [1] "a%w!k13u4%"
 ```
 
 ### Is your workspace environment too clutered?
@@ -100,33 +100,6 @@ rmabd('nuts')
 ls()
 #> [1] "nuts"
 ```
-
-### Weird Al `yankovise()` a String
-
-I have a character string snipped from a song by [Daniel Son the Necklace Don](https://en.wikipedia.org/wiki/2_Chainz).
-Let's get all Weird Al Yankovic with it.
-I'll revise some words with the `yankovise()` function.
-
-``` r
-paste0(snip <<- "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop",
-       " - @2chainz aka the Hair Weave Killer")
-#> [1] "Suede sun roof, hanging out the big top We leave the dealership, head to the rim shop - @2chainz aka the Hair Weave Killer"
-```
-
-You can swap out words using a dictionary of name-value pairs. Below, we have a yankovised lyric from [2Chainz\_PhD](https://twitter.com/2Chainz_PhD?lang=en) aka CPU Core Killer aka ProbaBittyBoi aka Daniel Son the Data Don aka El [Efron](http://statweb.stanford.edu/~ckirby/brad/) Jr.
-
-``` r
-# user supplied dictionary
-dict_outin = c(datzen::dictate_outin('dealership','SERVER ROOM'),
-                datzen::dictate_outin('big','LAP'),
-                datzen::dictate_outin('rim','RAM'))
-
-yankovise(snip,suffix="- @2Chainz_PhD",dict_outin = dict_outin)
-#> Loading required package: stringr
-#> [1] "suede sun roof hanging out da LAP top we leave da SERVER ROOM head 2 da RAM shop - @2Chainz_PhD"
-```
-
-You might ask, isn't this just a wrapper to `gsub` or `stringr::str_replace_all` with some added flavor? I might say, yes, yes it is… only with a narrower scope and whose output is streamlined as tweet-ready text.
 
 Special Computations
 --------------------
@@ -234,18 +207,18 @@ How did you know? I'm tired of using `data(iris)` because the column names aren'
 ``` r
 simlm(p=7,n=5,output_meta=TRUE)
 #> $yx
-#>       y x1 x2    x3    x4     x5    x6    x7
-#> 1 14.83  1  0 0.671 0.547 0.3027 0.594 0.857
-#> 2  9.54  1  0 0.289 0.229 0.5071 0.141 0.456
-#> 3 15.44  1  0 0.527 0.160 0.0801 0.947 0.921
-#> 4 15.54  1  0 0.583 0.591 0.5513 0.192 0.942
-#> 5 13.03  1  0 0.214 0.394 0.7621 0.046 0.782
+#>       y x1 x2     x3     x4     x5    x6    x7
+#> 1 14.56  1  1 0.0233 0.1410 0.7529 0.744 0.442
+#> 2 13.01  1  0 0.9697 0.0203 0.9264 0.553 0.208
+#> 3 17.25  1  1 0.8865 0.4596 0.8747 0.739 0.357
+#> 4  9.43  1  0 0.2764 0.1069 0.0252 0.757 0.051
+#> 5  7.26  1  0 0.0873 0.2893 0.9189 0.104 0.401
 #> 
 #> $coef_true
 #> [1] 1 2 3 4 5 6 7
 #> 
 #> $noise
-#> [1] -1.4532  0.1832 -0.3165 -0.0738  0.2541
+#> [1] -0.390 -0.389 -1.556  2.146 -3.185
 
 simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+.)
 #> 
@@ -254,7 +227,7 @@ simlm(p=3,n=100,coef_true = c(69,23,7),output_meta=FALSE) %>% lm(data=., y ~ -1+
 #> 
 #> Coefficients:
 #>    x1     x2     x3  
-#> 68.83  23.00   7.07
+#> 68.89  23.10   7.01
 ```
 
 ### Ever wanted to read in 5 random rows of some physical spreadsheet?
@@ -276,7 +249,7 @@ So... of course. I just want a taste of the data. Give me a taste!
 I'll use the subset to prototype something that works. Later, I'll run it on the whole shebang.
 
 ``` r
-freadss(input=tf,ss=5,replace=TRUE) %>% dim
+freadss(input=tf,ss=5) %>% dim
 #> [1]   5 100
 ```
 
